@@ -52,6 +52,12 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Frameworks\HotelManagerDBContext.cs" />
+    <Compile Include="Frameworks\tbl_account.cs" />
+    <Compile Include="Frameworks\tbl_customer.cs" />
+    <Compile Include="Frameworks\tbl_room.cs" />
+    <Compile Include="Frameworks\tbl_roombook.cs" />
+    <Compile Include="Frameworks\tbl_services.cs" />
+    <Compile Include="Frameworks\tbl_servicesuse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
