@@ -43,6 +43,7 @@ CREATE TABLE tbl_servicesuse(
 	idRoom nvarchar(5) NULL,
  CONSTRAINT [PK_SDDV_1] PRIMARY KEY (idServiceuse,idCard,idService));
  GO
+DROP TABLE dbo.tbl_account;
 CREATE TABLE tbl_account(
 	[Username] [nvarchar](50) NOT NULL,
 	[Pass] [nvarchar](50) NOT NULL,
@@ -133,14 +134,14 @@ SET IDENTITY_INSERT dbo.tbl_servicesuse OFF
 		GO
 
 INSERT INTO dbo.tbl_account (Username, Pass, Name)
-VALUES	(N'linhadmin', N'linhadmin', N'Cao Thị Linh'),
-		(N'tuananh', N'tuananh', N'Vũ Tuấn Anh'),
-		(N'nguyenmai', N'nguyenmai', N'Nguyễn Thị Mai'),
-		(N'vananh', N'vananh', N'Phạm Vân Anh'),
-		(N'hoanghung', N'hoanghung', N'Hoàng Đức Hưng'),
-		(N'khoaadmin', N'khoaadmin', N'Phạm Anh Khoa'),
-		(N'duongngan', N'duongngan', N'Dương Thị Ngân'),
-		(N'ducdu', N'ducdu', N'Đào Đức Đủ');
+VALUES	(N'daoadmin', N'daoadmin', N'Lê Thị Đào'),
+		(N'quangvinh', N'quangvinh', N'Phạm Vũ Quang Vinh'),
+		(N'baoloc', N'baoloc', N'Nguyễn Bảo Lộc'),
+		(N'minhtrieu', N'minhtrieu', N'Lê Minh Triệu'),
+		(N'vanadmin', N'vanadmin', N'Võ Thị Kiều Vân'),
+		(N'anhthy', N'anhthy', N'Nguyễn Đỗ Anh Thy'),
+		(N'nhuthi', N'nhuthi', N'Dương Hà Như Thi'),
+		(N'thanhvu', N'thanhvu', N'Nguyễn Thanh Vũ');
 		GO 
 		
 
