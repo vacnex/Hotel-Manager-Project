@@ -97,6 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\accountController.cs" />
+    <Compile Include="Controllers\customerController.cs" />
+    <Compile Include="Controllers\roombookController.cs" />
+    <Compile Include="Controllers\roomController.cs" />
+    <Compile Include="Controllers\servicesController.cs" />
+    <Compile Include="Controllers\servicesuseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -113,14 +119,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Customer\" />
-    <Folder Include="Controllers\Manager\" />
-    <Folder Include="Controllers\Staff\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{fede5ea0-ceab-4302-b860-00905ba209a6}</Project>
+      <Project>{569ea218-9c12-4276-b8d3-42fdf62930b3}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
