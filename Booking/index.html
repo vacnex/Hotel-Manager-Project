@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- #region CSS -->
 	<link rel="stylesheet" href="Resource/CSS/Bootstrap/bootstrap.min.css" />
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="Resource/CSS/style.css" />
 	<!-- #endregion -->
 	<title>Document</title>
@@ -50,7 +51,7 @@
 						bị tối thiểu, có diện tích nhỏ, ở tầng thấp, không có view hoặc view không đẹp. Đây là loại
 						phòng có mức giá thấp nhất trong khách sạn. </p>
 					<div class="text-center">
-						<button type="button" class="btn btn-outline-info" data-toggle="modal"
+						<button type="button" class="btn btn-outline-info btnstandar" data-toggle="modal"
 							data-target="#standarroomModal">Xem thêm</button>
 					</div>
 				</div>
@@ -65,7 +66,7 @@
 									chất lượng phòng tốt hơn nên mức giá thuê phòng cũng sẽ cao hơn.
 								</p>
 								<div class="text-center">
-									<button type="button" class="btn btn-outline-info" data-toggle="modal"
+									<button type="button" class="btn btn-outline-info btnvip" data-toggle="modal"
 									data-target="#viproomModal">Xem thêm</button>
 								</div>
 							</div>
@@ -79,7 +80,7 @@
 								cao, được trang bị những thiết bị cao cấp và các dịch vụ đặc biệt kèm theo. Có phòng
 								khách và phòng ngủ riêng biệt, có ban công với view đẹp nhất khách sạn.</p>
 							<div class="text-center">
-								<button type="button" class="btn btn-outline-info " data-toggle="modal"
+								<button type="button" class="btn btn-outline-info btnluxury" data-toggle="modal"
 								data-target="#luxuryroomModal">Xem thêm</button>
 							</div>
 						</div>
@@ -90,13 +91,110 @@
 	<!-- #region Modal -->
 	<div class="modal fade" id="standarroomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
 		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-xl" >
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG THƯỜNG</h5>
 				</div>
 				<div class="modal-body">
-					
+					<div class="container">
+						<div class="row">
+							<div class="col-4">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputEmail4">Ngày đến</label>
+											<input id="startday" />
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPassword4">Ngày đi</label>
+											<input id="endday"  />
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputName">Họ tên</label>
+											<input type="text" class="form-control" id="inputName">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPhone">Số Điện thoại</label>
+											<input type="text" class="form-control" id="inputPhone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputAddress">Địa chỉ</label>
+										<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputIdRoom">Mã phòng</label>
+											<input type="text" class="form-control" id="inputIdRoom">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputRoomType">Loại Phòng</label>
+											<input type="text" class="form-control" id="inputRoomType">
+										</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									</div>
+									
+								</form>
+							</div>
+							<div class="col-8"">
+								<div class="row row-cols-1 row-cols-md-3">
+									<div class="col mb-4">
+										<div class="card">
+											<div class="text-center">
+												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
+											</div>
+											<div class="card-body">
+												<h5 class="card-title">Mã phòng:</h5>
+												<h5 class="card-title">Loại phòng:</h5>
+												<h5 class="card-title">Giá:</h5>
+											</div>
+										</div>
+									</div>
+									<div class="col mb-4">
+										<div class="card">
+											<div class="text-center">
+												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
+											</div>
+											<div class="card-body">
+												<h5 class="card-title">Mã phòng:</h5>
+												<h5 class="card-title">Loại phòng:</h5>
+												<h5 class="card-title">Giá:</h5>
+											</div>
+										</div>
+									</div>
+									<div class="col mb-4">
+										<div class="card">
+											<div class="text-center">
+												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
+											</div>
+											<div class="card-body">
+												<h5 class="card-title">Mã phòng:</h5>
+												<h5 class="card-title">Loại phòng:</h5>
+												<h5 class="card-title">Giá:</h5>
+											</div>
+										</div>
+									</div>
+									<div class="col mb-4">
+										<div class="card">
+											<div class="text-center">
+												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
+											</div>
+											<div class="card-body">
+												<h5 class="card-title">Mã phòng:</h5>
+												<h5 class="card-title">Loại phòng:</h5>
+												<h5 class="card-title">Giá:</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
@@ -142,7 +240,8 @@
 			<script src="Resource/JS/Bootstrap/popper.min.js"></script>
 			<script src="Resource/JS/Bootstrap/bootstrap.min.js"></script>
 			<script src="Resource/JS/ajax.js"></script>
-			<!-- #endregion -->
+			<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<!-- #endregion -->
 </body>
 
 </html>
