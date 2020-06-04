@@ -1,17 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Resource/CSS/Bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="Resource/CSS/style.css">
-    <title>Document</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- #region CSS -->
+	<link rel="stylesheet" href="Resource/CSS/Bootstrap/bootstrap.min.css" />
+	<link rel="stylesheet" href="Resource/CSS/style.css" />
+	<!-- #endregion -->
+	<title>Document</title>
 </head>
+
 <body>
-    
-    <script src="Resource/JS/Jquery/jquery-3.5.1.min.js"></script>
-    <script src="Resource/JS/Bootstrap/popper.min.js"></script>
-    <script src="Resource/JS/Bootstrap/bootstrap.min.js"></script>
-    <script src="Resource/JS/ajax.js"></script>
+	<!-- #region Navbar -->
+	<nav class="shadow p-3 mb-5 navbar navbar-expand-sm navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="#">Hotel Booking</a>
+			<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavId">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link">TRANG CHỦ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">HỆ THỐNG PHÒNG</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">GIỚI THIỆU</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- #endregion -->
+	<p class="text-center mb-5 ">GIỚI THIỆU HỆ THỐNG PHÒNG</p>
+	<!-- #region Room Card -->
+	<div class="container">
+		<div class="card-deck">
+			<div class="card shadow">
+				<img src="https://premierresidencesphuquoc.com/wp-content/uploads/sites/169/2019/09/PREMIER-RESIDENCES-PHU-QUOC35515-V3-HD.jpg"
+					class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">PHÒNG THƯỜNG</h5>
+					<p class="card-text">Phòng tiêu chuẩn trong khách sạn, là loại phòng đơn giản nhất với những trang
+						bị tối thiểu, có diện tích nhỏ, ở tầng thấp, không có view hoặc view không đẹp. Đây là loại
+						phòng có mức giá thấp nhất trong khách sạn. </p>
+					<div class="text-center">
+						<button type="button" class="btn btn-outline-info" data-toggle="modal"
+							data-target="#standarroomModal">Xem thêm</button>
+					</div>
+				</div>
+			</div>
+			<div class=" card shadow">
+							<img src="https://www.charterworld.com/images/yachts-2/Caner-IV_092.jpg"
+								class="card-img-top" alt="">
+							<div class="card-body">
+								<h5 class="card-title">PHÒNG VIP</h5>
+								<p class="card-text" style="height: 144px;">Đây là loại phòng có chất lượng cao hơn với
+									diện tích lớn hơn, được trang bị nhiều trang thiết bị tiện nghi, có view đẹp. Vì
+									chất lượng phòng tốt hơn nên mức giá thuê phòng cũng sẽ cao hơn.
+								</p>
+								<div class="text-center">
+									<button type="button" class="btn btn-outline-info" data-toggle="modal"
+									data-target="#viproomModal">Xem thêm</button>
+								</div>
+							</div>
+					</div>
+					<div class="card shadow">
+						<img src="https://i.pinimg.com/originals/91/4f/36/914f36e278497fde3e82b10203efe05d.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">PHÒNG HẠNG SANG</h5>
+							<p class="card-text">Là loại phòng cao cấp nhất trong khách sạn. Phòng thường ở trên tầng
+								cao, được trang bị những thiết bị cao cấp và các dịch vụ đặc biệt kèm theo. Có phòng
+								khách và phòng ngủ riêng biệt, có ban công với view đẹp nhất khách sạn.</p>
+							<div class="text-center">
+								<button type="button" class="btn btn-outline-info " data-toggle="modal"
+								data-target="#luxuryroomModal">Xem thêm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #endregion -->
+	<!-- #region Modal -->
+	<div class="modal fade" id="standarroomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG THƯỜNG</h5>
+				</div>
+				<div class="modal-body">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="viproomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG VIP</h5>
+				</div>
+				<div class="modal-body">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="luxuryroomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG HẠNG SANG</h5>
+				</div>
+				<div class="modal-body">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #endregion -->
+	<!-- #region Script -->
+			<script src="Resource/JS/Jquery/jquery-3.5.1.min.js"></script>
+			<script src="Resource/JS/Bootstrap/popper.min.js"></script>
+			<script src="Resource/JS/Bootstrap/bootstrap.min.js"></script>
+			<script src="Resource/JS/ajax.js"></script>
+			<!-- #endregion -->
 </body>
+
 </html>
