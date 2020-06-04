@@ -9,3 +9,15 @@ C:\Users\hybab\Desktop\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Mod
 C:\Users\hybab\Desktop\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\hybab\Desktop\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.dll
 C:\Users\hybab\Desktop\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.pdb
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\Model.dll.config
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\Model.dll
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\Model.pdb
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.dll
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.xml
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.dll
+C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.pdb
