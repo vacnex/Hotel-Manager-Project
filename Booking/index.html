@@ -142,7 +142,7 @@
 								</form>
 							</div>
 							<div class="col-8"">
-								<div class="row row-cols-1 row-cols-md-3 posroom">
+								<div class="row row-cols-1 row-cols-md-3 posstandarroom">
 									<div class="text-center loading">
 										<div class="spinner-border" role="status"></div>
 									</div>
@@ -160,13 +160,66 @@
 	</div>
 	<div class="modal fade" id="viproomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
 		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG VIP</h5>
 				</div>
 				<div class="modal-body">
-					
+					<div class="container">
+						<div class="row">
+							<div class="col-4">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputEmail4">Ngày đến</label>
+											<input id="startday1" />
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPassword4">Ngày đi</label>
+											<input id="endday1"  />
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputName">Họ tên</label>
+											<input type="text" class="form-control" id="inputName">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPhone">Số Điện thoại</label>
+											<input type="text" class="form-control" id="inputPhone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputAddress">Địa chỉ</label>
+										<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputIdRoom">Mã phòng</label>
+											<input type="text" class="form-control" id="inputIdRoom">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputRoomType">Loại Phòng</label>
+											<input type="text" class="form-control" id="inputRoomType">
+										</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									</div>
+									
+								</form>
+							</div>
+							<div class="col-8"">
+								<div class="row row-cols-1 row-cols-md-3 posviproom">
+									<div class="text-center loading">
+										<div class="spinner-border" role="status"></div>
+									</div>
+								<!--Room ajax-->
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
@@ -176,13 +229,66 @@
 	</div>
 	<div class="modal fade" id="luxuryroomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
 		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG HẠNG SANG</h5>
 				</div>
 				<div class="modal-body">
-					
+					<div class="container">
+						<div class="row">
+							<div class="col-4">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputEmail4">Ngày đến</label>
+											<input id="startday2" />
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPassword4">Ngày đi</label>
+											<input id="endday2"  />
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputName">Họ tên</label>
+											<input type="text" class="form-control" id="inputName">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPhone">Số Điện thoại</label>
+											<input type="text" class="form-control" id="inputPhone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputAddress">Địa chỉ</label>
+										<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputIdRoom">Mã phòng</label>
+											<input type="text" class="form-control" id="inputIdRoom">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputRoomType">Loại Phòng</label>
+											<input type="text" class="form-control" id="inputRoomType">
+										</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									</div>
+									
+								</form>
+							</div>
+							<div class="col-8"">
+								<div class="row row-cols-1 row-cols-md-3 posluxuryroom">
+									<div class="text-center loading">
+										<div class="spinner-border" role="status"></div>
+									</div>
+								<!--Room ajax-->
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>

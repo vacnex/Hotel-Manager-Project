@@ -9,8 +9,15 @@ $(document).ready(function () {
             var rStatus = arritem.rStatus
             if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true)
             {
-                    
-                    $('.posroom').append('<div class="chkex col mb-4"><div class="card"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: '+arritem.idRoom+'</h5> <h5 class="card-title">Loại: '+arritem.rType+'</h5> <h5 class="card-title">Giá: '+arritem.rPrice+' VND</h5> </div> </div></div>');
+                $('.posstandarroom').append('<div class="chkex col mb-4"><div class="card"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: '+arritem.idRoom+'</h5> <h5 class="card-title">Loại: '+arritem.rType+'</h5> <h5 class="card-title">Giá: '+arritem.rPrice+' VND</h5> </div> </div></div>');
+            }
+            if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false && rStatus.startsWith("T")==true)
+            {
+                $('.posviproom').append('<div class="chkex col mb-4"><div class="card"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: '+arritem.idRoom+'</h5> <h5 class="card-title">Loại: '+arritem.rType+'</h5> <h5 class="card-title">Giá: '+arritem.rPrice+' VND</h5> </div> </div></div>');
+            }
+            if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true)
+            {
+                $('.posluxuryroom').append('<div class="chkex col mb-4"><div class="card"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: '+arritem.idRoom+'</h5> <h5 class="card-title">Loại: '+arritem.rType+'</h5> <h5 class="card-title">Giá: '+arritem.rPrice+' VND</h5> </div> </div></div>');
             }
         });
     })
@@ -33,6 +40,18 @@ $(document).ready(function () {
         uiLibrary: 'bootstrap4'
     });
     $('#endday').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+    $('#startday1').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+    $('#endday1').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+    $('#startday2').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+    $('#endday2').datepicker({
         uiLibrary: 'bootstrap4'
     });
 /* #endregion */
