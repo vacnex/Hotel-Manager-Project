@@ -133,12 +133,33 @@ SET IDENTITY_INSERT dbo.tbl_servicesuse OFF
 		GO
 
 INSERT INTO dbo.tbl_account (Username, Pass, Name)
-VALUES	(N'admin', N'12345', N'Cao Thị Linh'),
-		(N'hoanghung', N'hoanghung', N'Vũ Tuấn Anh'),
-		(N'user2', N'caolinh95', N'Nguyễn Thị Mai'),
-		(N'user4', N'nganngo95', N'Phạm Vân Anh'),
-		(N'user4', N'nganngo95', N'Hoàng Đức Hưng'),
-		(N'user4', N'nganngo95', N'Phạm Anh Khoa'),
-		(N'user4', N'nganngo95', N'Dương Thị Ngân'),
-		(N'user4', N'nganngo95', N'Đào Đức Đủ');
-		GO
+VALUES	(N'linhadmin', N'linhadmin', N'Cao Thị Linh'),
+		(N'tuananh', N'tuananh', N'Vũ Tuấn Anh'),
+		(N'nguyenmai', N'nguyenmai', N'Nguyễn Thị Mai'),
+		(N'vananh', N'vananh', N'Phạm Vân Anh'),
+		(N'hoanghung', N'hoanghung', N'Hoàng Đức Hưng'),
+		(N'khoaadmin', N'khoaadmin', N'Phạm Anh Khoa'),
+		(N'duongngan', N'duongngan', N'Dương Thị Ngân'),
+		(N'ducdu', N'ducdu', N'Đào Đức Đủ');
+		GO 
+		
+
+ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Services FOREIGN KEY(idService)
+REFERENCES dbo.tbl_services (idService);
+GO
+
+ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Customer FOREIGN KEY(idCard)
+REFERENCES dbo.tbl_customer (idCard);
+GO
+
+ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Room FOREIGN KEY(idRoom)
+REFERENCES dbo.tbl_room (idRoom);
+GO
+
+ALTER TABLE dbo.tbl_roombook ADD CONSTRAINT FK_Roombook_Customer FOREIGN KEY(idCard)
+REFERENCES dbo.tbl_customer (idCard);
+GO
+
+ALTER TABLE dbo.tbl_roombook ADD CONSTRAINT FK_Roombook_Room FOREIGN KEY (idRoom)
+REFERENCES dbo.tbl_room (idRoom);
+GO
