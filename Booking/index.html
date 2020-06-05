@@ -117,22 +117,23 @@
 											<input type="text" class="form-control" id="inputName">
 										</div>
 										<div class="form-group col-md-6">
-											<label for="inputPhone">Số Điện thoại</label>
-											<input type="text" class="form-control" id="inputPhone">
+											<label for="inputPhone">Số CMND</label>
+											<input  type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputPhone">
 										</div>
 									</div>
-									<div class="form-group">
-										<label for="inputAddress">Địa chỉ</label>
-										<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-									</div>
+
 									<div class="form-row">
-										<div class="form-group col-md-6">
+										<div class="form-group col-md-3">
 											<label for="inputIdRoom">Mã phòng</label>
-											<input type="text" class="form-control" id="inputIdRoom">
+											<input type="text"  readonly class="form-control-plaintext" id="inputIdRoomS">
 										</div>
-										<div class="form-group col-md-6">
-											<label for="inputRoomType">Loại Phòng</label>
-											<input type="text" class="form-control" id="inputRoomType">
+										<div class="form-group col-md-4">
+											<label for="inputRoomType">Loại phòng</label>
+											<input type="text"  readonly class="form-control-plaintext" id="inputRoomTypeS">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="inputRoomPrice">Giá phòng</label>
+											<input type="text"  readonly class="form-control-plaintext" id="inputRoomPriceS">
 										</div>
 									</div>
 									<div class="text-center">
@@ -142,55 +143,9 @@
 								</form>
 							</div>
 							<div class="col-8"">
-								<div class="row row-cols-1 row-cols-md-3">
-									<div class="col mb-4">
-										<div class="card">
-											<div class="text-center">
-												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
-											</div>
-											<div class="card-body">
-												<h5 class="card-title">Mã phòng:</h5>
-												<h5 class="card-title">Loại phòng:</h5>
-												<h5 class="card-title">Giá:</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col mb-4">
-										<div class="card">
-											<div class="text-center">
-												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
-											</div>
-											<div class="card-body">
-												<h5 class="card-title">Mã phòng:</h5>
-												<h5 class="card-title">Loại phòng:</h5>
-												<h5 class="card-title">Giá:</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col mb-4">
-										<div class="card">
-											<div class="text-center">
-												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
-											</div>
-											<div class="card-body">
-												<h5 class="card-title">Mã phòng:</h5>
-												<h5 class="card-title">Loại phòng:</h5>
-												<h5 class="card-title">Giá:</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col mb-4">
-										<div class="card">
-											<div class="text-center">
-												<img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="...">
-											</div>
-											<div class="card-body">
-												<h5 class="card-title">Mã phòng:</h5>
-												<h5 class="card-title">Loại phòng:</h5>
-												<h5 class="card-title">Giá:</h5>
-											</div>
-										</div>
-									</div>
+								<div class="row row-cols-1 row-cols-md-3 posstandarroom" style="height: 100%;">
+									<img class="loading mx-auto" src="Resource/image/loading.svg" alt="" srcset="">
+								<!--Room ajax-->
 								</div>
 							</div>
 						</div>
@@ -204,13 +159,67 @@
 	</div>
 	<div class="modal fade" id="viproomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
 		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG VIP</h5>
 				</div>
 				<div class="modal-body">
-					
+					<div class="container">
+						<div class="row">
+							<div class="col-4">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputEmail4">Ngày đến</label>
+											<input id="startday1" />
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPassword4">Ngày đi</label>
+											<input id="endday1"  />
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputName">Họ tên</label>
+											<input type="text" class="form-control" id="inputName">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPhone">Số CMND</label>
+											<input type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputPhone">
+										</div>
+									</div>
+
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label for="inputIdRoom">Mã phòng</label>
+											<input type="text" readonly class="form-control-plaintext" id="inputIdRoomV">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="inputRoomType">Loại phòng</label>
+											<input type="text"readonly class="form-control-plaintext" id="inputRoomTypeV">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="inputRoomPrice">Giá phòng</label>
+											<input type="text" class="form-control-plaintext" id="inputRoomPriceV">
+										</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									</div>
+									
+								</form>
+							</div>
+							<div class="col-8"">
+								<div class="row row-cols-1 row-cols-md-3 posviproom">
+									<div class="text-center loading">
+										<div class="spinner-border" role="status"></div>
+									</div>
+								<!--Room ajax-->
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
@@ -220,13 +229,67 @@
 	</div>
 	<div class="modal fade" id="luxuryroomModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
 		role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG HẠNG SANG</h5>
 				</div>
 				<div class="modal-body">
-					
+					<div class="container">
+						<div class="row">
+							<div class="col-4">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputEmail4">Ngày đến</label>
+											<input id="startday2" />
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPassword4">Ngày đi</label>
+											<input id="endday2"  />
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputName">Họ tên</label>
+											<input type="text" class="form-control" id="inputName">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputPhone">Số CMND</label>
+											<input type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)"  class="form-control" id="inputPhone">
+										</div>
+									</div>
+
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label for="inputIdRoom">Mã phòng</label>
+											<input type="text"  readonly class="form-control-plaintext" id="inputIdRoomL">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="inputRoomType">Loại phòng</label>
+											<input type="text"  readonly class="form-control-plaintext" id="inputRoomTypeL">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="inputRoomPrice">Giá phòng</label>
+											<input type="text"  readonly class="form-control-plaintext" id="inputRoomPriceL">
+										</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									</div>
+									
+								</form>
+							</div>
+							<div class="col-8"">
+								<div class="row row-cols-1 row-cols-md-3 posluxuryroom">
+									<div class="text-center loading">
+										<div class="spinner-border" role="status"></div>
+									</div>
+								<!--Room ajax-->
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>

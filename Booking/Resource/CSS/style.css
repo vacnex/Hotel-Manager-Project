@@ -7,6 +7,9 @@ body{
 .card:hover{
     cursor: pointer;
 }
+.rcard:hover{
+    color: #EC6EAD;
+}
 
 .col-4{
     border-right: 1px solid black;
