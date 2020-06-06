@@ -61,28 +61,28 @@ $(document).ready(function () {
             marginBottom :"0%",
         },150);
     });
-    $('#startdayStandar').datepicker({
+    $('#Standarstartday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#enddayStandar').datepicker({
+    $('#Standarendday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#startdayVIP').datepicker({
+    $('#VIPstartday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#enddayVIP').datepicker({
+    $('#VIPendday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#startdayLuxury').datepicker({
+    $('#Luxurystartday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#enddayLuxury').datepicker({
+    $('#Luxuryendday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#startdayfilter').datepicker({
+    $('#Sfilterstartday').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#enddayfilter').datepicker({
+    $('#Sfilterendday').datepicker({
         uiLibrary: 'bootstrap4'
     });
 /* #endregion */
