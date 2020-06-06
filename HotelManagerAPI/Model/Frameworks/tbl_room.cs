@@ -12,7 +12,6 @@ namespace Model.Frameworks
         public tbl_room()
         {
             tbl_roombook = new HashSet<tbl_roombook>();
-            tbl_servicesuse = new HashSet<tbl_servicesuse>();
         }
 
         [Key]
@@ -31,8 +30,5 @@ namespace Model.Frameworks
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_roombook> tbl_roombook { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_servicesuse> tbl_servicesuse { get; set; }
     }
 }
