@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      })
     $('.loading').show();
     $.getJSON("https://localhost:44373/api/room")
     .done(function (data) { 
@@ -45,29 +42,14 @@ $(document).ready(function () {
 /* #endregion */
     $.getJSON("https://localhost:44373/api/room",
         function (data) {
-            var _room2 = data
-            _room2.forEach(function(arritem) {
-                var _book = arritem.tbl_roombook
-                if (_book.length != 0) {
-                    _book.forEach(function(arritem) {
-                        var ngayden = arritem.startDate
-                        var ngaydi = arritem.endDate
-                        if (ngaydi == null) {
-                            console.log(ngayden.substring(0,10),ngaydi)
-                            $('.rcard').attr('title',ngayden.substring(0,10),ngaydi);
-
-                        }
-                        else {
-                            console.log(ngayden.substring(0,10),ngaydi.substring(0,10))
-                        }
-                        
-                    });
-                }
-                
-            });
+            var _room2 = data;
+            console.log(_room2[9].tbl_roombook[0].startDate.substring(0,10))
         }
     );
 /* #region  Frontend */
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     $('.card').hover(function () {
         $(this).animate({
             marginTop : "-=1%",
@@ -79,22 +61,22 @@ $(document).ready(function () {
             marginBottom :"0%",
         },150);
     });
-    $('#startday').datepicker({
+    $('#startdayStandar').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#endday').datepicker({
+    $('#enddayStandar').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#startday1').datepicker({
+    $('#startdayVIP').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#endday1').datepicker({
+    $('#enddayVIP').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#startday2').datepicker({
+    $('#startdayLuxury').datepicker({
         uiLibrary: 'bootstrap4'
     });
-    $('#endday2').datepicker({
+    $('#enddayLuxury').datepicker({
         uiLibrary: 'bootstrap4'
     });
     $('#startdayfilter').datepicker({
