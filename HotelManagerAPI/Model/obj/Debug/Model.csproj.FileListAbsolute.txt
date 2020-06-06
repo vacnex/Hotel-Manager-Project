@@ -16,7 +16,6 @@ C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\
 C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.xml
 C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csprojAssemblyReference.cache
 C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\hybab\Desktop\webapipj\Hotel-Manager-Project\HotelManagerAPI\Model\obj\Debug\Model.dll

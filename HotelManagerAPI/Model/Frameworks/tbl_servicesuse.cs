@@ -9,16 +9,13 @@ namespace Model.Frameworks
     public partial class tbl_servicesuse
     {
         [Key]
-        [Column(Order = 0)]
         public int idServiceuse { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
+        [Required]
         [StringLength(12)]
         public string idCard { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(10)]
         public string idService { get; set; }
 
@@ -27,12 +24,7 @@ namespace Model.Frameworks
         [Column(TypeName = "date")]
         public DateTime dateUse { get; set; }
 
-        [StringLength(5)]
-        public string idRoom { get; set; }
-
         public virtual tbl_customer tbl_customer { get; set; }
-
-        public virtual tbl_room tbl_room { get; set; }
 
         public virtual tbl_services tbl_services { get; set; }
     }
