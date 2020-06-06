@@ -13,10 +13,9 @@ $(document).ready(function () {
                     var _roomBookDate = arritem.tbl_roombook
                     var start,end
                     _roomBookDate.forEach(function (roombookarritem) {
-                        start = roombookarritem.startDate.substring(0,10)
-                        end = roombookarritem.endDate.substring(0,10)
+                        start = roombookarritem.startDate.substring(0,10).match(/([^T]+)/)[0].split("-").reverse().join("-")
+                        end = roombookarritem.endDate.substring(0,10).match(/([^T]+)/)[0].split("-").reverse().join("-")
                     });
-                    //console.log(arritem)
                     console.log(start,"||",end)
                     $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Ngày đặt: '+start+' Hết hạn: '+end+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
                 }
