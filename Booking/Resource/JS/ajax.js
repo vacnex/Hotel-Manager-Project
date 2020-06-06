@@ -3,13 +3,27 @@ $(document).ready(function () {
     $.getJSON("https://localhost:44373/api/room")
     .done(function (data) { 
         var _room = data;
-        console.log(_room)
+        // console.log(_room)
         _room.forEach(function (arritem) {
             var idRoom = arritem.idRoom
             var rStatus = arritem.rStatus
             if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
             {
-                $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-toggle="tooltip" data-placement="bottom" title=""> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                if (arritem.tbl_roombook != 0) {
+                    var _roomBookDate = arritem.tbl_roombook
+                    var start,end
+                    _roomBookDate.forEach(function (roombookarritem) {
+                        start = roombookarritem.startDate.substring(0,10)
+                        end = roombookarritem.endDate.substring(0,10)
+                    });
+                    //console.log(arritem)
+                    console.log(start,"||",end)
+                    $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Ngày đặt: '+start+' Hết hạn: '+end+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                }
+                else{
+                    $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                }
+                
             }
             if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
             {
@@ -48,7 +62,7 @@ $(document).ready(function () {
     );
 /* #region  Frontend */
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('.rcard').tooltip()
     })
     $('.card').hover(function () {
         $(this).animate({
