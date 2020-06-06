@@ -10,37 +10,60 @@ $(document).ready(function () {
         _room.forEach(function (arritem) {
             var idRoom = arritem.idRoom
             var rStatus = arritem.rStatus
-            if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
+            if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false)
             {
-                if (arritem.tbl_roombook != 0) {
-                    var _roomBookDate = arritem.tbl_roombook
-                    var start,end
-                    _roomBookDate.forEach(function (roombookarritem) {
-                        start = roombookarritem.startDate.substring(0,10)
-                        end = roombookarritem.endDate.substring(0,10)
-                    });
-                    $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Ngày đặt: '+datefm(start)+' Hết hạn: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                    if (arritem.tbl_roombook != 0) {
+                        var _roomBookDate = arritem.tbl_roombook
+                        var start,end
+                        _roomBookDate.forEach(function (roombookarritem) {
+                            start = roombookarritem.startDate.substring(0,10)
+                            end = roombookarritem.endDate.substring(0,10)
+                        });
+                        $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(start)+' Đến: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    }
+                    else{
+                        $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    }
                 }
-                else{
-                    $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+            }
+            if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false)
+            {
+                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                    if (arritem.tbl_roombook != 0) {
+                        var _roomBookDate = arritem.tbl_roombook
+                        var start,end
+                        _roomBookDate.forEach(function (roombookarritem) {
+                            start = roombookarritem.startDate.substring(0,10)
+                            end = roombookarritem.endDate.substring(0,10)
+                        });
+                        $('.posviproom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(start)+' Đến: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    } else {
+                        $('.posviproom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    }
                 }
-                
             }
-            if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
+            if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false)
             {
-                $('.posviproom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
-            }
-            if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
-            {
-                $('.posluxuryroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                    if (arritem.tbl_roombook != 0) {
+                        var _roomBookDate = arritem.tbl_roombook
+                        var start,end
+                        _roomBookDate.forEach(function (roombookarritem) {
+                            start = roombookarritem.startDate.substring(0,10)
+                            end = roombookarritem.endDate.substring(0,10)
+                        });
+                        $('.posluxuryroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(start)+' Đến: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    } else {
+                        $('.posluxuryroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    }
+                }
             }
         });
     })
     .always(function () { $(".loading").hide(); });
 
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    console.log(datefm(date))
+
 
 /* #region  btn add to booking */
     $('.posstandarroom').on('click', '.rcard', function (){
@@ -75,6 +98,9 @@ $(document).ready(function () {
             marginBottom :"0%",
         },150);
     });
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    console.log(datefm(date))
     $('#Standarstartday').datepicker({
         value: datefm(date),
         format: 'dd-mm-yyyy',
