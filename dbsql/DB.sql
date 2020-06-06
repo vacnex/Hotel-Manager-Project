@@ -40,27 +40,46 @@ CREATE TABLE tbl_servicesuse(
 	idService nvarchar(10) NOT NULL,
 	number int NOT NULL,
 	dateUse [date] NOT NULL,
-	idRoom nvarchar(5) NULL,
- CONSTRAINT [PK_SDDV_1] PRIMARY KEY (idServiceuse,idCard,idService));
+ CONSTRAINT [PK_SDDV_1] PRIMARY KEY (idServiceuse));
  GO
-DROP TABLE dbo.tbl_account;
+
 CREATE TABLE tbl_account(
 	[Username] [nvarchar](50) NOT NULL,
 	[Pass] [nvarchar](50) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Taikhoan] PRIMARY KEY (Username));
  GO
+SELECT * FROM sys.foreign_keys go
+
+
+while(exists(select 1 from INFORMATION_SCHEMA.TABLE_CONSTRAINTS where CONSTRAINT_TYPE='FOREIGN KEY'))
+begin
+	declare @sql nvarchar(2000)
+	SELECT TOP 1 @sql=('ALTER TABLE ' + TABLE_SCHEMA + '.[' + TABLE_NAME
+	+ '] DROP CONSTRAINT [' + CONSTRAINT_NAME + ']')
+	FROM information_schema.table_constraints
+	WHERE CONSTRAINT_TYPE = 'FOREIGN KEY'
+	exec (@sql)
+end
+go
+DROP TABLE dbo.tbl_customer;
+DROP TABLE dbo.tbl_room; 
+DROP TABLE dbo.tbl_roombook; 
+DROP TABLE dbo.tbl_services; 
+DROP TABLE dbo.tbl_servicesuse; 
+DROP TABLE dbo.tbl_account; 
+
 
 INSERT INTO tbl_room (idRoom, rType, rPrice, rStatus)
  VALUES (N'T101', N'Đơn thường', 300000, N'Trống'),
-		(N'T102', N'Đơn thường', 300000, N'Trống'),
-		(N'T103', N'Đơn thường', 300000, N'Có khách'),
+		(N'T102', N'Đơn thường', 300000, N'Có khách'),
+		(N'T103', N'Đơn thường', 300000, N'Đã đặt'),
 		(N'T104', N'Đơn thường', 300000, N'Trống'),
 		(N'T201', N'Đôi thường', 400000, N'Có khách'),
-		(N'T202', N'Đôi thường', 400000, N'Trống'),
-		(N'T203', N'Đôi thường', 400000, N'Có khách'),
-		(N'T204', N'Đôi thường', 400000, N'Có khách'),
-		(N'V101', N'VIP đơn', 600000, N'Trống'),
+		(N'T202', N'Đôi thường', 400000, N'Đã đặt'),
+		(N'T203', N'Đôi thường', 400000, N'Trống'),
+		(N'T204', N'Đôi thường', 400000, N'Trống'),
+		(N'V101', N'VIP đơn', 600000, N'Đã đặt'),
 		(N'V102', N'VIP đơn', 600000, N'Trống'),
 		(N'V103', N'VIP đơn', 600000, N'Trống'),
 		(N'V104', N'VIP đơn', 600000, N'Trống'),
@@ -79,18 +98,18 @@ INSERT INTO tbl_room (idRoom, rType, rPrice, rStatus)
 		GO
 	
 INSERT INTO tbl_customer (idCard, cusName, cusAddress, cusGender, cusPhone)
-VALUES (N'012434832', N'Cao Thị Linh', N'18 Thanh Bình', N'Nữ', N'0984234567'),
+VALUES	(N'012434832', N'Cao Thị Linh', N'18 Thanh Bình', N'Nữ', N'0984234567'),
 		(N'123253454', N'Vũ Tuấn Anh', N'Bà Triệu', N'Nam', N'01235243234'),
 		(N'123383294', N'Nguyễn Thị Mai', N'Lộc Hạ', N'Nữ', N'0987654356'),
 		(N'145573262', N'Phạm Vân Anh', N'Nguyễn Du', N'Nữ', N'0956243242'),
 		(N'152015415', N'Hoàng Đức Hưng', N'Lộc Hạ', N'Nam', N'0963243462'),
-		(N'190023198', N'Phạm Anh Khoa', N'Hạ Long', N'Nam', N'0955734823'),
-		(N'183658428', N'Dương Thị Ngân', N'Hồ Tây', N'Nữ', N'0986395276'),
-		(N'234453134', N'Đào Đức Đủ', N'Bà Triệu', N'Nam', N'0942963929');
+		(N'190023198', N'Phạm Anh Khoa', N'Hạ Long', N'Nam', N'0955734823');
+		--(N'183658428', N'Dương Thị Ngân', N'Hồ Tây', N'Nữ', N'0986395276'),
+		--(N'234453134', N'Đào Đức Đủ', N'Bà Triệu', N'Nam', N'0942963929');
 		GO
 
 INSERT INTO tbl_services (idService, serName, serPrice, serUnit)
-VALUES (N'DV001', N'Bia Sài Gòn 330ml', 15000, N'lon'),
+VALUES	(N'DV001', N'Bia Sài Gòn 330ml', 15000, N'lon'),
 		(N'DV002', N'Bia Heniken 330ml', 20000, N'lon'),
 		(N'DV003', N'Bia Halida 330ml', 15000, N'lon'),
 		(N'DV004', N'Rượu Vodka 330ml', 100000, N'chai'),
@@ -99,37 +118,21 @@ VALUES (N'DV001', N'Bia Sài Gòn 330ml', 15000, N'lon'),
 
 SET IDENTITY_INSERT dbo.tbl_roombook ON
 INSERT INTO dbo.tbl_roombook (idRoombook, idCard, idRoom, startDate, endDate, staffName)
-VALUES	(1, N'012434832', N'T101', CAST(0x073C0B00 AS Date), CAST(0x103C0B00 AS Date), N'Ngân'),
-		(2, N'012434832', N'T103', CAST(0x083C0B00 AS Date), CAST(0x103C0B00 AS Date), N'Ngân'),
-		(3, N'012434832', N'V102', CAST(0x083C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(4, N'123383294', N'V101', CAST(0x083C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(5, N'145573262', N'T102', CAST(0x073C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(6, N'145573262', N'T202', CAST(0x073C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(7, N'012434832', N'L101', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(8, N'012434832', N'T101', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(9, N'012434832', N'T101', CAST(0x093C0B00 AS Date), CAST(0x113C0B00 AS Date), N'Ngân'),
-		(10, N'012434832', N'T102', CAST(0x093C0B00 AS Date), NULL, N'Ngân'),
-		(11, N'123383294', N'T103', CAST(0x093C0B00 AS Date), NULL, N'Ngân'),
-		(12, N'123383294', N'T201', CAST(0x093C0B00 AS Date), NULL, N'Ngân'),
-		(13, N'145573262', N'T104', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(14, N'145573262', N'T204', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(15, N'145573262', N'L203', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(16, N'152015415', N'V201', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(17, N'152015415', N'V202', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(18, N'152015415', N'V203', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(19, N'152015415', N'V204', CAST(0x093C0B00 AS Date), CAST(0x093C0B00 AS Date), N'Ngân'),
-		(20, N'012434832', N'T202', CAST(0x093C0B00 AS Date), CAST(0x113C0B00 AS Date), N'Hưng'),
-		(21, N'012434832', N'T203', CAST(0x093C0B00 AS Date), NULL, N'Hưng'),
-		(22, N'012434832', N'T204', CAST(0x093C0B00 AS Date), NULL, N'Hưng')
+VALUES	(1, N'012434832', N'T102', '2020-06-01', '2020-06-03', N'Lê Thị Đào'),
+		(2, N'123253454', N'T103', '2020-06-03', '2020-06-06', N'Lê Minh Triệu'),
+		(3, N'123383294', N'T201', '2020-06-03', '2020-06-04', N'Nguyễn Thanh Vũ'),
+		(4, N'145573262', N'V204', '2020-06-10', '2020-06-15', N'Võ Thị Kiều Vân'),
+		(5, N'152015415', N'T202', '2020-06-06', '2020-06-10', N'Nguyễn Đỗ Anh Thy'),
+		(6, N'190023198', N'V101', '2020-06-06', '2020-06-10', N'Nguyễn Đỗ Anh Thy');
 SET IDENTITY_INSERT dbo.tbl_roombook OFF
 		GO
 		
 SET IDENTITY_INSERT dbo.tbl_servicesuse ON
-INSERT INTO dbo.tbl_servicesuse(idServiceuse, idCard, idService, number, dateUse, idRoom) 
-VALUES	(1, N'012434832', N'DV001', 10, CAST(0x0F3C0B00 AS Date), N'T101'),
-		(2, N'012434832', N'DV002', 10, CAST(0x0F3C0B00 AS Date), N'T102'),
-		(3, N'012434832', N'DV001', 10, CAST(0x0F3C0B00 AS Date), N'T102'),
-		(5, N'012434832', N'DV003', 10, CAST(0x0F3C0B00 AS Date), N'T101');
+INSERT INTO dbo.tbl_servicesuse(idServiceuse, idCard, idService, number, dateUse) 
+VALUES	(1, N'012434832', N'DV001', 3, '2020-06-02'),
+		(2, N'012434832', N'DV005', 1, '2020-06-02'),
+		(3, N'123383294', N'DV002', 1, '2020-06-03');
+
 SET IDENTITY_INSERT dbo.tbl_servicesuse OFF
 		GO
 
@@ -153,9 +156,6 @@ ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Customer FOREIGN K
 REFERENCES dbo.tbl_customer (idCard);
 GO
 
-ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Room FOREIGN KEY(idRoom)
-REFERENCES dbo.tbl_room (idRoom);
-GO
 
 ALTER TABLE dbo.tbl_roombook ADD CONSTRAINT FK_Roombook_Customer FOREIGN KEY(idCard)
 REFERENCES dbo.tbl_customer (idCard);
