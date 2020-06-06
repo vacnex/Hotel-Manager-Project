@@ -1,5 +1,8 @@
 $(document).ready(function () {
     $('.loading').show();
+    function datefm(date) { 
+        return date.match(/([^T]+)/)[0].split("-").reverse().join("-")
+    }
     $.getJSON("https://localhost:44373/api/room")
     .done(function (data) { 
         var _room = data;
@@ -13,11 +16,10 @@ $(document).ready(function () {
                     var _roomBookDate = arritem.tbl_roombook
                     var start,end
                     _roomBookDate.forEach(function (roombookarritem) {
-                        start = roombookarritem.startDate.substring(0,10).match(/([^T]+)/)[0].split("-").reverse().join("-")
-                        end = roombookarritem.endDate.substring(0,10).match(/([^T]+)/)[0].split("-").reverse().join("-")
+                        start = roombookarritem.startDate.substring(0,10)
+                        end = roombookarritem.endDate.substring(0,10)
                     });
-                    console.log(start,"||",end)
-                    $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Ngày đặt: '+start+' Hết hạn: '+end+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                    $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Ngày đặt: '+datefm(start)+' Hết hạn: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
                 }
                 else{
                     $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
@@ -36,6 +38,10 @@ $(document).ready(function () {
     })
     .always(function () { $(".loading").hide(); });
 
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    console.log(datefm(date))
+
 /* #region  btn add to booking */
     $('.posstandarroom').on('click', '.rcard', function (){
         $('#inputIdRoomS').val($( this ).find( '#idRoom' ).text());
@@ -53,12 +59,7 @@ $(document).ready(function () {
         $('#inputRoomPriceL').val($( this ).find( '#rPrice' ).text());
     });
 /* #endregion */
-    $.getJSON("https://localhost:44373/api/room",
-        function (data) {
-            var _room2 = data;
-            console.log(_room2[9].tbl_roombook[0].startDate.substring(0,10))
-        }
-    );
+
 /* #region  Frontend */
     $(function () {
         $('.rcard').tooltip()
@@ -75,27 +76,39 @@ $(document).ready(function () {
         },150);
     });
     $('#Standarstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#Standarendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#VIPstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#VIPendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#Luxurystartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#Luxuryendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#Sfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
     $('#Sfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
 /* #endregion */
