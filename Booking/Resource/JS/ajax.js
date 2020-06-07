@@ -25,7 +25,7 @@ $(document).ready(function () {
     }
     /* #endregion */
 
-    $.getJSON("https://localhost:44373/api/room")
+    $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/room")
     .done(function (data) { 
         var _room = data;
         // console.log(_room)
@@ -115,11 +115,11 @@ $(document).ready(function () {
             $("#warning-alertS").show()
         }
         else{
-            $.post('https://localhost:44373/api/customer' ,JSON.parse(_customerP),"json")
+            $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
             .done(
                 function()
                 {
-                    $.post("https://localhost:44373/api/roombook", JSON.parse(_roomBookP),"json")
+                    $.post("https://hotelmanagerapi.azurewebsites.net/api/roombook", JSON.parse(_roomBookP),"json")
                     .done(
                         function()
                         {
@@ -160,11 +160,11 @@ $(document).ready(function () {
             $("#warning-alertV").show()
         }
         else{
-            $.post('https://localhost:44373/api/customer' ,JSON.parse(_customerP),"json")
+            $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
             .done(
                 function()
                 {
-                    $.post("https://localhost:44373/api/roombook", JSON.parse(_roomBookP),"json")
+                    $.post("https://hotelmanagerapi.azurewebsites.net/api/roombook", JSON.parse(_roomBookP),"json")
                     .done(
                         function()
                         {
@@ -205,11 +205,11 @@ $(document).ready(function () {
             $("#warning-alertL").show()
         }
         else{
-            $.post('https://localhost:44373/api/customer' ,JSON.parse(_customerP),"json")
+            $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
             .done(
                 function()
                 {
-                    $.post("https://localhost:44373/api/roombook", JSON.parse(_roomBookP),"json")
+                    $.post("https://hotelmanagerapi.azurewebsites.net/api/roombook", JSON.parse(_roomBookP),"json")
                     .done(
                         function()
                         {
