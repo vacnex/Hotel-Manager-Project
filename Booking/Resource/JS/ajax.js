@@ -5,9 +5,9 @@ $(document).ready(function () {
     }
     function appendString(className,idRoom,rType,rStatus,rPrice,dayStart = 0,dayEnd = 0) {
         if (dayStart != 0 && dayEnd != 0) {
-            return $(className).append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(dayStart)+' Đến: '+datefm(dayEnd)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
+            return $(className).append('<div class="col mb-4 room"><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(dayStart)+' Đến: '+datefm(dayEnd)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
         } else {
-            return $(className).append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
+            return $(className).append('<div class="col mb-4 room"><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
         }
     }
 
@@ -68,6 +68,19 @@ $(document).ready(function () {
                 }
             }
         });
+        console.log("Loaded")
+    })
+
+    .done(function () {
+        $('.posstandarroom .room').find('.rcard').each(function() {
+            $.each(this.attributes, function (i, attrib) { 
+                var value = attrib.value.startsWith("T");   
+                if (value  === true) {
+                    console.log(attrib.value)
+                }             
+                
+            });
+        });
     })
     .always(function () { $(".loading").hide(); });
 
@@ -92,6 +105,7 @@ $(document).ready(function () {
 /* #endregion */
 
 /* #region  Frontend */
+
     $(function () {
         $('.rcard').tooltip()
     })
@@ -106,9 +120,9 @@ $(document).ready(function () {
             marginBottom :"0%",
         },150);
     });
+
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    console.log(datefm(date))
     $('#Standarstartday').datepicker({
         value: datefm(date),
         format: 'dd-mm-yyyy',
@@ -136,14 +150,21 @@ $(document).ready(function () {
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
+
     $('#Sfilterstartday').datepicker({
         value: datefm(date),
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
+
     $('#Sfilterendday').datepicker({
         format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Sfilterstartday').datepicker().value()
+            endRange= $('#Sfilterendday').datepicker().value()
+        }
     });
+    
 /* #endregion */
 });
