@@ -115,23 +115,41 @@
 								<form>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="Standarstartday">Ngày đến</label>
-											<input id="Standarstartday" />
+											<label for="startdayS">Ngày đến</label>
+											<input id="startdayS" />
 										</div>
 										<div class="form-group col-md-6">
-											<label for="Standarendday">Ngày đi</label>
-											<input id="Standarendday"  />
+											<label for="enddayS">Ngày đi</label>
+											<input id="enddayS"  />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="StandarinputName">Họ tên</label>
-											<input type="text" class="form-control" id="StandarinputName">
+											<label for="inputNameS">Họ tên</label>
+											<input type="text" class="form-control" id="inputNameS">
 										</div>
 										<div class="form-group col-md-6">
-											<label for="StandarinputPhone">Số CMND</label>
-											<input  type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="StandarinputPhone">
+											<label for="inputidcardS">Số CMND</label>
+											<input  type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputidcardS">
 										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputgenderS">Giới tính</label>
+											<select type="text" class="form-control" id="inputgenderS">
+												<option>Nam</option>
+												<option>Nữ</option>
+											</select>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputphoneS">Số điện thoại</label>
+											<input  type="number" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputphoneS">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputAddressS">Địa chỉ</label>
+										<input type="text" class="form-control" id="inputAddressS">
 									</div>
 
 									<div class="form-row">
@@ -148,8 +166,26 @@
 											<input type="text"  readonly class="form-control-plaintext" id="inputRoomPriceS">
 										</div>
 									</div>
-									<div class="text-center">
-										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									<div class="text-center posbooking">
+										<button type="button" class="btn btn-primary" id="sBooking">Đặt Phòng</button>
+									</div>
+									<div class="alert alert-success mt-5 text-center" id="success-alertS">
+										<strong>Đặt phòng thành công! </strong>
+										<button type="button" class="close scs" >
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="alert alert-danger mt-5 text-center" id="danger-alertS">
+										<strong class="error"></strong>
+										<button type="button" class="close dngr">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="alert alert-warning mt-5 text-center" id="warning-alertS">
+										Vui lòng điền vào các trường!!
+										<button type="button" class="close wrn" >
+											<span aria-hidden="true">&times;</span>
+										</button>
 									</div>
 									
 								</form>
@@ -175,6 +211,18 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG VIP</h5>
+					<div class="float-right">
+						<div class="row">
+							<p> Từ ngày</p>
+							<div class="col-md-4">
+								<input id="Vfilterstartday"/>
+							</div>
+							<p> đến ngày</p>
+							<div class="col-md-4">
+								<input id="Vfilterendday"/>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-body">
 					<div class="container">
@@ -183,41 +231,78 @@
 								<form>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="VIPstartday">Ngày đến</label>
-											<input id="VIPstartday" />
+											<label for="startdayV">Ngày đến</label>
+											<input id="startdayV" />
 										</div>
 										<div class="form-group col-md-6">
-											<label for="VIPendday">Ngày đi</label>
-											<input id="VIPendday"  />
+											<label for="enddayV">Ngày đi</label>
+											<input id="enddayV"  />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="VIPinputName">Họ tên</label>
-											<input type="text" class="form-control" id="VIPinputName">
+											<label for="inputNameV">Họ tên</label>
+											<input type="text" class="form-control" id="inputNameV">
 										</div>
 										<div class="form-group col-md-6">
-											<label for="VIPinputPhone">Số CMND</label>
-											<input type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="VIPinputPhone">
+											<label for="inputidcardV">Số CMND</label>
+											<input  type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputidcardV">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputgenderV">Giới tính</label>
+											<select type="text" class="form-control" id="inputgenderV">
+												<option>Nam</option>
+												<option>Nữ</option>
+											</select>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputphoneV">Số điện thoại</label>
+											<input  type="number" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputphoneV">
 										</div>
 									</div>
 
+									<div class="form-group">
+										<label for="inputAddressV">Địa chỉ</label>
+										<input type="text" class="form-control" id="inputAddressV">
+									</div>
+
 									<div class="form-row">
-										<div class="form-group col-md-4">
+										<div class="form-group col-md-3">
 											<label for="inputIdRoomV">Mã phòng</label>
-											<input type="text" readonly class="form-control-plaintext" id="inputIdRoomV">
+											<input type="text"  readonly class="form-control-plaintext" id="inputIdRoomV">
 										</div>
 										<div class="form-group col-md-4">
 											<label for="inputRoomTypeV">Loại phòng</label>
-											<input type="text"readonly class="form-control-plaintext" id="inputRoomTypeV">
+											<input type="text"  readonly class="form-control-plaintext" id="inputRoomTypeV">
 										</div>
 										<div class="form-group col-md-4">
 											<label for="inputRoomPriceV">Giá phòng</label>
-											<input type="text" class="form-control-plaintext" id="inputRoomPriceV">
+											<input type="text"  readonly class="form-control-plaintext" id="inputRoomPriceV">
 										</div>
 									</div>
-									<div class="text-center">
-										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									<div class="text-center posbooking">
+										<button type="button" class="btn btn-primary" id="vBooking">Đặt Phòng</button>
+									</div>
+									
+									<div class="alert alert-success mt-5 text-center" id="success-alertV">
+										<strong>Đặt phòng thành công! </strong>
+										<button type="button" class="close scs" >
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="alert alert-danger mt-5 text-center" id="danger-alertV">
+										<strong class="error"></strong>
+										<button type="button" class="close dngr">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="alert alert-warning mt-5 text-center" id="warning-alertV">
+										Vui lòng điền vào các trường!!
+										<button type="button" class="close wrn" >
+											<span aria-hidden="true">&times;</span>
+										</button>
 									</div>
 									
 								</form>
@@ -243,6 +328,18 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticBackdropLabel">PHÒNG HẠNG SANG</h5>
+					<div class="float-right">
+						<div class="row">
+							<p> Từ ngày</p>
+							<div class="col-md-4">
+								<input id="Lfilterstartday"/>
+							</div>
+							<p> đến ngày</p>
+							<div class="col-md-4">
+								<input id="Lfilterendday"/>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-body">
 					<div class="container">
@@ -251,12 +348,12 @@
 								<form>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="Luxurystartday">Ngày đến</label>
-											<input id="Luxurystartday" />
+											<label for="startdayL">Ngày đến</label>
+											<input id="startdayL" />
 										</div>
 										<div class="form-group col-md-6">
-											<label for="Luxuryendday">Ngày đi</label>
-											<input id="Luxuryendday"  />
+											<label for="enddayL">Ngày đi</label>
+											<input id="enddayL"  />
 										</div>
 									</div>
 									<div class="form-row">
@@ -265,13 +362,31 @@
 											<input type="text" class="form-control" id="inputNameL">
 										</div>
 										<div class="form-group col-md-6">
-											<label for="inputPhoneL">Số CMND</label>
-											<input type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)"  class="form-control" id="inputPhoneL">
+											<label for="inputidcardL">Số CMND</label>
+											<input  type="number" data-maxlength="9" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputidcardL">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputgenderL">Giới tính</label>
+											<select type="text" class="form-control" id="inputgenderL">
+												<option>Nam</option>
+												<option>Nữ</option>
+											</select>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="inputphoneL">Số điện thoại</label>
+											<input  type="number" data-maxlength="10" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" class="form-control" id="inputphoneL">
 										</div>
 									</div>
 
+									<div class="form-group">
+										<label for="inputAddressL">Địa chỉ</label>
+										<input type="text" class="form-control" id="inputAddressL">
+									</div>
+
 									<div class="form-row">
-										<div class="form-group col-md-4">
+										<div class="form-group col-md-3">
 											<label for="inputIdRoomL">Mã phòng</label>
 											<input type="text"  readonly class="form-control-plaintext" id="inputIdRoomL">
 										</div>
@@ -284,10 +399,29 @@
 											<input type="text"  readonly class="form-control-plaintext" id="inputRoomPriceL">
 										</div>
 									</div>
-									<div class="text-center">
-										<button type="submit" class="btn btn-primary">Đặt Phòng</button>
+									<div class="text-center posbooking">
+										<button type="button" class="btn btn-primary" id="lBooking">Đặt Phòng</button>
 									</div>
 									
+									<div class="alert alert-success mt-5 text-center" id="success-alertL">
+										<strong>Đặt phòng thành công! </strong>
+										<button type="button" class="close scs" >
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="alert alert-danger mt-5 text-center" id="danger-alertL">
+										<strong class="error"></strong>
+										<button type="button" class="close dngr">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="alert alert-warning mt-5 text-center" id="warning-alertL">
+										Vui lòng điền vào các trường!!
+										<button type="button" class="close wrn" >
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
 								</form>
 							</div>
 							<div class="col-8"">
