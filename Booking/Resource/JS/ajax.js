@@ -28,10 +28,10 @@ $(document).ready(function () {
                             start = roombookarritem.startDate.substring(0,10)
                             end = roombookarritem.endDate.substring(0,10)
                         });
-                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rStatus,start,end);
+                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
                     }
                     else{
-                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rStatus);
+                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
                     }
                 }
             }
@@ -45,9 +45,9 @@ $(document).ready(function () {
                             start = roombookarritem.startDate.substring(0,10)
                             end = roombookarritem.endDate.substring(0,10)
                         });
-                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rStatus,start,end);
+                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
                     } else {
-                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rStatus);
+                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice);
                     }
                 }
             }
@@ -61,9 +61,9 @@ $(document).ready(function () {
                             start = roombookarritem.startDate.substring(0,10)
                             end = roombookarritem.endDate.substring(0,10)
                         });
-                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rStatus,start,end);
+                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
                     } else {
-                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rStatus);
+                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
                     }
                 }
             }
