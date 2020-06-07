@@ -84,7 +84,8 @@ $(document).ready(function () {
     })
     .always(function () { $(".loading").hide(); });
 
-
+    $('#sBooking').click(function (e) { 
+    });
 
 /* #region  btn add to booking */
     $('.posstandarroom').on('click', '.rcard', function (){
@@ -123,30 +124,30 @@ $(document).ready(function () {
 
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    $('#Standarstartday').datepicker({
+    $('#startdayS').datepicker({
         value: datefm(date),
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#Standarendday').datepicker({
+    $('#enddayS').datepicker({
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#VIPstartday').datepicker({
+    $('#startdayV').datepicker({
         value: datefm(date),
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#VIPendday').datepicker({
+    $('#enddayV').datepicker({
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#Luxurystartday').datepicker({
+    $('#startdayL').datepicker({
         value: datefm(date),
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#Luxuryendday').datepicker({
+    $('#enddayL').datepicker({
         format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
@@ -163,6 +164,34 @@ $(document).ready(function () {
         close: function (e) {
             startRange= $('#Sfilterstartday').datepicker().value()
             endRange= $('#Sfilterendday').datepicker().value()
+        }
+    });
+    $('#Vfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#Vfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Vfilterstartday').datepicker().value()
+            endRange= $('#Vfilterendday').datepicker().value()
+        }
+    });
+    $('#Lfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#Lfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Lfilterstartday').datepicker().value()
+            endRange= $('#Lfilterendday').datepicker().value()
         }
     });
     
