@@ -3,6 +3,14 @@ $(document).ready(function () {
     function datefm(date) { 
         return date.match(/([^T]+)/)[0].split("-").reverse().join("-")
     }
+    function appendString(className,idRoom,rType,rStatus,rPrice,dayStart = 0,dayEnd = 0) {
+        if (dayStart != 0 && dayEnd != 0) {
+            return $(className).append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(dayStart)+' Đến: '+datefm(dayEnd)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
+        } else {
+            return $(className).append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
+        }
+    }
+
     $.getJSON("https://localhost:44373/api/room")
     .done(function (data) { 
         var _room = data;
@@ -20,10 +28,10 @@ $(document).ready(function () {
                             start = roombookarritem.startDate.substring(0,10)
                             end = roombookarritem.endDate.substring(0,10)
                         });
-                        $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(start)+' Đến: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rStatus,start,end);
                     }
                     else{
-                        $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rStatus);
                     }
                 }
             }
@@ -37,9 +45,9 @@ $(document).ready(function () {
                             start = roombookarritem.startDate.substring(0,10)
                             end = roombookarritem.endDate.substring(0,10)
                         });
-                        $('.posviproom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(start)+' Đến: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rStatus,start,end);
                     } else {
-                        $('.posviproom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rStatus);
                     }
                 }
             }
@@ -53,9 +61,9 @@ $(document).ready(function () {
                             start = roombookarritem.startDate.substring(0,10)
                             end = roombookarritem.endDate.substring(0,10)
                         });
-                        $('.posluxuryroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(start)+' Đến: '+datefm(end)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rStatus,start,end);
                     } else {
-                        $('.posluxuryroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rStatus);
                     }
                 }
             }
