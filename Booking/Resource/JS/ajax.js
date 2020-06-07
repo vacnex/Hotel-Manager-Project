@@ -1,30 +1,90 @@
 $(document).ready(function () {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      })
     $('.loading').show();
+    function datefm(date) { 
+        return date.match(/([^T]+)/)[0].split("-").reverse().join("-")
+    }
+    function appendString(className,idRoom,rType,rStatus,rPrice,dayStart = 0,dayEnd = 0) {
+        if (dayStart != 0 && dayEnd != 0) {
+            return $(className).append('<div class="col mb-4 room"><div class="rcard card shadow" data-placement="bottom" title="Từ: '+datefm(dayStart)+' Đến: '+datefm(dayEnd)+'"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
+        } else {
+            return $(className).append('<div class="col mb-4 room"><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
+        }
+    }
+
     $.getJSON("https://localhost:44373/api/room")
     .done(function (data) { 
         var _room = data;
-        console.log(_room)
+        // console.log(_room)
         _room.forEach(function (arritem) {
             var idRoom = arritem.idRoom
             var rStatus = arritem.rStatus
-            if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
+            if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false)
             {
-                $('.posstandarroom').append('<div class="col mb-4 "><div class="rcard card shadow" data-toggle="tooltip" data-placement="bottom" title=""> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                    if (arritem.tbl_roombook != 0) {
+                        var _roomBookDate = arritem.tbl_roombook
+                        var start,end
+                        _roomBookDate.forEach(function (roombookarritem) {
+                            start = roombookarritem.startDate.substring(0,10)
+                            end = roombookarritem.endDate.substring(0,10)
+                        });
+                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
+                    }
+                    else{
+                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
+                    }
+                }
             }
-            if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
+            if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false)
             {
-                $('.posviproom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                    if (arritem.tbl_roombook != 0) {
+                        var _roomBookDate = arritem.tbl_roombook
+                        var start,end
+                        _roomBookDate.forEach(function (roombookarritem) {
+                            start = roombookarritem.startDate.substring(0,10)
+                            end = roombookarritem.endDate.substring(0,10)
+                        });
+                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
+                    } else {
+                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice);
+                    }
+                }
             }
-            if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false && rStatus.startsWith("T")==true || rStatus.startsWith("Đ")==true)
+            if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false)
             {
-                $('.posluxuryroom').append('<div class="col mb-4 "><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+arritem.idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+arritem.rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+arritem.rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+arritem.rStatus+'</span></h5> </div> </div></div>');
+                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                    if (arritem.tbl_roombook != 0) {
+                        var _roomBookDate = arritem.tbl_roombook
+                        var start,end
+                        _roomBookDate.forEach(function (roombookarritem) {
+                            start = roombookarritem.startDate.substring(0,10)
+                            end = roombookarritem.endDate.substring(0,10)
+                        });
+                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
+                    } else {
+                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
+                    }
+                }
             }
+        });
+        console.log("Loaded")
+    })
+
+    .done(function () {
+        $('.posstandarroom .room').find('.rcard').each(function() {
+            $.each(this.attributes, function (i, attrib) { 
+                var value = attrib.value.startsWith("T");   
+                if (value  === true) {
+                    console.log(attrib.value)
+                }             
+                
+            });
         });
     })
     .always(function () { $(".loading").hide(); });
+
+
 
 /* #region  btn add to booking */
     $('.posstandarroom').on('click', '.rcard', function (){
@@ -43,31 +103,12 @@ $(document).ready(function () {
         $('#inputRoomPriceL').val($( this ).find( '#rPrice' ).text());
     });
 /* #endregion */
-    $.getJSON("https://localhost:44373/api/room",
-        function (data) {
-            var _room2 = data
-            _room2.forEach(function(arritem) {
-                var _book = arritem.tbl_roombook
-                if (_book.length != 0) {
-                    _book.forEach(function(arritem) {
-                        var ngayden = arritem.startDate
-                        var ngaydi = arritem.endDate
-                        if (ngaydi == null) {
-                            console.log(ngayden.substring(0,10),ngaydi)
-                            $('.rcard').attr('title',ngayden.substring(0,10),ngaydi);
 
-                        }
-                        else {
-                            console.log(ngayden.substring(0,10),ngaydi.substring(0,10))
-                        }
-                        
-                    });
-                }
-                
-            });
-        }
-    );
 /* #region  Frontend */
+
+    $(function () {
+        $('.rcard').tooltip()
+    })
     $('.card').hover(function () {
         $(this).animate({
             marginTop : "-=1%",
@@ -79,29 +120,51 @@ $(document).ready(function () {
             marginBottom :"0%",
         },150);
     });
-    $('#startday').datepicker({
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    $('#Standarstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#endday').datepicker({
+    $('#Standarendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#startday1').datepicker({
+    $('#VIPstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#endday1').datepicker({
+    $('#VIPendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#startday2').datepicker({
+    $('#Luxurystartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#endday2').datepicker({
+    $('#Luxuryendday').datepicker({
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#startdayfilter').datepicker({
+
+    $('#Sfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
         uiLibrary: 'bootstrap4'
     });
-    $('#enddayfilter').datepicker({
-        uiLibrary: 'bootstrap4'
+
+    $('#Sfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Sfilterstartday').datepicker().value()
+            endRange= $('#Sfilterendday').datepicker().value()
+        }
     });
+    
 /* #endregion */
 });
