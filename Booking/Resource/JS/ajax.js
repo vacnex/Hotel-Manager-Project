@@ -1,4 +1,136 @@
 $(document).ready(function () {
+    /* #region  Load First */
+    LoadRoomList();
+    $('.loading').show();
+    $(function () {
+        $('.rcard').tooltip()
+    })
+    $('.card').hover(function () {
+        $(this).animate({
+            marginTop : "-=1%",
+            marginBottom :"1%",
+        },150);
+    }, function () {
+        $(this).animate({
+            marginTop : "0%",
+            marginBottom :"0%",
+        },150);
+    });
+/* #region  Alert */
+    $("#success-alertS").hide();
+    $("#danger-alertS").hide();
+    $("#warning-alertS").hide();
+    $("#success-alertV").hide();
+    $("#danger-alertV").hide();
+    $("#warning-alertV").hide();
+    $("#success-alertL").hide();
+    $("#danger-alertL").hide();
+    $("#warning-alertL").hide();
+    $('.wrn').click(function (e) { 
+        $("#warning-alertS").hide();
+    });
+    $('.scs').click(function (e) { 
+        $("#success-alertS").hide();
+    });
+    $('.dngr').click(function (e) { 
+        $("#danger-alertS").hide();
+    });
+    $('.wrn').click(function (e) { 
+        $("#warning-alertV").hide();
+    });
+    $('.scs').click(function (e) { 
+        $("#success-alertV").hide();
+    });
+    $('.dngr').click(function (e) { 
+        $("#danger-alertV").hide();
+    });
+    $('.wrn').click(function (e) { 
+        $("#warning-alertL").hide();
+    });
+    $('.scs').click(function (e) { 
+        $("#success-alertL").hide();
+    });
+    $('.dngr').click(function (e) { 
+        $("#danger-alertL").hide();
+    });
+/* #endregion */
+
+/* #region  Datepicker */
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    $('#startdayS').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+    $('#enddayS').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+    $('#startdayV').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+    $('#enddayV').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+    $('#startdayL').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+    $('#enddayL').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#Sfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#Sfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Sfilterstartday').datepicker().value()
+            endRange= $('#Sfilterendday').datepicker().value()
+        }
+    });
+    $('#Vfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#Vfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Vfilterstartday').datepicker().value()
+            endRange= $('#Vfilterendday').datepicker().value()
+        }
+    });
+    $('#Lfilterstartday').datepicker({
+        value: datefm(date),
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4'
+    });
+
+    $('#Lfilterendday').datepicker({
+        format: 'dd-mm-yyyy',
+        uiLibrary: 'bootstrap4',
+        close: function (e) {
+            startRange= $('#Lfilterstartday').datepicker().value()
+            endRange= $('#Lfilterendday').datepicker().value()
+        }
+    });
+/* #endregion */
+    
+/* #endregion */
     /* #region  Funtion */
     function datefm(date) { 
         if (!date) {
@@ -23,9 +155,6 @@ $(document).ready(function () {
             return $(className).append('<div class="col mb-4 room"><div class="rcard card shadow"> <div class="text-center"><img src="Resource/image/bed.svg" style="width: 100px;height: 100px";" class="card-img-top" alt="..."></div> <div class="card-body"> <h5 class="card-title">Mã phòng: <span id="idRoom">'+idRoom+'</span></h5> <h5 class="card-title">Loại: <span id="rType">'+rType+'</span></h5> <h5 class="card-title">Giá: <span id="rPrice">'+rPrice+'</span> VND</h5> <h5 class="card-title">Trạng thái: <span id="rStatus">'+rStatus+'</span></h5> </div> </div></div>');
         }
     }
-    /* #endregion */
-
-
     function LoadRoomList() {
         $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/room")
         .done(function (data) { 
@@ -99,85 +228,12 @@ $(document).ready(function () {
         // })
         .always(function () { $(".loading").hide(); });
     }
-    LoadRoomList();
-
+    /* #endregion */
 
     var idRoomB,idCardB,$startDateB,$endDateB,cusNameB,cusAddressB,cusGenderB,cusPhoneB
-    $('#inputidcardS').keyup(function (e) { 
-        idCardB = $('#inputidcardS').val();
-        if (idCardB.length>=9) {
-            $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/customer/"+idCardB)
-            .done(function (data) { 
-                var _customer = data;
-                $('#inputNameS').val(_customer.cusName); 
-                $('#inputAddressS').val(_customer.cusAddress);
-                if (_customer.cusGender =="Nam") {
-                    $('#inputgenderS').val("Nam");
-                }
-                else{
-                    $('#inputgenderS').val("Nữ");
-                }
-                $('#inputphoneS').val(_customer.cusPhone);
-            })
-        }
-        else{
-            $('#inputNameS').val(""); 
-            $('#inputAddressS').val("");
-            $('#inputgenderS').val("");
-            $('#inputphoneS').val("");
-        }
-    });
-    $('#inputidcardV').keyup(function (e) { 
-        idCardB = $('#inputidcardV').val();
-        if (idCardB.length>=9) {
-            $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/customer/"+idCardB)
-            .done(function (data) { 
-                var _customer = data;
-                $('#inputNameV').val(_customer.cusName); 
-                $('#inputAddressV').val(_customer.cusAddress);
-                if (_customer.cusGender =="Nam") {
-                    $('#inputgenderV').val("Nam");
-                }
-                else{
-                    $('#inputgenderV').val("Nữ");
-                }
-                $('#inputphoneV').val(_customer.cusPhone);
-            })
-        }
-        else{
-            $('#inputNameV').val(""); 
-            $('#inputAddressV').val("");
-            $('#inputgenderV').val("");
-            $('#inputphoneV').val("");
-        }
-    });
-    $('#inputidcardL').keyup(function (e) { 
-        idCardB = $('#inputidcardL').val();
-        if (idCardB.length>=9) {
-            $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/customer/"+idCardB)
-            .done(function (data) { 
-                var _customer = data;
-                $('#inputNameL').val(_customer.cusName); 
-                $('#inputAddressL').val(_customer.cusAddress);
-                if (_customer.cusGender =="Nam") {
-                    $('#inputgenderL').val("Nam");
-                }
-                else{
-                    $('#inputgenderL').val("Nữ");
-                }
-                $('#inputphoneL').val(_customer.cusPhone);
-            })
-        }
-        else{
-            $('#inputNameL').val(""); 
-            $('#inputAddressL').val("");
-            $('#inputgenderL').val("");
-            $('#inputphoneL').val("");
-        }
-    });
+/* #region  Check existed cusomter*/
 
-
-
+/* #region  Click event on ajax element for room card */
     $('.posbooking').on('click', '#sBooking', function (){
         $startDateB = $('#startdayS').datepicker().value();
         $endDateB = $('#enddayS').datepicker().value();
@@ -201,9 +257,6 @@ $(document).ready(function () {
                 _customer.forEach( function(arritem) {
                     listidcard.push(arritem.idCard)
                 });
-                // for (let index = 0; index < listidcard.length; index++) {
-                //     console.log(listidcard[index]); 
-                // }
                 var pos = listidcard.indexOf(idCardB);
                 if (pos > -1) {
                     var roomStatusUpdate ='{ "idRoom": "'+idRoomB+'",  "rType": "'+$('#inputRoomTypeS').val()+'",  "rPrice": '+$('#inputRoomPriceS').val()+',  "rStatus": "Đã Đặt" }';
@@ -460,9 +513,9 @@ $(document).ready(function () {
             });
         }
     });
+/* #endregion */
 
-
-/* #region  btn add to booking */
+/* #region  btn pass room info to booking form */
     $('.posstandarroom').on('click', '.rcard', function (){
         $('#inputIdRoomS').val($( this ).find( '#idRoom' ).text());
         $('#inputRoomTypeS').val($( this ).find( '#rType' ).text());
@@ -480,138 +533,4 @@ $(document).ready(function () {
     });
 /* #endregion */
 
-
-
-/* #region  Frontend */
-
-    $('.loading').show();
-    $(function () {
-        $('.rcard').tooltip()
-    })
-    $('.card').hover(function () {
-        $(this).animate({
-            marginTop : "-=1%",
-            marginBottom :"1%",
-        },150);
-    }, function () {
-        $(this).animate({
-            marginTop : "0%",
-            marginBottom :"0%",
-        },150);
-    });
-/* #region  Alert */
-$("#success-alertS").hide();
-$("#danger-alertS").hide();
-$("#warning-alertS").hide();
-$("#success-alertV").hide();
-$("#danger-alertV").hide();
-$("#warning-alertV").hide();
-$("#success-alertL").hide();
-$("#danger-alertL").hide();
-$("#warning-alertL").hide();
-$('.wrn').click(function (e) { 
-    $("#warning-alertS").hide();
-});
-$('.scs').click(function (e) { 
-    $("#success-alertS").hide();
-});
-$('.dngr').click(function (e) { 
-    $("#danger-alertS").hide();
-});
-$('.wrn').click(function (e) { 
-    $("#warning-alertV").hide();
-});
-$('.scs').click(function (e) { 
-    $("#success-alertV").hide();
-});
-$('.dngr').click(function (e) { 
-    $("#danger-alertV").hide();
-});
-$('.wrn').click(function (e) { 
-    $("#warning-alertL").hide();
-});
-$('.scs').click(function (e) { 
-    $("#success-alertL").hide();
-});
-$('.dngr').click(function (e) { 
-    $("#danger-alertL").hide();
-});
-/* #endregion */
-
-/* #region  Datepicker */
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    $('#startdayS').datepicker({
-        value: datefm(date),
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-    $('#enddayS').datepicker({
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-    $('#startdayV').datepicker({
-        value: datefm(date),
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-    $('#enddayV').datepicker({
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-    $('#startdayL').datepicker({
-        value: datefm(date),
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-    $('#enddayL').datepicker({
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-
-    $('#Sfilterstartday').datepicker({
-        value: datefm(date),
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-
-    $('#Sfilterendday').datepicker({
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4',
-        close: function (e) {
-            startRange= $('#Sfilterstartday').datepicker().value()
-            endRange= $('#Sfilterendday').datepicker().value()
-        }
-    });
-    $('#Vfilterstartday').datepicker({
-        value: datefm(date),
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-
-    $('#Vfilterendday').datepicker({
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4',
-        close: function (e) {
-            startRange= $('#Vfilterstartday').datepicker().value()
-            endRange= $('#Vfilterendday').datepicker().value()
-        }
-    });
-    $('#Lfilterstartday').datepicker({
-        value: datefm(date),
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4'
-    });
-
-    $('#Lfilterendday').datepicker({
-        format: 'dd-mm-yyyy',
-        uiLibrary: 'bootstrap4',
-        close: function (e) {
-            startRange= $('#Lfilterstartday').datepicker().value()
-            endRange= $('#Lfilterendday').datepicker().value()
-        }
-    });
-/* #endregion */
-    
-/* #endregion */
 });
