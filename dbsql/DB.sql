@@ -2,6 +2,7 @@ create database Db_Hotel_Manager
 go
 use Db_Hotel_Manager
 go
+
 CREATE TABLE tbl_room(
 	idRoom nvarchar(5) NOT NULL,
 	rType nvarchar(25) NOT NULL,
@@ -71,30 +72,30 @@ DROP TABLE dbo.tbl_account;
 
 
 INSERT INTO tbl_room (idRoom, rType, rPrice, rStatus)
- VALUES (N'T101', N'Đơn thường', 300000, N'Trống'),
-		(N'T102', N'Đơn thường', 300000, N'Có khách'),
-		(N'T103', N'Đơn thường', 300000, N'Đã đặt'),
-		(N'T104', N'Đơn thường', 300000, N'Trống'),
-		(N'T201', N'Đôi thường', 400000, N'Có khách'),
-		(N'T202', N'Đôi thường', 400000, N'Đã đặt'),
-		(N'T203', N'Đôi thường', 400000, N'Trống'),
-		(N'T204', N'Đôi thường', 400000, N'Trống'),
-		(N'V101', N'VIP đơn', 600000, N'Đã đặt'),
-		(N'V102', N'VIP đơn', 600000, N'Trống'),
-		(N'V103', N'VIP đơn', 600000, N'Trống'),
-		(N'V104', N'VIP đơn', 600000, N'Trống'),
-		(N'V201', N'VIP đôi', 800000, N'Trống'),
-		(N'V202', N'VIP đôi', 800000, N'Trống'),
-		(N'V203', N'VIP đôi', 800000, N'Trống'),
-		(N'V204', N'VIP đôi', 800000, N'Có khách'),
-		(N'L101', N'Hạng sang đơn', 1000000, N'Trống'),
-		(N'L102', N'Hạng sang đơn', 1000000, N'Trống'),
-		(N'L103', N'Hạng sang đơn', 1000000, N'Trống'),
-		(N'L104', N'Hạng sang đơn', 1000000, N'Trống'),
-		(N'L201', N'Hạng sang đôi', 1300000, N'Trống'),
-		(N'L202', N'Hạng sang đôi', 1300000, N'Trống'),
-		(N'L203', N'Hạng sang đôi', 1300000, N'Trống'),
-		(N'L204', N'Hạng sang đôi', 1300000, N'Trống');
+ VALUES (N'T101', N'Thường Đơn', 300000, N'Trống'),
+		(N'T102', N'Thường Đơn', 300000, N'Có khách'),
+		(N'T103', N'Thường Đơn', 300000, N'Đã đặt'),
+		(N'T104', N'Thường Đơn', 300000, N'Trống'),
+		(N'T201', N'Thường Đôi', 400000, N'Có khách'),
+		(N'T202', N'Thường Đôi', 400000, N'Đã đặt'),
+		(N'T203', N'Thường Đôi', 400000, N'Trống'),
+		(N'T204', N'Thường Đôi', 400000, N'Trống'),
+		(N'V101', N'VIP Đơn', 600000, N'Đã đặt'),
+		(N'V102', N'VIP Đơn', 600000, N'Trống'),
+		(N'V103', N'VIP Đơn', 600000, N'Trống'),
+		(N'V104', N'VIP Đơn', 600000, N'Trống'),
+		(N'V201', N'VIP Đôi', 800000, N'Trống'),
+		(N'V202', N'VIP Đôi', 800000, N'Trống'),
+		(N'V203', N'VIP Đôi', 800000, N'Trống'),
+		(N'V204', N'VIP Đôi', 800000, N'Có khách'),
+		(N'L101', N'Hạng Sang Đơn', 1000000, N'Trống'),
+		(N'L102', N'Hạng Sang Đơn', 1000000, N'Trống'),
+		(N'L103', N'Hạng Sang Đơn', 1000000, N'Trống'),
+		(N'L104', N'Hạng Sang Đơn', 1000000, N'Trống'),
+		(N'L201', N'Hạng Sang Đôi', 1300000, N'Trống'),
+		(N'L202', N'Hạng Sang Đôi', 1300000, N'Trống'),
+		(N'L203', N'Hạng Sang Đôi', 1300000, N'Trống'),
+		(N'L204', N'Hạng Sang Đôi', 1300000, N'Trống');
 		GO
 	
 INSERT INTO tbl_customer (idCard, cusName, cusAddress, cusGender, cusPhone)
@@ -152,15 +153,18 @@ ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Services FOREIGN K
 REFERENCES dbo.tbl_services (idService);
 GO
 
+alter table dbo.tbl_servicesuse  drop constraint FK_Servicesuse_Customer
 ALTER TABLE dbo.tbl_servicesuse ADD CONSTRAINT FK_Servicesuse_Customer FOREIGN KEY(idCard)
 REFERENCES dbo.tbl_customer (idCard);
 GO
 
-
+alter table tbl_roombook  drop constraint FK_Roombook_Customer
 ALTER TABLE dbo.tbl_roombook ADD CONSTRAINT FK_Roombook_Customer FOREIGN KEY(idCard)
 REFERENCES dbo.tbl_customer (idCard);
 GO
 
+alter table tbl_roombook  drop constraint FK_Roombook_Room
 ALTER TABLE dbo.tbl_roombook ADD CONSTRAINT FK_Roombook_Room FOREIGN KEY (idRoom)
 REFERENCES dbo.tbl_room (idRoom);
 GO
+
