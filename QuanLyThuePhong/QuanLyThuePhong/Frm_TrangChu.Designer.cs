@@ -44,7 +44,11 @@
             this.tìmKiếmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tìmKiếmKháchHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tìmKiếmPhòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbl_TenNhanVien = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnu_MenuChinh.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnu_MenuChinh
@@ -101,22 +105,23 @@
             // mnu_QLKhachHang
             // 
             this.mnu_QLKhachHang.Name = "mnu_QLKhachHang";
-            this.mnu_QLKhachHang.Size = new System.Drawing.Size(180, 22);
+            this.mnu_QLKhachHang.Size = new System.Drawing.Size(157, 22);
             this.mnu_QLKhachHang.Text = "Quản lý khách";
             this.mnu_QLKhachHang.Click += new System.EventHandler(this.mnu_QLKhachHang_Click);
             // 
             // mnu_QLPhong
             // 
             this.mnu_QLPhong.Name = "mnu_QLPhong";
-            this.mnu_QLPhong.Size = new System.Drawing.Size(180, 22);
+            this.mnu_QLPhong.Size = new System.Drawing.Size(157, 22);
             this.mnu_QLPhong.Text = "Quản lý phòng";
             this.mnu_QLPhong.Click += new System.EventHandler(this.mnu_QLPhong_Click);
             // 
             // mnu_QLDichVu
             // 
             this.mnu_QLDichVu.Name = "mnu_QLDichVu";
-            this.mnu_QLDichVu.Size = new System.Drawing.Size(180, 22);
+            this.mnu_QLDichVu.Size = new System.Drawing.Size(157, 22);
             this.mnu_QLDichVu.Text = "Quản lý dịch vụ";
+            this.mnu_QLDichVu.Click += new System.EventHandler(this.mnu_QLDichVu_Click);
             // 
             // mnu_ChucNang
             // 
@@ -131,8 +136,9 @@
             // thuêPhòngToolStripMenuItem
             // 
             this.thuêPhòngToolStripMenuItem.Name = "thuêPhòngToolStripMenuItem";
-            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.thuêPhòngToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.thuêPhòngToolStripMenuItem.Text = "Thuê phòng";
+            this.thuêPhòngToolStripMenuItem.Click += new System.EventHandler(this.thuêPhòngToolStripMenuItem_Click);
             // 
             // trảPhòngToolStripMenuItem
             // 
@@ -167,17 +173,43 @@
             this.tìmKiếmPhòngToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.tìmKiếmPhòngToolStripMenuItem.Text = "Tìm kiếm phòng";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lbl_TenNhanVien});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(67, 17);
+            this.toolStripStatusLabel1.Text = "Nhân viên: ";
+            // 
+            // lbl_TenNhanVien
+            // 
+            this.lbl_TenNhanVien.Name = "lbl_TenNhanVien";
+            this.lbl_TenNhanVien.Size = new System.Drawing.Size(29, 17);
+            this.lbl_TenNhanVien.Text = "N/A";
+            // 
             // Frm_TrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mnu_MenuChinh);
             this.Name = "Frm_TrangChu";
             this.Text = "TRANG CHỦ";
             this.Load += new System.EventHandler(this.Frm_TrangChu_Load);
             this.mnu_MenuChinh.ResumeLayout(false);
             this.mnu_MenuChinh.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,6 +233,9 @@
         private System.Windows.Forms.ToolStripMenuItem tìmKiếmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tìmKiếmKháchHàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tìmKiếmPhòngToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel lbl_TenNhanVien;
     }
 }
 

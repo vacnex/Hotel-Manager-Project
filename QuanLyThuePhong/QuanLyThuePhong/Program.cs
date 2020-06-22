@@ -1,4 +1,7 @@
-﻿using System;
+﻿using QuanLyThuePhong.KhachHang;
+using QuanLyThuePhong.Phong;
+using QuanLyThuePhong.ThuePhong;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +19,7 @@ namespace QuanLyThuePhong
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_TrangChu());
+            Application.Run(new Frm_TraPhong());
         }
     }
 }
