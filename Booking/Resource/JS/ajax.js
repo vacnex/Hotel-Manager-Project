@@ -25,80 +25,159 @@ $(document).ready(function () {
     }
     /* #endregion */
 
-    $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/room")
-    .done(function (data) { 
-        var _room = data;
-        // console.log(_room)
-        _room.forEach(function (arritem) {
-            var idRoom = arritem.idRoom
-            var rStatus = arritem.rStatus
-            if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false)
-            {
-                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
-                    if (arritem.tbl_roombook != 0) {
-                        var _roomBookDate = arritem.tbl_roombook
-                        var start,end
-                        _roomBookDate.forEach(function (roombookarritem) {
-                            start = roombookarritem.startDate.substring(0,10)
-                            end = roombookarritem.endDate.substring(0,10)
-                        });
-                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
-                    }
-                    else{
-                        appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
-                    }
-                }
-            }
-            if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false)
-            {
-                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
-                    if (arritem.tbl_roombook != 0) {
-                        var _roomBookDate = arritem.tbl_roombook
-                        var start,end
-                        _roomBookDate.forEach(function (roombookarritem) {
-                            start = roombookarritem.startDate.substring(0,10)
-                            end = roombookarritem.endDate.substring(0,10)
-                        });
-                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
-                    } else {
-                        appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice);
-                    }
-                }
-            }
-            if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false)
-            {
-                if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
-                    if (arritem.tbl_roombook != 0) {
-                        var _roomBookDate = arritem.tbl_roombook
-                        var start,end
-                        _roomBookDate.forEach(function (roombookarritem) {
-                            start = roombookarritem.startDate.substring(0,10)
-                            end = roombookarritem.endDate.substring(0,10)
-                        });
-                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
-                    } else {
-                        appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
-                    }
-                }
-            }
-        });
-        console.log("Loaded")
-    })
 
-    .done(function () {
-        $('.posstandarroom .room').find('.rcard').each(function() {
-            $.each(this.attributes, function (i, attrib) { 
-                var value = attrib.value.startsWith("T");   
-                if (value  === true) {
-                    console.log(attrib.value)
-                }             
-                
+    function LoadRoomList() {
+        $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/room")
+        .done(function (data) { 
+            var _room = data;
+            // console.log(_room)
+            _room.forEach(function (arritem) {
+                var idRoom = arritem.idRoom
+                var rStatus = arritem.rStatus
+                if(idRoom.startsWith("L")==false && idRoom.startsWith("V")==false)
+                {
+                    if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                        if (arritem.tbl_roombook != 0) {
+                            var _roomBookDate = arritem.tbl_roombook
+                            var start,end
+                            _roomBookDate.forEach(function (roombookarritem) {
+                                start = roombookarritem.startDate.substring(0,10)
+                                end = roombookarritem.endDate.substring(0,10)
+                            });
+                            appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
+                        }
+                        else{
+                            appendString('.posstandarroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
+                        }
+                    }
+                }
+                if(idRoom.startsWith("L")==false && idRoom.startsWith("T")==false)
+                {
+                    if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                        if (arritem.tbl_roombook != 0) {
+                            var _roomBookDate = arritem.tbl_roombook
+                            var start,end
+                            _roomBookDate.forEach(function (roombookarritem) {
+                                start = roombookarritem.startDate.substring(0,10)
+                                end = roombookarritem.endDate.substring(0,10)
+                            });
+                            appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
+                        } else {
+                            appendString('.posviproom',idRoom,arritem.rType,rStatus,arritem.rPrice);
+                        }
+                    }
+                }
+                if(idRoom.startsWith("T")==false && idRoom.startsWith("V")==false)
+                {
+                    if (rStatus.startsWith("Đ")==true || rStatus.startsWith("T")==true) {
+                        if (arritem.tbl_roombook != 0) {
+                            var _roomBookDate = arritem.tbl_roombook
+                            var start,end
+                            _roomBookDate.forEach(function (roombookarritem) {
+                                start = roombookarritem.startDate.substring(0,10)
+                                end = roombookarritem.endDate.substring(0,10)
+                            });
+                            appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice,start,end);
+                        } else {
+                            appendString('.posluxuryroom',idRoom,arritem.rType,rStatus,arritem.rPrice);
+                        }
+                    }
+                }
             });
-        });
-    })
-    .always(function () { $(".loading").hide(); });
+            console.log("Loaded")
+        })
+        // .done(function () {
+        //     $('.posstandarroom .room').find('.rcard').each(function() {
+        //         $.each(this.attributes, function (i, attrib) { 
+        //             var value = attrib.value.startsWith("T");   
+        //             if (value  === true) {
+        //                 console.log(attrib.value)
+        //             }             
+                    
+        //         });
+        //     });
+        // })
+        .always(function () { $(".loading").hide(); });
+    }
+    LoadRoomList();
+
 
     var idRoomB,idCardB,$startDateB,$endDateB,cusNameB,cusAddressB,cusGenderB,cusPhoneB
+    $('#inputidcardS').keyup(function (e) { 
+        idCardB = $('#inputidcardS').val();
+        if (idCardB.length>=9) {
+            $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/customer/"+idCardB)
+            .done(function (data) { 
+                var _customer = data;
+                $('#inputNameS').val(_customer.cusName); 
+                $('#inputAddressS').val(_customer.cusAddress);
+                if (_customer.cusGender =="Nam") {
+                    $('#inputgenderS').val("Nam");
+                }
+                else{
+                    $('#inputgenderS').val("Nữ");
+                }
+                $('#inputphoneS').val(_customer.cusPhone);
+            })
+        }
+        else{
+            $('#inputNameS').val(""); 
+            $('#inputAddressS').val("");
+            $('#inputgenderS').val("");
+            $('#inputphoneS').val("");
+        }
+    });
+    $('#inputidcardV').keyup(function (e) { 
+        idCardB = $('#inputidcardV').val();
+        if (idCardB.length>=9) {
+            $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/customer/"+idCardB)
+            .done(function (data) { 
+                var _customer = data;
+                $('#inputNameV').val(_customer.cusName); 
+                $('#inputAddressV').val(_customer.cusAddress);
+                if (_customer.cusGender =="Nam") {
+                    $('#inputgenderV').val("Nam");
+                }
+                else{
+                    $('#inputgenderV').val("Nữ");
+                }
+                $('#inputphoneV').val(_customer.cusPhone);
+            })
+        }
+        else{
+            $('#inputNameV').val(""); 
+            $('#inputAddressV').val("");
+            $('#inputgenderV').val("");
+            $('#inputphoneV').val("");
+        }
+    });
+    $('#inputidcardL').keyup(function (e) { 
+        idCardB = $('#inputidcardL').val();
+        if (idCardB.length>=9) {
+            $.getJSON("https://hotelmanagerapi.azurewebsites.net/api/customer/"+idCardB)
+            .done(function (data) { 
+                var _customer = data;
+                $('#inputNameL').val(_customer.cusName); 
+                $('#inputAddressL').val(_customer.cusAddress);
+                if (_customer.cusGender =="Nam") {
+                    $('#inputgenderL').val("Nam");
+                }
+                else{
+                    $('#inputgenderL').val("Nữ");
+                }
+                $('#inputphoneL').val(_customer.cusPhone);
+            })
+        }
+        else{
+            $('#inputNameL').val(""); 
+            $('#inputAddressL').val("");
+            $('#inputgenderL').val("");
+            $('#inputphoneL').val("");
+        }
+    });
+
+
+
     $('.posbooking').on('click', '#sBooking', function (){
         $startDateB = $('#startdayS').datepicker().value();
         $endDateB = $('#enddayS').datepicker().value();
@@ -110,38 +189,87 @@ $(document).ready(function () {
         cusPhoneB = $('#inputphoneS').val();
         var _roomBookP,_customerP
         _customerP = '{"idCard": "'+idCardB+'","cusName": "'+cusNameB+'","cusAddress": "'+cusAddressB+'","cusGender": "'+cusGenderB+'","cusPhone": "'+cusPhoneB+'"}'
-        _roomBookP = '{"idCard": "'+idCardB+'","idRoom": "'+idRoomB+'","startDate": "'+datefmyyyymmdd($startDateB)+'","endDate": "'+datefmyyyymmdd($endDateB)+'","staffName": "online Booking"}'
+        _roomBookP = '{"idCard": "'+idCardB+'","idRoom": "'+idRoomB+'","startDate": "'+datefmyyyymmdd($startDateB)+'","endDate": "'+datefmyyyymmdd($endDateB)+'","staffName": "Online Booking"}'
         if (!$startDateB || !$endDateB || !idCardB || !idRoomB || !cusNameB || !cusAddressB || !cusGenderB || !cusPhoneB) {
             $("#warning-alertS").show()
         }
         else{
-            $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
-            .done(
-                function()
-                {
-                    $.post("https://hotelmanagerapi.azurewebsites.net/api/roombook", JSON.parse(_roomBookP),"json")
+            $.getJSON('https://hotelmanagerapi.azurewebsites.net/api/customer')
+            .done(function (data) { 
+                var _customer = data;
+                var listidcard = [];
+                _customer.forEach( function(arritem) {
+                    listidcard.push(arritem.idCard)
+                });
+                // for (let index = 0; index < listidcard.length; index++) {
+                //     console.log(listidcard[index]); 
+                // }
+                var pos = listidcard.indexOf(idCardB);
+                if (pos > -1) {
+                    var roomStatusUpdate ='{ "idRoom": "'+idRoomB+'",  "rType": "'+$('#inputRoomTypeS').val()+'",  "rPrice": '+$('#inputRoomPriceS').val()+',  "rStatus": "Đã Đặt" }';
+                    console.log(roomStatusUpdate);
+                    $.post('https://hotelmanagerapi.azurewebsites.net/api/roombook', JSON.parse(_roomBookP),"json")
+                        .done(
+                            function(){
+                                $.ajax({
+                                    url: 'https://hotelmanagerapi.azurewebsites.net/api/room/'+idRoomB,
+                                    contentType: 'application/json',
+                                    method: 'put',
+                                    data:  roomStatusUpdate,
+                                    success: function () {
+                                        $("#success-alertS").show();
+                                        $('.posstandarroom').html("");
+                                        $('.loading').show();
+                                        LoadRoomList();
+                                    }
+                                });
+                            }
+                        )
+                        .fail(
+                            function(jqXHR){
+                                $("#danger-alertS").show()
+                                $(".error").html(jqXHR.responseText);
+                            }
+                        );
+                }else{
+                    $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
                     .done(
                         function()
                         {
-                            $("#success-alertS").show()
+                            $.post('https://hotelmanagerapi.azurewebsites.net/api/roombook', JSON.parse(_roomBookP),"json")
+                            .done(
+                                function(){
+                                    $.ajax({
+                                        url: 'https://hotelmanagerapi.azurewebsites.net/api/room/'+idRoomB,
+                                        contentType: 'application/json',
+                                        datatype: "json",
+                                        method: 'put',
+                                        data:  JSON.parse(roomStatusUpdate),
+                                        success: function () {
+                                            $("#success-alertS").show();
+                                            $('.posstandarroom').html("");
+                                            $('.loading').show();
+                                            LoadRoomList();
+                                        }
+                                    });
+                                }
+                            )
+                            .fail(
+                                function(jqXHR){
+                                    $("#danger-alertS").show()
+                                    $(".error").html(jqXHR.responseText);
+                                }
+                            );
                         }
                     )
                     .fail(
-                        function(jqXHR) 
-                        {
+                        function(jqXHR){
                             $("#danger-alertS").show()
                             $(".error").html(jqXHR.responseText);
                         }
                     );
                 }
-            )
-            .fail(
-                function(jqXHR) 
-                {
-                    $("#danger-alertS").show()
-                    $(".error").html(jqXHR.responseText);
-                }
-            );
+            });
         }
     });
     $('.posbooking').on('click', '#vBooking', function (){
@@ -155,38 +283,87 @@ $(document).ready(function () {
         cusPhoneB = $('#inputphoneV').val();
         var _roomBookP,_customerP
         _customerP = '{"idCard": "'+idCardB+'","cusName": "'+cusNameB+'","cusAddress": "'+cusAddressB+'","cusGender": "'+cusGenderB+'","cusPhone": "'+cusPhoneB+'"}'
-        _roomBookP = '{"idCard": "'+idCardB+'","idRoom": "'+idRoomB+'","startDate": "'+datefmyyyymmdd($startDateB)+'","endDate": "'+datefmyyyymmdd($endDateB)+'","staffName": "online Booking"}'
+        _roomBookP = '{"idCard": "'+idCardB+'","idRoom": "'+idRoomB+'","startDate": "'+datefmyyyymmdd($startDateB)+'","endDate": "'+datefmyyyymmdd($endDateB)+'","staffName": "Online Booking"}'
         if (!$startDateB || !$endDateB || !idCardB || !idRoomB || !cusNameB || !cusAddressB || !cusGenderB || !cusPhoneB) {
             $("#warning-alertV").show()
         }
         else{
-            $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
-            .done(
-                function()
-                {
-                    $.post("https://hotelmanagerapi.azurewebsites.net/api/roombook", JSON.parse(_roomBookP),"json")
+            $.getJSON('https://hotelmanagerapi.azurewebsites.net/api/customer')
+            .done(function (data) { 
+                var _customer = data;
+                var listidcard = [];
+                _customer.forEach( function(arritem) {
+                    listidcard.push(arritem.idCard)
+                });
+                // for (let index = 0; index < listidcard.length; index++) {
+                //     console.log(listidcard[index]); 
+                // }
+                var pos = listidcard.indexOf(idCardB);
+                if (pos > -1) {
+                    var roomStatusUpdate ='{ "idRoom": "'+idRoomB+'",  "rType": "'+$('#inputRoomTypeV').val()+'",  "rPrice": '+$('#inputRoomPriceV').val()+',  "rStatus": "Đã Đặt" }';
+                    console.log(roomStatusUpdate);
+                    $.post('https://hotelmanagerapi.azurewebsites.net/api/roombook', JSON.parse(_roomBookP),"json")
+                        .done(
+                            function(){
+                                $.ajax({
+                                    url: 'https://hotelmanagerapi.azurewebsites.net/api/room/'+idRoomB,
+                                    contentType: 'application/json',
+                                    method: 'put',
+                                    data:  roomStatusUpdate,
+                                    success: function () {
+                                        $("#success-alertV").show();
+                                        $('.posviproom').html("");
+                                        $('.loading').show();
+                                        LoadRoomList();
+                                    }
+                                });
+                            }
+                        )
+                        .fail(
+                            function(jqXHR){
+                                $("#danger-alertV").show()
+                                $(".error").html(jqXHR.responseText);
+                            }
+                        );
+                }else{
+                    $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
                     .done(
                         function()
                         {
-                            $("#success-alertV").show()
+                            $.post('https://hotelmanagerapi.azurewebsites.net/api/roombook', JSON.parse(_roomBookP),"json")
+                            .done(
+                                function(){
+                                    $.ajax({
+                                        url: 'https://hotelmanagerapi.azurewebsites.net/api/room/'+idRoomB,
+                                        contentType: 'application/json',
+                                        datatype: "json",
+                                        method: 'put',
+                                        data:  JSON.parse(roomStatusUpdate),
+                                        success: function () {
+                                            $("#success-alertV").show();
+                                            $('.posviproom').html("");
+                                            $('.loading').show();
+                                            LoadRoomList();
+                                        }
+                                    });
+                                }
+                            )
+                            .fail(
+                                function(jqXHR){
+                                    $("#danger-alertV").show()
+                                    $(".error").html(jqXHR.responseText);
+                                }
+                            );
                         }
                     )
                     .fail(
-                        function(jqXHR) 
-                        {
+                        function(jqXHR){
                             $("#danger-alertV").show()
                             $(".error").html(jqXHR.responseText);
                         }
                     );
                 }
-            )
-            .fail(
-                function(jqXHR) 
-                {
-                    $("#danger-alertV").show()
-                    $(".error").html(jqXHR.responseText);
-                }
-            );
+            });
         }
     });
     $('.posbooking').on('click', '#lBooking', function (){
@@ -200,38 +377,87 @@ $(document).ready(function () {
         cusPhoneB = $('#inputphoneL').val();
         var _roomBookP,_customerP
         _customerP = '{"idCard": "'+idCardB+'","cusName": "'+cusNameB+'","cusAddress": "'+cusAddressB+'","cusGender": "'+cusGenderB+'","cusPhone": "'+cusPhoneB+'"}'
-        _roomBookP = '{"idCard": "'+idCardB+'","idRoom": "'+idRoomB+'","startDate": "'+datefmyyyymmdd($startDateB)+'","endDate": "'+datefmyyyymmdd($endDateB)+'","staffName": "online Booking"}'
+        _roomBookP = '{"idCard": "'+idCardB+'","idRoom": "'+idRoomB+'","startDate": "'+datefmyyyymmdd($startDateB)+'","endDate": "'+datefmyyyymmdd($endDateB)+'","staffName": "Online Booking"}'
         if (!$startDateB || !$endDateB || !idCardB || !idRoomB || !cusNameB || !cusAddressB || !cusGenderB || !cusPhoneB) {
             $("#warning-alertL").show()
         }
         else{
-            $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
-            .done(
-                function()
-                {
-                    $.post("https://hotelmanagerapi.azurewebsites.net/api/roombook", JSON.parse(_roomBookP),"json")
+            $.getJSON('https://hotelmanagerapi.azurewebsites.net/api/customer')
+            .done(function (data) { 
+                var _customer = data;
+                var listidcard = [];
+                _customer.forEach( function(arritem) {
+                    listidcard.push(arritem.idCard)
+                });
+                // for (let index = 0; index < listidcard.length; index++) {
+                //     console.log(listidcard[index]); 
+                // }
+                var pos = listidcard.indexOf(idCardB);
+                if (pos > -1) {
+                    var roomStatusUpdate ='{ "idRoom": "'+idRoomB+'",  "rType": "'+$('#inputRoomTypeL').val()+'",  "rPrice": '+$('#inputRoomPriceL').val()+',  "rStatus": "Đã Đặt" }';
+                    console.log(roomStatusUpdate);
+                    $.post('https://hotelmanagerapi.azurewebsites.net/api/roombook', JSON.parse(_roomBookP),"json")
+                        .done(
+                            function(){
+                                $.ajax({
+                                    url: 'https://hotelmanagerapi.azurewebsites.net/api/room/'+idRoomB,
+                                    contentType: 'application/json',
+                                    method: 'put',
+                                    data:  roomStatusUpdate,
+                                    success: function () {
+                                        $("#success-alertL").show();
+                                        $('.posluxuryroom').html("");
+                                        $('.loading').show();
+                                        LoadRoomList();
+                                    }
+                                });
+                            }
+                        )
+                        .fail(
+                            function(jqXHR){
+                                $("#danger-alertL").show()
+                                $(".error").html(jqXHR.responseText);
+                            }
+                        );
+                }else{
+                    $.post('https://hotelmanagerapi.azurewebsites.net/api/customer' ,JSON.parse(_customerP),"json")
                     .done(
                         function()
                         {
-                            $("#success-alertL").show()
+                            $.post('https://hotelmanagerapi.azurewebsites.net/api/roombook', JSON.parse(_roomBookP),"json")
+                            .done(
+                                function(){
+                                    $.ajax({
+                                        url: 'https://hotelmanagerapi.azurewebsites.net/api/room/'+idRoomB,
+                                        contentType: 'application/json',
+                                        datatype: "json",
+                                        method: 'put',
+                                        data:  JSON.parse(roomStatusUpdate),
+                                        success: function () {
+                                            $("#success-alertL").show();
+                                            $('.posluxuryroom').html("");
+                                            $('.loading').show();
+                                            LoadRoomList();
+                                        }
+                                    });
+                                }
+                            )
+                            .fail(
+                                function(jqXHR){
+                                    $("#danger-alertL").show()
+                                    $(".error").html(jqXHR.responseText);
+                                }
+                            );
                         }
                     )
                     .fail(
-                        function(jqXHR) 
-                        {
+                        function(jqXHR){
                             $("#danger-alertL").show()
                             $(".error").html(jqXHR.responseText);
                         }
                     );
                 }
-            )
-            .fail(
-                function(jqXHR) 
-                {
-                    $("#danger-alertL").show()
-                    $(".error").html(jqXHR.responseText);
-                }
-            );
+            });
         }
     });
 
