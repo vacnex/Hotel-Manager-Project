@@ -1,0 +1,58 @@
+﻿<Border x:Class="HotelManager.UserControl.RegisterDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:HotelManager.UserControl"
+        mc:Ignorable="d" 
+        d:DesignHeight="450" d:DesignWidth="800"
+        CornerRadius="10"
+        Width="400"
+        Height="300">
+    <hc:TransitioningContentControl TransitionMode="Bottom2Top" >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid  Grid.Row="0" >
+                <Border CornerRadius="10,10,0,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Color="#f953c6" Offset="0.15"/>
+                            <GradientStop Color="#b91d73" Offset="0.75"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <TextBlock Style="{StaticResource TextBlockLargeBold}" Text="ĐĂNG KÝ" Foreground="White" FontSize="30" />
+                        <Button Name="ButtonClose" Width="22" Height="22" Command="hc:ControlCommands.Close" HorizontalAlignment="Center" Margin="368,10,10,8" Background="{x:Null}" BorderBrush="{x:Null}" IsCancel="True" />
+                    </Grid>
+
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Border  Background="{DynamicResource RegionBrush}" CornerRadius="0,0,10,10">
+                    <Grid>
+                        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Height="34" Width="280" Margin="80,18,40,208">
+                            <hc:TextBox x:Name="txtUsername" hc:InfoElement.Placeholder="Nhập tài khoản"  Width="240" HorizontalAlignment="Left" MouseEnter="txtUsername_MouseEnter"/>
+                            <Image x:Name="imgErrorUsername" Source="/Resources/img/error.ico" Visibility="Hidden" HorizontalAlignment="Right" />
+
+                        </Grid>
+                        <!--<hc:TextBox x:Name="txtUsername" hc:InfoElement.Placeholder="Nhập tài khoản" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,20,80,210" Width="240"/>-->
+                        <hc:PasswordBox x:Name="txtPassword" hc:InfoElement.Placeholder="Nhập mật Khẩu" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="240" Margin="80,60,80,170" ShowEyeButton="True" />
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,98,40,128" Height="34" Width="280">
+                            <hc:PasswordBox x:Name="txtConfirmPassword" hc:InfoElement.Placeholder="Xác nhận mật Khẩu" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="240" ShowEyeButton="True" MouseEnter="txtConfirmPassword_MouseEnter" />
+                            <Image x:Name="imgErrorPassword" Source="/Resources/img/error.ico"  Visibility="Hidden" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <hc:TextBox x:Name="txtName" hc:InfoElement.Placeholder="Nhập tên" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="240" Margin="80,140,80,90"/>
+                        <ToggleButton x:Name="tgIsAdmin" Content="Đăng ký quản lý" IsChecked="False" Style="{StaticResource ToggleButtonSwitch}" FontSize="14" Margin="80,175,240,63" Width="80" />
+                        <Button x:Name="btnRegister" Content="ĐĂNG KÝ"  Style="{StaticResource ButtonInfo}" hc:BorderElement.CornerRadius="10" Margin="110,205,110,25" Width="180" FontWeight="Bold" FontSize="16" Click="btnRegister_Click" IsDefault="True"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </hc:TransitioningContentControl>
+    
+</Border>
+    
