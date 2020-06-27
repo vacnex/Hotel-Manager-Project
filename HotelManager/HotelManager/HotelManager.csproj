@@ -130,6 +130,9 @@
     <Compile Include="HotelManagerAPI\ServicesExtensions.cs" />
     <Compile Include="HotelManagerAPI\Servicesuse.cs" />
     <Compile Include="HotelManagerAPI\ServicesuseExtensions.cs" />
+    <Compile Include="UserControl\AccountInfor.xaml.cs">
+      <DependentUpon>AccountInfor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\InvoiceDialog.xaml.cs">
       <DependentUpon>InvoiceDialog.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControl\AccountInfor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl\InvoiceDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

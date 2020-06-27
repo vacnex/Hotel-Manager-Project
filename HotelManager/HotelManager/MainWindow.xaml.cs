@@ -539,9 +539,32 @@ namespace HotelManager
             LoadPayCustomer(baseCustomerUrl, dtgPayCustomer);
         }
         #endregion
-        
 
+        private async void getAccountInfo(string userName)
+        {
+            var info = await client.GetAsync(baseAccountUrl + userName);
+            AccountInfor accountInfo = new AccountInfor();
+            if (info.IsSuccessStatusCode)
+            {
+                var responseBody = info.Content.ReadAsStringAsync();
+                JObject rss = JObject.Parse(responseBody.Result);
+                if (string.Compare(userName, rss["Username"].ToString())==0)
+                {
+                    accountInfo.txtbUsername.Text = "TÊN NGƯỜI DÙNG: "+ rss["Username"].ToString();
+                }
+            }
+           
+            accountInfo.txtbName.Text = "HỌ TÊN: "+ txtbStaffName.Text;
+            accountInfo.txtbRole.Text = "QUYỀN HẠN: "+  txtbStaffRole.Text;
+
+            Dialog.Show(accountInfo);
+        }
         #region mnuItemClick
+        private void mnuAccountInfo_Click(object sender, RoutedEventArgs e)
+        {
+            
+            getAccountInfo(txtUsername.Text);
+        }
         private void mnuItemLogout_Click(object sender, RoutedEventArgs e)
         {
             Growl.Info("Bạn đã đăng xuất!!", "MainWindow");
@@ -1097,7 +1120,7 @@ namespace HotelManager
         {
             string[] items = new string[cbIdcard.Items.Count];
             for (int i = 0; i < cbIdcard.Items.Count; i++) items[i] = cbIdcard.Items[i].ToString();
-            string newOrderRoom = " {\"idCard\": \"" + cbIdcard.Text + "\",\"idRoom\": \"" + txtbRoomIDInput.Text + "\",\"startDate\": \"" + Convert.ToDateTime(dtpStartDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"endDate\": \"" + Convert.ToDateTime(dtpEndDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"staffName\": \"test\"} ";
+            string newOrderRoom = " {\"idCard\": \"" + cbIdcard.Text + "\",\"idRoom\": \"" + txtbRoomIDInput.Text + "\",\"startDate\": \"" + Convert.ToDateTime(dtpStartDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"endDate\": \"" + Convert.ToDateTime(dtpEndDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"staffName\": \"" + txtbStaffName.Text + "\"} ";
             //"+ txtbStaffName.Text+ "
             string newOrderCustomer = " {\"idCard\": \"" + cbIdcard.Text + "\",\"cusName\": \"" + txtCusInput.Text + "\",\"cusAddress\": \"" + txtAddressInput.Text + "\",\"cusGender\": \"" + cbGenderInput.Text + "\",\"cusPhone\": \"" + txtPhoneInput.Text + "\"} ";
            
@@ -1151,6 +1174,7 @@ namespace HotelManager
 
         #endregion
 
+        #region Room Paid
         private void dtgPayCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txtGiveMoney.Text = string.Empty;
@@ -1167,10 +1191,10 @@ namespace HotelManager
                     roombinfo = (TblRoombook)customerinfo.TblRoombook[i];
                     roominfo.Add(customerinfo.TblRoombook[i].TblRoom);
                 }
-               
+
                 lbPayCusName.Content = "Tên Khách: " + customerinfo.CusName;
                 lbPayIdCard.Content = "Số CMND: " + customerinfo.IdCard;
-                lbPayStartDate.Content = "Ngày Đến: " + roombinfo.StartDate.ToString().Substring(0,10);
+                lbPayStartDate.Content = "Ngày Đến: " + roombinfo.StartDate.ToString().Substring(0, 10);
                 lbPayEndDate.Content = "Ngày Đi: " + roombinfo.EndDate.ToString().Substring(0, 10);
                 dtgPayRoomList.ItemsSource = roominfo;
                 DateTime ed = DateTime.Parse(roombinfo.EndDate.ToString().Substring(0, 10));
@@ -1186,7 +1210,7 @@ namespace HotelManager
                 {
                     allRoomPrice.Add(roomPrice[i] * stayDate);
                 }
-               
+
                 dvdPayTotalRoomPrice.Content = "Thành Tiền: " + (allRoomPrice.Sum().ToString("N0")) + "VND";
                 LoadPayServices();
                 List<int> servicesPrice = new List<int>();
@@ -1198,14 +1222,14 @@ namespace HotelManager
                     servicesPrice.Add(price.ToInt32());
                     servicesNumber.Add(number.ToInt32());
                 }
-                List<int> serviceTotalPrice = new List<int>(servicesPrice.Zip(servicesNumber,(a,b) => a * b));
+                List<int> serviceTotalPrice = new List<int>(servicesPrice.Zip(servicesNumber, (a, b) => a * b));
                 dvdPayTotalServicesPrice.Content = "Tổng Tiền Dịch Vụ: " + serviceTotalPrice.Sum().ToString("N0") + "VND";
                 lbPayTotalPrice.Content = "Tổng Thành Tiền: " + ((dvdPayTotalRoomPrice.Content.ToString().Split(':').Last().Trim('V', 'N', 'D').Replace(".", "")).ToInt32() + (dvdPayTotalServicesPrice.Content.ToString().Split(':').Last().Trim('V', 'N', 'D').Replace(".", "")).ToInt32()).ToString("N0") + " VND";
 
             }
         }
 
-         class MyItem
+        class MyItem
         {
             public string Date { get; set; }
             public string Name { get; set; }
@@ -1228,12 +1252,12 @@ namespace HotelManager
                 room.Add(item.IdRoom);
                 idRoomBook.Add(item.IdRoombook.ToString());
             }
-            
+
             foreach (var item in customerinfo.TblServicesuse)
             {
                 idServiceUse.Add(item.IdServiceuse.ToString());
             }
-        
+
             List<TblServices> payServices = new List<TblServices>();
             foreach (var item in customerinfo.TblServicesuse)
             {
@@ -1246,16 +1270,16 @@ namespace HotelManager
                     txtbBackMoney.Text = "Trả Lại: " + (txtGiveMoney.Text.ToInt32() - (lbPayTotalPrice.Content.ToString().Split(':').Last().Trim('V', 'N', 'D').Replace(".", "").ToInt32())).ToString("N0");
                     InvoiceDialog dl = new InvoiceDialog();
                     dl.txtbIdRoomBook.Text = "Hoá đơn số: " + roombinfo.IdRoombook.ToString();
-                    dl.txtbCusName.Text = "Họ Tên                 :     " +  customerinfo.CusName;
+                    dl.txtbCusName.Text = "Họ Tên                 :     " + customerinfo.CusName;
                     dl.txtbCusGender.Text = "Giới Tính              :     " + customerinfo.CusGender;
                     dl.txtbCusAddress.Text = "Địa Chỉ                 :     " + customerinfo.CusAddress;
                     dl.txtbCusPhone.Text = "Số Điện Thoại      :     " + customerinfo.CusPhone;
                     dl.txtbIdRoom.Text = "Phòng                  :     " + string.Join(",", room);
                     dl.txtbRType.Text = roombinfo.TblRoom.RType;
-                    dl.txtbStartDate.Text =  roombinfo.StartDate.ToString().Substring(0, 10);
+                    dl.txtbStartDate.Text = roombinfo.StartDate.ToString().Substring(0, 10);
                     dl.txtbEndDate.Text = roombinfo.EndDate.ToString().Substring(0, 10);
                     dl.txtbStayDate.Text = DateTime.Parse(roombinfo.EndDate.ToString().Substring(0, 10)).Subtract(DateTime.Parse(roombinfo.StartDate.ToString().Substring(0, 10))).Days.ToString();
-                    dl.txtbStaffname.Text =  roombinfo.StaffName;
+                    dl.txtbStaffname.Text = roombinfo.StaffName;
                     dl.txtbTotalRoomPrice.Text = dvdPayTotalRoomPrice.Content.ToString().Split(':').Last().Trim('V', 'N', 'D').Replace(".", "");
                     dl.txtbTotalPrice.Text = lbPayTotalPrice.Content.ToString().Split(':').Last().Trim('V', 'N', 'D').Replace(".", "");
                     dl.txtbStartDateRoom.Text = roombinfo.StartDate.ToString().Substring(0, 10);
@@ -1270,7 +1294,7 @@ namespace HotelManager
                         string roomjson = "{ \"idRoom\": \"" + room[i] + "\",  \"rType\": \"" + roombinfo.TblRoom.RType + "\",  \"rPrice\": " + roombinfo.TblRoom.RPrice + ",  \"rStatus\": \"Trống\" }";
                         json.Add(roomjson);
                     }
-                    RoomPaid(baseRoomBookUrl, baseRoomUrl,baseServicesUseUrl, idRoomBook, room, idServiceUse, json);
+                    RoomPaid(baseRoomBookUrl, baseRoomUrl, baseServicesUseUrl, idRoomBook, room, idServiceUse, json);
                     LoadPayCustomer(baseCustomerUrl, dtgPayCustomer);
                     Growl.Ask("Đã Thanh Toán\nBạn có muốn in hoá đơn không ?", isConfirmed =>
                     {
@@ -1282,12 +1306,12 @@ namespace HotelManager
             }
             else Growl.Warning("Chọn Phòng Thanh Toán", "MainWindow");
         }
-        private async void RoomPaid(string baseRoomBookUrl, string baseRoomUrl, string baseServicesUseUrl,List<string> idRoomBook,List<string> idRoom,List<string> idServicesUse,List<string> json)
+        private async void RoomPaid(string baseRoomBookUrl, string baseRoomUrl, string baseServicesUseUrl, List<string> idRoomBook, List<string> idRoom, List<string> idServicesUse, List<string> json)
         {
             var serviceDel = new HttpResponseMessage();
             var roomBookDel = new HttpResponseMessage();
             var putRoom = new HttpResponseMessage();
-            
+
             for (int i = 0; i < idRoomBook.Count; i++)
             {
                 roomBookDel = await client.DeleteAsync(baseRoomBookUrl + idRoomBook[i]);
@@ -1298,11 +1322,12 @@ namespace HotelManager
                     putRoom = await client.PutAsync(baseRoomUrl + idRoom[i], contentRoom);
                     if (!putRoom.IsSuccessStatusCode) Growl.Error("Lỗi Put phòng", "MainWindow");
                 }
-                else Growl.Error("Lỗi Xoá roomBook","MainWondow");
+                else Growl.Error("Lỗi Xoá roomBook", "MainWondow");
             }
             for (int i = 0; i < idServicesUse.Count; i++) serviceDel = await client.DeleteAsync(baseServicesUseUrl + idServicesUse[i]);
             if (serviceDel.IsSuccessStatusCode) Growl.Success("Đã Thanh Toán!!", "MainWindow");
 
-        }
+        } 
+        #endregion
     }
 }
