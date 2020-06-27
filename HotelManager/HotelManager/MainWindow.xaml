@@ -123,10 +123,10 @@
                         <Grid>
                             <hc:DatePicker x:Name="dtpStartDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Từ Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{x:Static system:DateTime.Now}" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
                             <hc:DatePicker x:Name="dtpEndDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Đến Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,31,0,0"/>
-                            
-                            <TextBox x:Name="txtCusInput" Width="200"  hc:InfoElement.Title="Nhập tên khách" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,80,0,0"/>
-                            
-                            <ComboBox x:Name="cbIdcard" Width="200" IsEditable="True" hc:InfoElement.Title="Nhập Số CMND" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" Margin="0,80,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" KeyUp="cbIdcard_KeyUp" SelectionChanged="cbIdcard_SelectionChanged"  />
+
+                            <ComboBox x:Name="cbIdcard" Width="200" IsEditable="True" hc:InfoElement.Title="Nhập Số CMND" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,80,0,0" KeyUp="cbIdcard_KeyUp" SelectionChanged="cbIdcard_SelectionChanged"  />
+
+                            <TextBox x:Name="txtCusInput" Width="200"  hc:InfoElement.Title="Nhập tên khách" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True"  Margin="0,80,10,0"  HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
                             <ComboBox x:Name="cbGenderInput" Width="200" IsEditable="True" hc:InfoElement.Title="Giới Tính" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" Margin="0,158,10,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <ComboBoxItem Content="Nam"></ComboBoxItem>
@@ -166,7 +166,7 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="grpPayCustomer" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THANH TOÁN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="20" FontWeight="Bold" Visibility="Visible">
+                    <GroupBox x:Name="grpPayCustomer" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THANH TOÁN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="20" FontWeight="Bold" Visibility="Hidden">
                         <Grid>
                             <hc:Divider LineStrokeThickness="2"  LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="THÔNG TIN PHÒNG" Padding="10,0" Margin="0,5,0,24" FontSize="16"/>
                             <Label x:Name="lbPayCusName" Style="{DynamicResource LabelInfo}" Content="Tên Khách: " FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,24,0,0"></Label>
@@ -435,7 +435,7 @@
                             </TabControl>
                         </Grid>
                     </GroupBox>
-                    <GroupBox   Effect="{DynamicResource EffectShadow5}" x:Name="grpPayCustomerList" Header="DANH SÁCH KHÁCH" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Visible" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
+                    <GroupBox   Effect="{DynamicResource EffectShadow5}" x:Name="grpPayCustomerList" Header="DANH SÁCH KHÁCH" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
                         <Grid Margin="0">
                             <DataGrid x:Name="dtgPayCustomer" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False" FontWeight="Normal" SelectionChanged="dtgPayCustomer_SelectionChanged">
                                 <DataGrid.RowHeaderTemplate>
