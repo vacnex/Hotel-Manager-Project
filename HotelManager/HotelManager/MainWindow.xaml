@@ -12,7 +12,6 @@
         Width="1600"
         Height="800"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Padding="0">
-
     <Grid Background="{StaticResource CloudDrawingBrush}" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition ></ColumnDefinition>
@@ -492,7 +491,7 @@
                     </Border>
                 </hc:TransitioningContentControl>
                 <hc:TransitioningContentControl x:Name="tlAddServices" TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
-                    <Border CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" Visibility="Hidden" VerticalAlignment="Top">
+                    <Border CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" VerticalAlignment="Top">
                         <Grid Height="220">
                             <Label Content="Thêm Dịch vụ" Style="{StaticResource LabelInfo}" Width="200" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Margin="0,5,0,0"></Label>
                             <hc:TextBox x:Name="txtServicesName" hc:InfoElement.Placeholder="Nhập tên dịch vụ" Style="{StaticResource TextBoxExtend}" FontSize="16" FontWeight="Normal" VerticalAlignment="Center" Width="154" HorizontalAlignment="Center" Margin="0,0,0,86" />
