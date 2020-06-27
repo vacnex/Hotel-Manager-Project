@@ -455,7 +455,7 @@ namespace HotelManager
                 JObject rss = JObject.Parse(responseBody.Result);
                 if (string.Compare(userName, rss["Username"].ToString()) == 0)
                 {
-                    accountInfo.txtbUsername.Text = "TÊN NGƯỜI DÙNG: " + rss["Username"].ToString();
+                    accountInfo.txtbUsername.Text = "TÊN ĐĂNG NHẬP: " + rss["Username"].ToString();
                 }
             }
             accountInfo.txtbName.Text = "HỌ TÊN: " + txtbStaffName.Text;

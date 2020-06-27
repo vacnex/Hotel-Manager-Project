@@ -9,7 +9,7 @@
     <Border CornerRadius="10" Background="{DynamicResource RegionBrush}" Width="400"  Height="250">
         <Grid >
             <TextBlock Style="{StaticResource TextBlockDefaultInfo}" Text="THÔNG TIN TÀI KHOẢN" FontWeight="Bold" FontSize="24" Margin="0,10,0,0" VerticalAlignment="Top"></TextBlock>
-            <TextBlock x:Name="txtbUsername" Text="TÊN NGƯỜI DÙNG: " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Margin="0,0,0,110"/>
+            <TextBlock x:Name="txtbUsername" Text="TÊN ĐĂNG NHẬP: " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Margin="0,0,0,110"/>
             <TextBlock x:Name="txtbName" Text="HỌ TÊN: "  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Margin="0,10,0,0"/>
             <TextBlock x:Name="txtbRole" Text="QUYỀN HẠN: "  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Margin="0,130,0,0"/>
             <Button Command="hc:ControlCommands.Close" Style="{StaticResource ButtonIcon}" Content="This is a button"  hc:IconElement.Geometry="{StaticResource ErrorGeometry}" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True"/>
