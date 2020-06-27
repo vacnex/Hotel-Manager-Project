@@ -6,11 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:HotelManager" xmlns:system="clr-namespace:System;assembly=mscorlib"
-           mc:Ignorable="d"
+        mc:Ignorable="d"
         Title="Hotel Manager Demo" 
         WindowStyle="None"
-           Width="1600"
-           Height="800"
+        Width="1600"
+        Height="800"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Padding="0">
 
     <Grid Background="{StaticResource CloudDrawingBrush}" Margin="0">
@@ -25,12 +25,12 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         <!--Menu Tool-->
-        <hc:TransitioningContentControl x:Name="tlMenu" TransitionMode="Top2BottomWithFade" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+        <hc:TransitioningContentControl x:Name="tlMenu" TransitionMode="Top2BottomWithFade" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
             <ToolBarTray VerticalAlignment="Center" Effect="{DynamicResource EffectShadow5}">
                 <ToolBar Band="0" Padding="6">
                     <Menu Background="Transparent" VerticalAlignment="Center">
                         <MenuItem Header="Tài Khoản">
-                            <MenuItem x:Name="mnuAccountInfo" Header="Thông Tin Tài Khoản">
+                            <MenuItem x:Name="mnuAccountInfo" Header="Thông Tin Tài Khoản" Click="mnuAccountInfo_Click">
                                 <MenuItem.Icon>
                                     <Path Data="{StaticResource InfoGeometry}" Fill="#224880"/>
                                 </MenuItem.Icon>
@@ -76,9 +76,8 @@
         </hc:TransitioningContentControl>
         <!--Side Bar-->
         <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >
-            <hc:TransitioningContentControl  TransitionMode="Top2BottomWithFade">
-                <Grid>
-                    <GroupBox x:Name="grpRoomBookInfo" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THÔNG TIN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" Visibility="Hidden">
+            <hc:TransitioningContentControl x:Name="grpRoomBookInfo"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THÔNG TIN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" >
                         <Grid >
                             <Label x:Name="lbStaffName" Content="Nhân Viên Đặt Phòng: " VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"></Label>
                             <Label x:Name="lbRoomBookID" Content="Mã Phòng Đặt: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,80,0"></Label>
@@ -102,7 +101,9 @@
                             <Button x:Name="btnEditServicesUse" Width="113" Content="Sửa Dịch Vụ" Style="{StaticResource ButtonPrimary}" hc:IconElement.Geometry="{StaticResource ConfigGeometry}" VerticalAlignment="Bottom" Margin="124,0,0,50" Click="btnEditServicesUse_Click"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="grpCustomerUseServicesAdd" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐĂNG KÍ DỊCH VỤ" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" Visibility="Hidden">
+                </hc:TransitioningContentControl>
+            <hc:TransitioningContentControl x:Name="grpCustomerUseServicesAdd"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐĂNG KÍ DỊCH VỤ" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
                         <Grid >
                             <Label HorizontalAlignment="Center" Content="CHỌN DỊCH VỤ" Style="{StaticResource LabelPrimary}" VerticalAlignment="Top" Margin="0,20,0,0"/>
 
@@ -119,7 +120,9 @@
                             <Button x:Name="btnUseServicesAdd" Content="Thêm Dịch Vụ" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" FontWeight="Bold" FontSize="13"  IsDefault="True" Padding="10,6" VerticalAlignment="Center" Margin="0,500,0,0" Click="btnUseServicesAdd_Click" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="grpCustomerBook" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐẶT PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" Visibility="Hidden">
+                </hc:TransitioningContentControl>
+            <hc:TransitioningContentControl x:Name="grpCustomerBook"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐẶT PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
                         <Grid>
                             <hc:DatePicker x:Name="dtpStartDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Từ Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{x:Static system:DateTime.Now}" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
                             <hc:DatePicker x:Name="dtpEndDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Đến Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,31,0,0"/>
@@ -136,9 +139,9 @@
                             <TextBox x:Name="txtPhoneInput" Width="200"  hc:InfoElement.Title="Nhập Số Điện Thoại" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,158,10,0"/>
 
                             <TextBox x:Name="txtAddressInput" Width="500"  hc:InfoElement.Title="Nhập Địa Chỉ" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,80"/>
-                            
+
                             <Label HorizontalAlignment="Left"  Content="Mã Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,0,0" FontSize="24"/>
-                            
+
                             <Label HorizontalAlignment="Center"  Content="Loại Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,0,0" FontSize="24"/>
 
                             <Label HorizontalAlignment="Right"  Content="Giá Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,10,0" FontSize="24"/>
@@ -152,7 +155,9 @@
                             <Button x:Name="btnOrder" Content="Đặt Phòng" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" FontWeight="Bold"   IsDefault="True" FontSize="24" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,121" Click="btnOrder_Click"   />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="grpRoomConfirm" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="NHẬN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" Visibility="Hidden">
+                </hc:TransitioningContentControl>
+            <hc:TransitioningContentControl x:Name="grpRoomConfirm"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="NHẬN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
                         <Grid>
                             <Label x:Name="lbConfirmCusName" Style="{DynamicResource LabelInfo}" Content="Tên Khách Hàng: Trương Gia Huy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="16"></Label>
                             <Label x:Name="lbConfirmCusID" Style="{DynamicResource LabelInfo}" Content="Số CMND: 273647744" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"></Label>
@@ -166,39 +171,40 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="grpPayCustomer" Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THANH TOÁN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="20" FontWeight="Bold" Visibility="Hidden">
-                        <Grid>
-                            <hc:Divider LineStrokeThickness="2"  LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="THÔNG TIN PHÒNG" Padding="10,0" Margin="0,5,0,24" FontSize="16"/>
-                            <Label x:Name="lbPayCusName" Style="{DynamicResource LabelInfo}" Content="Tên Khách: " FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,24,0,0"></Label>
-                            <Label x:Name="lbPayIdCard" Style="{DynamicResource LabelInfo}" Content="Số CMND: " FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,24,10,0"></Label>
-                            <DataGrid x:Name="dtgPayRoomList" RowHeaderWidth="60" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="500" FontSize="12" Height="150"  FontWeight="Normal" Margin="0,58,0,0">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding IdRoom}" Header="Mã Phòng"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding RType}" Header="Loại Phòng"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding RPrice}" Header="Giá"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <Label x:Name="lbPayStartDate" Style="{DynamicResource LabelInfo}" Content="Từ Ngày: " FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,210,0,0"></Label>
-                            <Label x:Name="lbPayEndDate" Style="{DynamicResource LabelInfo}" Content="Đến Ngày: " FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,210,10,0"></Label>
-                            
-                            <hc:Divider x:Name="dvdPayTotalRoomPrice" LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="Thành Tiền: " FontSize="16" Padding="10,0"  HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,130,0,216"/>
-                            <hc:Divider FontSize="16" LineStrokeThickness="2"  LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="DỊCH VỤ ĐÃ DÙNG" Padding="10,0" Margin="0,269,0,0"/>
-                            <DataGrid x:Name="dtgPayServicesList"  RowHeaderWidth="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" FontSize="12" Height="170" Margin="0,156,0,0" FontWeight="Normal">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding SerName}" Header="Tên Dịch Vụ"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding SerPrice}" Header="Giá"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Number}" Header="Số Lượng"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Total}" Header="Thành Tiền"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <hc:Divider x:Name="dvdPayTotalServicesPrice" LineStroke="{DynamicResource DarkPrimaryBrush}" Content="Tổng Tiền Dịch Vụ: " FontSize="16" Padding="10,0"  HorizontalContentAlignment="Right" VerticalAlignment="Bottom" Margin="0,25,0,115"/>
-                            <Label x:Name="lbPayTotalPrice" Style="{DynamicResource LabelInfo}" Content="Tổng Thành Tiền:  " FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,70"></Label>
-                            <Button x:Name="btnPaid" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Content="THANH TOÁN" FontSize="22" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,20" Click="btnPaid_Click"></Button>
-                            <TextBox x:Name="txtGiveMoney" hc:InfoElement.Placeholder="Khách Đưa"  Style="{StaticResource TextBoxExtend}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Margin="20,0,0,70"  />
-                            <TextBlock x:Name="txtbBackMoney" HorizontalAlignment="Left" Text="Trả Lại: " Style="{StaticResource TextBlockDefaultInfo}" VerticalAlignment="Bottom" Margin="21,0,0,20"/>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
+                </hc:TransitioningContentControl>
+            <hc:TransitioningContentControl x:Name="grpPayCustomer" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THANH TOÁN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="20" FontWeight="Bold">
+                    <Grid>
+                        <hc:Divider LineStrokeThickness="2"  LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="THÔNG TIN PHÒNG" Padding="10,0" Margin="0,5,0,24" FontSize="16"/>
+                        <Label x:Name="lbPayCusName" Style="{DynamicResource LabelInfo}" Content="Tên Khách: " FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,24,0,0"></Label>
+                        <Label x:Name="lbPayIdCard" Style="{DynamicResource LabelInfo}" Content="Số CMND: " FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,24,10,0"></Label>
+                        <DataGrid x:Name="dtgPayRoomList" RowHeaderWidth="60" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" Width="500" FontSize="12" Height="150"  FontWeight="Normal" Margin="0,58,0,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding IdRoom}" Header="Mã Phòng"/>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding RType}" Header="Loại Phòng"/>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding RPrice}" Header="Giá"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label x:Name="lbPayStartDate" Style="{DynamicResource LabelInfo}" Content="Từ Ngày: " FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,210,0,0"></Label>
+                        <Label x:Name="lbPayEndDate" Style="{DynamicResource LabelInfo}" Content="Đến Ngày: " FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,210,10,0"></Label>
+
+                        <hc:Divider x:Name="dvdPayTotalRoomPrice" LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="Thành Tiền: " FontSize="16" Padding="10,0"  HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,130,0,216"/>
+                        <hc:Divider FontSize="16" LineStrokeThickness="2"  LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="DỊCH VỤ ĐÃ DÙNG" Padding="10,0" Margin="0,269,0,0"/>
+                        <DataGrid x:Name="dtgPayServicesList"  RowHeaderWidth="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" FontSize="12" Height="170" Margin="0,156,0,0" FontWeight="Normal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding SerName}" Header="Tên Dịch Vụ"/>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding SerPrice}" Header="Giá"/>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Number}" Header="Số Lượng"/>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Total}" Header="Thành Tiền"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <hc:Divider x:Name="dvdPayTotalServicesPrice" LineStroke="{DynamicResource DarkPrimaryBrush}" Content="Tổng Tiền Dịch Vụ: " FontSize="16" Padding="10,0"  HorizontalContentAlignment="Right" VerticalAlignment="Bottom" Margin="0,25,0,115"/>
+                        <Label x:Name="lbPayTotalPrice" Style="{DynamicResource LabelInfo}" Content="Tổng Thành Tiền:  " FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,70"></Label>
+                        <Button x:Name="btnPaid" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Content="THANH TOÁN" FontSize="22" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,20" Click="btnPaid_Click"></Button>
+                        <TextBox x:Name="txtGiveMoney" hc:InfoElement.Placeholder="Khách Đưa"  Style="{StaticResource TextBoxExtend}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Margin="20,0,0,70"  />
+                        <TextBlock x:Name="txtbBackMoney" HorizontalAlignment="Left" Text="Trả Lại: " Style="{StaticResource TextBlockDefaultInfo}" VerticalAlignment="Bottom" Margin="21,0,0,20"/>
+                    </Grid>
+                </GroupBox>
             </hc:TransitioningContentControl>
         </Grid>
         <!--Main Layout-->
@@ -208,10 +214,9 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <!--List-->
-            <hc:TransitioningContentControl   Grid.Column="1" TransitionMode="Top2BottomWithFade" Visibility="Visible">
-                <!--List-->
-                <Grid>
-                    <GroupBox Effect="{DynamicResource EffectShadow5}" x:Name="grpAccountList" Header="DANH SÁCH TÀI KHOẢN" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14" Margin="0,5,0,0" Width="740" Height="638">
+            <Grid  Grid.Column="1">
+                <hc:TransitioningContentControl x:Name="grpAccountList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox Effect="{DynamicResource EffectShadow5}" Header="DANH SÁCH TÀI KHOẢN" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Margin="0,5,0,0" Width="740" Height="638">
                         <DataGrid FontSize="12" FontWeight="Normal" x:Name="dtgAccount" x:FieldModifier="public" HeadersVisibility="All" AutoGenerateColumns="False" RowHeaderWidth="60" RowEditEnding="dtgAccount_RowEditEnding" >
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>
@@ -230,7 +235,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
-                    <GroupBox Effect="{DynamicResource EffectShadow5}" x:Name="grpServicesList" Header="DANH SÁCH DỊCH VỤ" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14" Margin="0,5,0,0" Width="740" Height="638">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpServicesList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox Effect="{DynamicResource EffectShadow5}" Header="DANH SÁCH DỊCH VỤ" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  FontWeight="Bold" FontSize="14" Margin="0,5,0,0" Width="740" Height="638">
                         <DataGrid FontSize="12" FontWeight="Normal" x:Name="dtgServices" x:FieldModifier="public" HeadersVisibility="All" AutoGenerateColumns="False" RowHeaderWidth="60" RowEditEnding="dtgServices_RowEditEnding">
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>
@@ -251,7 +258,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
-                    <GroupBox Effect="{DynamicResource EffectShadow5}" x:Name="grpRoomList" Header="DANH SÁCH PHÒNG" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14" Margin="0,5,0,0" Width="740" Height="638">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpRoomList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Header="DANH SÁCH PHÒNG" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Margin="0,5,0,0" Width="740" Height="638">
                         <Grid>
                             <Label x:Name="lbRoomNumber"  Content="Số lượng Phòng: " Style="{StaticResource LabelInfo}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="13,5,0,0"/>
                             <hc:SearchBar x:Name="searchRoom" FontWeight="Normal" hc:InfoElement.Placeholder="Nhập mã phòng"  ShowClearButton="True" Style="{StaticResource SearchBarPlus}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="120,5,0,0" Width="516" TextChanged="searchRoom_TextChanged"/>
@@ -276,7 +285,9 @@
                             </DataGrid>
                         </Grid>
                     </GroupBox>
-                    <GroupBox  Effect="{DynamicResource EffectShadow5}" x:Name="grpRoomBookList" Header="DANH SÁCH PHÒNG BOOK" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpRoomBookList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox  Effect="{DynamicResource EffectShadow5}" Header="DANH SÁCH PHÒNG BOOK" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638">
                         <Grid>
                             <hc:SearchBar x:Name="searchRoomBook" FontWeight="Normal" hc:InfoElement.Placeholder="Nhập mã phòng"  ShowClearButton="True" Style="{StaticResource SearchBarPlus}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="63,5,63,0" Width="606" TextChanged="searchRoomBook_TextChanged"  />
                             <DataGrid FontSize="12" FontWeight="Normal" x:Name="dtgRoomBook" x:FieldModifier="public" HeadersVisibility="All" AutoGenerateColumns="False" RowHeaderWidth="60" Padding="6" Margin="0,38,0,0" SelectionChanged="dtgRoomBook_SelectionChanged" >
@@ -299,7 +310,9 @@
                             </DataGrid>
                         </Grid>
                     </GroupBox>
-                    <GroupBox  Effect="{DynamicResource EffectShadow5}" x:Name="grpCustomerList" Header="DANH SÁCH KHÁCH" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpCustomerList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox  Effect="{DynamicResource EffectShadow5}"  Header="DANH SÁCH KHÁCH" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638">
                         <Grid>
                             <hc:SearchBar x:Name="searchCustomer" FontWeight="Normal" hc:InfoElement.Placeholder="Nhập tên khách hoặc số CMND"  ShowClearButton="True" Style="{StaticResource SearchBarPlus}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="63,5,63,0" Width="606" TextChanged="searchCustomer_TextChanged"  />
                             <DataGrid FontSize="12" FontWeight="Normal" x:Name="dtgCustomer" x:FieldModifier="public" HeadersVisibility="All" AutoGenerateColumns="False" RowHeaderWidth="60" Padding="6" Margin="0,38,0,0" >
@@ -321,7 +334,9 @@
                             </DataGrid>
                         </Grid>
                     </GroupBox>
-               <GroupBox Background="{DynamicResource RegionBrush}"  Effect="{DynamicResource EffectShadow5}" x:Name="grpOrderRoomList" Header="DANH SÁCH PHÒNG" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpOrderRoomList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox Background="{DynamicResource RegionBrush}"  Effect="{DynamicResource EffectShadow5}" Header="DANH SÁCH PHÒNG" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
                         <Grid Margin="0">
                             <TabControl x:Name="tbRoomList" TabStripPlacement="Top" Margin="10" Style="{StaticResource TabControlCapsuleSolid}">
                                 <TabItem x:Name="RoomNormal" Header="PHÒNG THƯỜNG">
@@ -378,7 +393,9 @@
                             </TabControl>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Background="{DynamicResource RegionBrush}"  Effect="{DynamicResource EffectShadow5}" x:Name="grpConfirmRoomList" Header="DANH SÁCH PHÒNG" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpConfirmRoomList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox Background="{DynamicResource RegionBrush}"  Effect="{DynamicResource EffectShadow5}" Header="DANH SÁCH PHÒNG" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
                         <Grid Margin="0">
                             <TabControl x:Name="tbConfirmRoomList" TabStripPlacement="Top" Margin="10" Style="{StaticResource TabControlCapsuleSolid}">
                                 <TabItem x:Name="ConfirmRoomNormal" Header="PHÒNG THƯỜNG">
@@ -435,7 +452,9 @@
                             </TabControl>
                         </Grid>
                     </GroupBox>
-                    <GroupBox   Effect="{DynamicResource EffectShadow5}" x:Name="grpPayCustomerList" Header="DANH SÁCH KHÁCH" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top"  Visibility="Hidden" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="grpPayCustomerList" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
+                    <GroupBox   Effect="{DynamicResource EffectShadow5}" Header="DANH SÁCH KHÁCH" Style="{StaticResource GroupBoxTab}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"  Margin="-284,5,13,0" Width="1034" Height="638" Padding="0">
                         <Grid Margin="0">
                             <DataGrid x:Name="dtgPayCustomer" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False" FontWeight="Normal" SelectionChanged="dtgPayCustomer_SelectionChanged">
                                 <DataGrid.RowHeaderTemplate>
@@ -453,15 +472,15 @@
                             </DataGrid>
                         </Grid>
                     </GroupBox>
+                </hc:TransitioningContentControl>
                 <hc:LoadingCircle Visibility="Hidden" x:Name="ListLoading" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center"></hc:LoadingCircle>
-                </Grid>
-            </hc:TransitioningContentControl>
+            </Grid>
             <!--Control panel-->
-            <hc:TransitioningContentControl   Grid.Column="0" TransitionMode="Top2BottomWithFade" Visibility="Visible" Margin="0">
                 <!--Action Left-->
-                <Grid>
-                    <!--First Action-->
-                    <Border x:Name="tlAddAccount" CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" Visibility="Hidden" VerticalAlignment="Top">
+            <Grid Grid.Column="0">
+                <!--First Action-->
+                <hc:TransitioningContentControl x:Name="tlAddAccount" TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <Border  CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" VerticalAlignment="Top">
                         <Grid Height="220">
                             <Label Content="Thêm tài khoản" Style="{StaticResource LabelInfo}" Width="200" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Margin="0,5,0,0"></Label>
                             <hc:TextBox x:Name="txtRegUsername" hc:InfoElement.Placeholder="Nhập tên tài khoản" Style="{StaticResource TextBoxExtend}" FontSize="16" FontWeight="Normal" VerticalAlignment="Center" Width="154" HorizontalAlignment="Center" Margin="0,0,0,86" />
@@ -471,7 +490,9 @@
                             <Button x:Name="btnAccountRegister" Content="Đăng kí" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Width="100" FontWeight="Bold" FontSize="13" Click="btnAccountRegister_Click"  IsDefault="True" Padding="10,6" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
                         </Grid>
                     </Border>
-                    <Border x:Name="tlAddServices" CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" Visibility="Hidden" VerticalAlignment="Top">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="tlAddServices" TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <Border CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" Visibility="Hidden" VerticalAlignment="Top">
                         <Grid Height="220">
                             <Label Content="Thêm Dịch vụ" Style="{StaticResource LabelInfo}" Width="200" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Margin="0,5,0,0"></Label>
                             <hc:TextBox x:Name="txtServicesName" hc:InfoElement.Placeholder="Nhập tên dịch vụ" Style="{StaticResource TextBoxExtend}" FontSize="16" FontWeight="Normal" VerticalAlignment="Center" Width="154" HorizontalAlignment="Center" Margin="0,0,0,86" />
@@ -480,7 +501,9 @@
                             <Button x:Name="btnServivesAdd" Content="Thêm" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Width="100" FontWeight="Bold" FontSize="13" Click="btnServivesAdd_Click"  IsDefault="True" Padding="10,6" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
                         </Grid>
                     </Border>
-                    <Border x:Name="tlAddRoom" CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" Visibility="Hidden" VerticalAlignment="Top">
+                </hc:TransitioningContentControl>
+                <hc:TransitioningContentControl x:Name="tlAddRoom" TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <Border CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,5,20,0" Padding="10,0" VerticalAlignment="Top">
                         <Grid Height="150">
                             <Label Content="Thêm Phòng" Style="{StaticResource LabelInfo}" Width="200" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Margin="0,5,0,0"></Label>
                             <hc:ComboBox x:Name="cbRoomTypeAdd" Width="154" IsEditable="False" hc:InfoElement.Placeholder="Chọn loại phòng" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,37" DropDownClosed="cbRoomTypeAdd_DropDownClosed">
@@ -496,26 +519,30 @@
                             <Button x:Name="btnRoomAdd" Content="Thêm" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Width="100" FontWeight="Bold" FontSize="13"  IsDefault="True" Padding="10,6" VerticalAlignment="Bottom" Margin="0,0,0,5" Click="btnRoomAdd_Click"/>
                         </Grid>
                     </Border>
-                    <!--Second Action-->
-                    <Border  CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,175,20,0" Visibility="Hidden" VerticalAlignment="Center">
+                </hc:TransitioningContentControl>
+                <!--Second Action-->
+                <hc:TransitioningContentControl TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <Border  CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,175,20,0" VerticalAlignment="Center">
                         <Grid Height="100">
                             <Label Content="Tool box" Style="{StaticResource LabelInfo}"  VerticalAlignment="Top" Margin="0,10,0,0" Width="200" FontSize="17" FontWeight="Bold"></Label>
                             <Button Content="Nút" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Width="100" FontWeight="Bold" FontSize="13"  IsDefault="True" Padding="10,6" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
                         </Grid>
                     </Border>
-                    <!--Third Action-->
-                    <Border CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,0,20,60" Visibility="Hidden" VerticalAlignment="Bottom">
+                </hc:TransitioningContentControl>
+                <!--Third Action-->
+                <hc:TransitioningContentControl TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
+                    <Border CornerRadius="10" Effect="{DynamicResource EffectShadow5}" Background="{DynamicResource BackgroundBrush}"  Grid.Row="0" Margin="20,0,20,60"  VerticalAlignment="Bottom">
                         <Grid Height="100">
                             <Label Content="Toolbox" Style="{StaticResource LabelInfo}"  VerticalAlignment="Top" Margin="0,10,0,0" Width="200" FontSize="17" FontWeight="Bold"></Label>
                             <Button  Content="Nút" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" Width="100" FontWeight="Bold" FontSize="13" IsDefault="True" Padding="10,6" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
                         </Grid>
                     </Border>
-                </Grid>
-            </hc:TransitioningContentControl>
+                </hc:TransitioningContentControl>
+            </Grid>
         </Grid>
         <!--Login UI-->
-        <hc:TransitioningContentControl TransitionMode="Top2BottomWithFade" Grid.ColumnSpan="3" Grid.RowSpan="3" >
-            <Grid x:Name="LoginUI" Visibility="Hidden">
+        <Grid  Grid.ColumnSpan="3" Grid.RowSpan="3" >
+            <hc:TransitioningContentControl  x:Name="LoginUI" TransitionMode="Top2BottomWithFade" Visibility="Visible">
                 <GroupBox x:Name="groupBox" Effect="{DynamicResource EffectShadow5}" Header="ĐĂNG NHẬP" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="500" MinHeight="300" FontSize="48" FontWeight="Bold">
                     <GroupBox.Template>
                         <ControlTemplate TargetType="{x:Type GroupBox}">
@@ -554,12 +581,12 @@
                         </Button>
                     </Grid>
                 </GroupBox>
-            </Grid>
-        </hc:TransitioningContentControl>
+            </hc:TransitioningContentControl>
+        </Grid>
         <!--Status Bar-->
-        <hc:TransitioningContentControl  TransitionMode="Bottom2TopWithFade"  Grid.ColumnSpan="3" Grid.RowSpan="3" >
-            <Grid>
-                <StatusBar x:Name="statusbargrid" Height="40" VerticalAlignment="Bottom" Visibility="Visible" >
+        <Grid  Grid.ColumnSpan="3" Grid.RowSpan="3" >
+            <hc:TransitioningContentControl x:Name="statusbargrid" TransitionMode="Bottom2TopWithFade" Visibility="Hidden">
+                <StatusBar  Height="40" VerticalAlignment="Bottom">
                     <StatusBar.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Grid>
@@ -588,7 +615,6 @@
                     </StatusBarItem>
                     <Separator Grid.Column="1" />
                     <StatusBarItem Grid.Column="2">
-
                     </StatusBarItem>
                     <Separator Grid.Column="3" />
                     <StatusBarItem Grid.Column="4">
@@ -614,8 +640,8 @@
                         </Grid>
                     </StatusBarItem>
                 </StatusBar>
-            </Grid>
-        </hc:TransitioningContentControl>
+            </hc:TransitioningContentControl>
+        </Grid>
         <!--Grow-->
         <ScrollViewer Grid.Column="2" Grid.RowSpan="2" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right">
             <StackPanel hc:Growl.Token="MainWindow" VerticalAlignment="Top" Margin="0,10,10,10"/>
