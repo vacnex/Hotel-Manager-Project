@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -329,26 +330,24 @@ namespace HotelManager
             HttpResponseMessage deleteServicesUseById = await client.DeleteAsync(baseServicesUseUrl + lbIdservicesUse.Content.ToString().Split(':').Last().Trim());
             if (deleteServicesUseById.IsSuccessStatusCode)
             {
-                Growl.Success("Thành công!", "MainWindow");
+                Growl.Success("Đã xoá dịch vụ!", "MainWindow");
                 ListLoad<TblRoombook>(baseRoomBookUrl, dtgRoomBook);
             }
-            else Growl.Error("Thất bại!", "MainWindow");
+            else Growl.Error("Có lỗi trong quá trình xoá!!", "MainWindow");
         }
         private async void putServicesUse(string editServicesJson, string id)
         {
             JObject _editServicesO = JObject.Parse(editServicesJson);
             var content = new StringContent(_editServicesO.ToString(), Encoding.UTF8, "application/json");
-            if (!string.IsNullOrEmpty(txtNewServicesUseNumber.Text))
+            HttpResponseMessage putRequestAccountJson = await client.PutAsync(baseServicesUseUrl + id, content);
+            if (putRequestAccountJson.IsSuccessStatusCode)
             {
-                HttpResponseMessage putRequestAccountJson = await client.PutAsync(baseServicesUseUrl + id, content);
-                if (putRequestAccountJson.IsSuccessStatusCode)
-                {
-                    Growl.Success("Thành công!", "MainWindow");
-                    ListLoad<TblRoombook>(baseRoomBookUrl, dtgRoomBook);
-                }
-                else Growl.Error("Thất bại!", "MainWindow");
+                Growl.Success("Đã sửa!", "MainWindow");
+                ListLoad<TblRoombook>(baseRoomBookUrl, dtgRoomBook);
             }
-            else Growl.Warning("Nhập số lượng cần sửa", "MainWindow");
+            else Growl.Error("Có Lỗi!", "MainWindow");
+            
+           
         }
         private async void putRoomStatus (string editRoomBookStatusJson, string idroom)
         {
@@ -955,10 +954,7 @@ namespace HotelManager
         private void dtgRoomBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid g = sender as DataGrid;
-            if (g != null && e.AddedItems.Count == 0 && e.RemovedItems.Count > 0)
-            {
-                g.SelectedItem = e.RemovedItems[0];
-            }
+            if (g != null && e.AddedItems.Count == 0 && e.RemovedItems.Count > 0) g.SelectedItem = e.RemovedItems[0];
             else
             {
                 TblRoombook roombook = (TblRoombook)dtgRoomBook.SelectedItem;
@@ -971,8 +967,7 @@ namespace HotelManager
                 lbDateBook.Content = "Ngày Đặt: " + roombook.StartDate.ToString().Substring(0, 10);
                 lbDateCheckin.Content = "Ngày Đến: " + roombook.StartDate.ToString().Substring(0, 10);
                 lbDateEnd.Content = "Ngày Kết Thúc: " + roombook.EndDate.ToString().Substring(0, 10);
-                
-                
+
                 List<string> sername = new List<string>();
                 DateTime rbStartDate = DateTime.Parse(roombook.StartDate.ToString().Substring(0, 10));
                 DateTime rbEndDate = DateTime.Parse(roombook.EndDate.ToString().Substring(0, 10));
@@ -983,7 +978,6 @@ namespace HotelManager
                     serviceUsedate = DateTime.Parse(item.DateUse.ToString().Substring(0, 10));
                     if (rbStartDate.Date <= serviceUsedate.Date && serviceUsedate.Date <= rbEndDate.Date) sername.Add(item.TblServices.SerName);
                 }
-
                 listboxServices.ItemsSource = sername;
                 lbServicesCount.Content = "DỊCH VỤ ĐANG DÙNG: " + listboxServices.Items.Count;
                 lbIdservicesUse.Content = "Mã Dịch Vụ Dùng: ";
@@ -993,7 +987,6 @@ namespace HotelManager
                 lbservicesNumber.Content = "Số Lượng: ";
             }
         }
-
         private void listboxServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TblRoombook roombook = (TblRoombook)dtgRoomBook.SelectedItem;
@@ -1010,21 +1003,30 @@ namespace HotelManager
                 }
             }
         }
-
         private void btnDeleteServicesUse_Click(object sender, RoutedEventArgs e)
         {
-            deteleServicesUse();
+            if (string.IsNullOrEmpty(lbIdservicesUse.Content.ToString().Split(':').Last().Trim())) Growl.Warning("Hãy chọn dịch vụ cần xoá!!", "MainWindow");
+            else deteleServicesUse();
         }//Delete Request
 
         private void btnEditServicesUse_Click(object sender, RoutedEventArgs e)
         {
-            var id = lbIdservicesUse.Content.ToString().Split(':').Last().Trim();
-            var number = txtNewServicesUseNumber.Text;
-            var idservices = lbIdservicesinfomation.Content.ToString().Split(':').Last().Trim();
-            var dateuse = Convert.ToDateTime(lbServicesDateUse.Content.ToString().Split(':').Last()).ToString("yyyy-MM-dd").Trim();
-            var idCard = lbIDCard.Content.ToString().Split(':').Last().Trim();
-            string _editServices = " {\"idServiceuse\": " + id + ",\"idCard\": \"" + idCard + "\",\"idService\": \"" + idservices + "\",\"number\": " + number + ",\"dateUse\": \"" + dateuse + "\"} ";
-            putServicesUse(_editServices,id);
+            if (string.IsNullOrEmpty(lbIdservicesUse.Content.ToString().Split(':').Last().Trim()) || string.IsNullOrEmpty(lbIdservicesinfomation.Content.ToString().Split(':').Last().Trim()) || string.IsNullOrEmpty(lbServicesDateUse.Content.ToString().Split(':').Last().Trim()) || string.IsNullOrEmpty(lbIDCard.Content.ToString().Split(':').Last().Trim())) Growl.Warning("Hãy chọn dịch vụ cần sửa!!", "MainWindow");
+            else 
+            {
+                var id = lbIdservicesUse.Content.ToString().Split(':').Last().Trim();
+                var number = string.Empty;
+                var idservices = lbIdservicesinfomation.Content.ToString().Split(':').Last().Trim();
+                var dateuse = Convert.ToDateTime(lbServicesDateUse.Content.ToString().Split(':').Last()).ToString("yyyy-MM-dd").Trim();
+                var idCard = lbIDCard.Content.ToString().Split(':').Last().Trim();
+                if (txtNewServicesUseNumber.Value == 0) Growl.Warning("Nhập Số lượng", "MainWindow");
+                else
+                {
+                    number = txtNewServicesUseNumber.Value.ToString();
+                    string _editServices = " {\"idServiceuse\": " + id + ",\"idCard\": \"" + idCard + "\",\"idService\": \"" + idservices + "\",\"number\": " + number + ",\"dateUse\": \"" + dateuse + "\"} ";
+                    putServicesUse(_editServices, id);
+                }
+            }
         }//Put Request
 
         private void searchRoomBook_TextChanged(object sender, TextChangedEventArgs e)
@@ -1047,6 +1049,14 @@ namespace HotelManager
         #endregion
 
         #region Add Services (TblServices)
+        private void txtNewServicesUseNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        private static bool IsTextAllowed(string text)
+        {
+            return !Regex.IsMatch(text, @"^\D");
+        }
         private void btnUseServicesAdd_Click(object sender, RoutedEventArgs e)
         {
             if (dtgCustomer.SelectedItem == null) Growl.Warning("Hãy chọn khách hàng cần thêm!!", "MainWindow");
@@ -1113,16 +1123,20 @@ namespace HotelManager
         }
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            string[] items = new string[cbIdcard.Items.Count];
-            for (int i = 0; i < cbIdcard.Items.Count; i++) items[i] = cbIdcard.Items[i].ToString();
-            string newOrderRoom = " {\"idCard\": \"" + cbIdcard.Text + "\",\"idRoom\": \"" + txtbRoomIDInput.Text + "\",\"startDate\": \"" + Convert.ToDateTime(dtpStartDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"endDate\": \"" + Convert.ToDateTime(dtpEndDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"staffName\": \"" + txtbStaffName.Text + "\"} ";
-            //"+ txtbStaffName.Text+ "
-            string newOrderCustomer = " {\"idCard\": \"" + cbIdcard.Text + "\",\"cusName\": \"" + txtCusInput.Text + "\",\"cusAddress\": \"" + txtAddressInput.Text + "\",\"cusGender\": \"" + cbGenderInput.Text + "\",\"cusPhone\": \"" + txtPhoneInput.Text + "\"} ";
-           
-            int pos = Array.IndexOf(items, cbIdcard.Text);
-            if (pos > -1) PostRoomBook(newOrderRoom);//old
-            else PostRoomBook(newOrderRoom, newOrderCustomer);//new
+            if (string.IsNullOrEmpty(dtpStartDateOrder.Text) || string.IsNullOrEmpty(dtpEndDateOrder.Text) || cbIdcard.SelectedIndex == -1 || string.IsNullOrEmpty(txtCusInput.Text) || cbGenderInput.SelectedIndex == -1 || string.IsNullOrEmpty(txtPhoneInput.Text) || string.IsNullOrEmpty(txtAddressInput.Text) || string.IsNullOrEmpty(txtbRoomIDInput.Text) || string.IsNullOrEmpty(txtbRoomTypeInput.Text) || string.IsNullOrEmpty(txtbRoomPriceInput.Text))
+                Growl.Warning("Hãy chọn phòng hoặc nhập đầy đủ thông tin cần thiết!!","MainWindow");
+            else
+            {
+                string[] items = new string[cbIdcard.Items.Count];
+                for (int i = 0; i < cbIdcard.Items.Count; i++) items[i] = cbIdcard.Items[i].ToString();
+                string newOrderRoom = " {\"idCard\": \"" + cbIdcard.Text + "\",\"idRoom\": \"" + txtbRoomIDInput.Text + "\",\"startDate\": \"" + Convert.ToDateTime(dtpStartDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"endDate\": \"" + Convert.ToDateTime(dtpEndDateOrder.Text).ToString("yyyy-MM-dd").Trim() + "\",\"staffName\": \"" + txtbStaffName.Text + "\"} ";
+                //"+ txtbStaffName.Text+ "
+                string newOrderCustomer = " {\"idCard\": \"" + cbIdcard.Text + "\",\"cusName\": \"" + txtCusInput.Text + "\",\"cusAddress\": \"" + txtAddressInput.Text + "\",\"cusGender\": \"" + cbGenderInput.Text + "\",\"cusPhone\": \"" + txtPhoneInput.Text + "\"} ";
 
+                int pos = Array.IndexOf(items, cbIdcard.Text);
+                if (pos > -1) PostRoomBook(newOrderRoom);//old
+                else PostRoomBook(newOrderRoom, newOrderCustomer);//new
+            }
         }//Post Request
         #endregion
 
@@ -1322,7 +1336,10 @@ namespace HotelManager
             for (int i = 0; i < idServicesUse.Count; i++) serviceDel = await client.DeleteAsync(baseServicesUseUrl + idServicesUse[i]);
             if (serviceDel.IsSuccessStatusCode) Growl.Success("Đã Thanh Toán!!", "MainWindow");
 
-        } 
+        }
         #endregion
+
+        
+        
     }
 }

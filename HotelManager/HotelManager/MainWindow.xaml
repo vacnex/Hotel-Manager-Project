@@ -68,7 +68,7 @@
                         <MenuItem x:Name="mnuRoomChangeRoom" Header="Đổi Phòng" Click="mnuRoomChangeRoom_Click"/>
                         <MenuItem x:Name="mnuRoomPaid" Header="Thanh Toán" Click="mnuRoomPaid_Click"/>
                         <MenuItem x:Name="mnuItemAuthor" Header="Thông Tin"/>
-                        
+
                     </Menu>
                 </ToolBar>
             </ToolBarTray>
@@ -76,101 +76,86 @@
         <!--Side Bar-->
         <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >
             <hc:TransitioningContentControl x:Name="grpRoomBookInfo"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
-                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THÔNG TIN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" >
-                        <Grid >
-                            <Label x:Name="lbStaffName" Content="Nhân Viên Đặt Phòng: " VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"></Label>
-                            <Label x:Name="lbRoomBookID" Content="Mã Phòng Đặt: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,80,0"></Label>
-                            <Label x:Name="lbIdRoom" Content="Mã Phòng: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"></Label>
-                            <Label x:Name="lbCustomername" Content="Tên Khách Hàng: " VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,60,26,0" ></Label>
-                            <Label x:Name="lbIDCard" Content="Số CMND: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,10,0"></Label>
-                            <Label x:Name="lbDateBook" Content="Ngày Đặt: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,106,0,0"></Label>
-                            <Label x:Name="lbDateCheckin" Content="Ngày Đến: " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-25,106,0,0"></Label>
-                            <Label x:Name="lbDateEnd" Content="Ngày Kết Thúc: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,106,10,0"></Label>
-                            <Label HorizontalAlignment="Center" Content="THÔNG TIN DỊCH VỤ" Style="{StaticResource LabelPrimary}" VerticalAlignment="Top" Margin="0,156,0,0"/>
-                            <Label x:Name="lbServicesCount" HorizontalAlignment="Left" Content="DỊCH VỤ ĐANG DÙNG: "  VerticalAlignment="Center" Margin="0,0,0,167"/>
-                            <ListBox x:Name="listboxServices" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="300" Margin="0,179,258,0" SelectionChanged="listboxServices_SelectionChanged" >
-                            </ListBox>
-                            <Label x:Name="lbIdservicesUse" Content="Mã Dịch Vụ Dùng: " HorizontalAlignment="Left" Margin="266,0,0,90" VerticalAlignment="Center"/>
-                            <Label x:Name="lbIdservicesinfomation" Content="Mã Dịch Vụ: " HorizontalAlignment="Left" Margin="266,0,0,0" VerticalAlignment="Center"/>
-                            <Label x:Name="lbServicesName" Content="Tên Dịch Vụ: " HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="266,101,0,0"/>
-                            <Label x:Name="lbServicesDateUse" Content="Ngày dùng: " HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="266,201,0,0"/>
-                            <Label x:Name="lbservicesNumber" Content="Số Lượng: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="266,301,0,0"/>
-                            <hc:TextBox x:Name="txtNewServicesUseNumber" Width="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" hc:InfoElement.Placeholder="Nhập số lượng cần sửa" Margin="0,0,31,90"></hc:TextBox>
-                            <Button x:Name="btnDeleteServicesUse" Content="Xoá Dịch Vụ" Style="{StaticResource ButtonDanger}" hc:IconElement.Geometry="{StaticResource DeleteGeometry}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,50" Click="btnDeleteServicesUse_Click"/>
-                            <Button x:Name="btnEditServicesUse" Width="113" Content="Sửa Dịch Vụ" Style="{StaticResource ButtonPrimary}" hc:IconElement.Geometry="{StaticResource ConfigGeometry}" VerticalAlignment="Bottom" Margin="124,0,0,50" Click="btnEditServicesUse_Click"/>
-                        </Grid>
-                    </GroupBox>
-                </hc:TransitioningContentControl>
+                <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THÔNG TIN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold" >
+                    <Grid >
+                        <Label x:Name="lbStaffName" Content="Nhân Viên Đặt Phòng: " VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"></Label>
+                        <Label x:Name="lbRoomBookID" Content="Mã Phòng Đặt: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,80,0"></Label>
+                        <Label x:Name="lbIdRoom" Content="Mã Phòng: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0"></Label>
+                        <Label x:Name="lbCustomername" Content="Tên Khách Hàng: " VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,60,26,0" ></Label>
+                        <Label x:Name="lbIDCard" Content="Số CMND: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,10,0"></Label>
+                        <Label x:Name="lbDateBook" Content="Ngày Đặt: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,106,0,0"></Label>
+                        <Label x:Name="lbDateCheckin" Content="Ngày Đến: " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-25,106,0,0"></Label>
+                        <Label x:Name="lbDateEnd" Content="Ngày Kết Thúc: " HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,106,10,0"></Label>
+                        <Label HorizontalAlignment="Center" Content="THÔNG TIN DỊCH VỤ" Style="{StaticResource LabelPrimary}" VerticalAlignment="Top" Margin="0,156,0,0"/>
+                        <Label x:Name="lbServicesCount" HorizontalAlignment="Left" Content="DỊCH VỤ ĐANG DÙNG: "  VerticalAlignment="Center" Margin="0,0,0,167"/>
+                        <ListBox x:Name="listboxServices" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="300" Margin="0,179,258,0" SelectionChanged="listboxServices_SelectionChanged" >
+                        </ListBox>
+                        <Label x:Name="lbIdservicesUse" Content="Mã Dịch Vụ Dùng: " HorizontalAlignment="Left" Margin="266,0,0,90" VerticalAlignment="Center"/>
+                        <Label x:Name="lbIdservicesinfomation" Content="Mã Dịch Vụ: " HorizontalAlignment="Left" Margin="266,0,0,0" VerticalAlignment="Center"/>
+                        <Label x:Name="lbServicesName" Content="Tên Dịch Vụ: " HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="266,101,0,0"/>
+                        <Label x:Name="lbServicesDateUse" Content="Ngày dùng: " HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="266,201,0,0"/>
+                        <Label x:Name="lbservicesNumber" Content="Số Lượng: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="266,301,0,0"/>
+                        <hc:NumericUpDown x:Name="txtNewServicesUseNumber" Width="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" hc:InfoElement.Title="Nhập số lượng cần sửa" Margin="0,0,31,70" hc:InfoElement.Necessary="True"  Style="{StaticResource NumericUpDownExtend}" PreviewTextInput="txtNewServicesUseNumber_PreviewTextInput"/>
+                        <Button x:Name="btnDeleteServicesUse" Content="Xoá Dịch Vụ" Style="{StaticResource ButtonDanger}" hc:IconElement.Geometry="{StaticResource DeleteGeometry}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,20" Click="btnDeleteServicesUse_Click"/>
+                        <Button x:Name="btnEditServicesUse" Width="113" Content="Sửa Dịch Vụ" Style="{StaticResource ButtonPrimary}" hc:IconElement.Geometry="{StaticResource ConfigGeometry}" VerticalAlignment="Bottom" Margin="124,0,0,20" Click="btnEditServicesUse_Click"/>
+                    </Grid>
+                </GroupBox>
+            </hc:TransitioningContentControl>
             <hc:TransitioningContentControl x:Name="grpCustomerUseServicesAdd"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
-                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐĂNG KÍ DỊCH VỤ" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
-                        <Grid >
-                            <Label HorizontalAlignment="Center" Content="CHỌN DỊCH VỤ" Style="{StaticResource LabelPrimary}" VerticalAlignment="Top" Margin="0,20,0,0"/>
-
-                            <DataGrid FontSize="12" FontWeight="Normal" x:Name="dtgUseServices" x:FieldModifier="public" HeadersVisibility="All" AutoGenerateColumns="False" Height="350" Width="450" VerticalAlignment="Top" HorizontalAlignment="Center"  Initialized="dtgUseServices_Initialized" Margin="0,55,0,0" >
-
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn IsReadOnly="True" CanUserResize="False" Binding="{Binding SerName}" Header="Tên Dịch Vụ"/>
-                                    <DataGridTextColumn IsReadOnly="True" CanUserResize="False" Binding="{Binding IdService}" Header="Mã Dịch Vụ"/>
-                                </DataGrid.Columns>
-
-                            </DataGrid>
-                            <hc:NumericUpDown x:Name="nudNumberServices" Width="380"  Style="{StaticResource NumericUpDownPlus}" Margin="0,300,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Nhập Số Lượng:" hc:InfoElement.Necessary="True" Value="1"/>
-                            <hc:DatePicker x:Name="dtpDateServicesUse" Width="380" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Chọn Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDate="{x:Static system:DateTime.Now}"  Margin="0,400,0,0"/>
-                            <Button x:Name="btnUseServicesAdd" Content="Thêm Dịch Vụ" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" FontWeight="Bold" FontSize="13"  IsDefault="True" Padding="10,6" VerticalAlignment="Center" Margin="0,500,0,0" Click="btnUseServicesAdd_Click" />
-                        </Grid>
-                    </GroupBox>
-                </hc:TransitioningContentControl>
+                <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐĂNG KÍ DỊCH VỤ" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
+                    <Grid >
+                        <Label HorizontalAlignment="Center" Content="CHỌN DỊCH VỤ" Style="{StaticResource LabelPrimary}" VerticalAlignment="Top" Margin="0,20,0,0"/>
+                        <DataGrid FontSize="12" FontWeight="Normal" x:Name="dtgUseServices" x:FieldModifier="public" HeadersVisibility="All" AutoGenerateColumns="False" Height="350" Width="450" VerticalAlignment="Top" HorizontalAlignment="Center"  Initialized="dtgUseServices_Initialized" Margin="0,55,0,0" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" CanUserResize="False" Binding="{Binding SerName}" Header="Tên Dịch Vụ"/>
+                                <DataGridTextColumn IsReadOnly="True" CanUserResize="False" Binding="{Binding IdService}" Header="Mã Dịch Vụ"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <hc:NumericUpDown x:Name="nudNumberServices" Width="380"  Style="{StaticResource NumericUpDownPlus}" Margin="0,300,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Nhập Số Lượng:" hc:InfoElement.Necessary="True" Value="1"/>
+                        <hc:DatePicker x:Name="dtpDateServicesUse" Width="380" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Chọn Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDate="{x:Static system:DateTime.Now}"  Margin="0,400,0,0"/>
+                        <Button x:Name="btnUseServicesAdd" Content="Thêm Dịch Vụ" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" FontWeight="Bold" FontSize="13"  IsDefault="True" Padding="10,6" VerticalAlignment="Center" Margin="0,500,0,0" Click="btnUseServicesAdd_Click" />
+                    </Grid>
+                </GroupBox>
+            </hc:TransitioningContentControl>
             <hc:TransitioningContentControl x:Name="grpCustomerBook"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
                 <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="ĐẶT PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
-                        <Grid>
-                            <hc:DatePicker x:Name="dtpStartDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Từ Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{x:Static system:DateTime.Now}" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
-                            <hc:DatePicker x:Name="dtpEndDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Đến Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,31,0,0"/>
-
-                            <ComboBox x:Name="cbIdcard" Width="200" IsEditable="True" hc:InfoElement.Title="Nhập Số CMND" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,80,0,0" KeyUp="cbIdcard_KeyUp" SelectionChanged="cbIdcard_SelectionChanged"  />
-
-                            <TextBox x:Name="txtCusInput" Width="200"  hc:InfoElement.Title="Nhập tên khách" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True"  Margin="0,80,10,0"  HorizontalAlignment="Right" VerticalAlignment="Top"/>
-
-                            <ComboBox x:Name="cbGenderInput" Width="200" IsEditable="True" hc:InfoElement.Title="Giới Tính" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" Margin="0,158,10,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <ComboBoxItem Content="Nam"></ComboBoxItem>
-                                <ComboBoxItem Content="Nữ"></ComboBoxItem>
-                            </ComboBox>
-
-                            <TextBox x:Name="txtPhoneInput" Width="200"  hc:InfoElement.Title="Nhập Số Điện Thoại" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,158,10,0"/>
-
-                            <TextBox x:Name="txtAddressInput" Width="500"  hc:InfoElement.Title="Nhập Địa Chỉ" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,80"/>
-
-                            <Label HorizontalAlignment="Left"  Content="Mã Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,0,0" FontSize="24"/>
-
-                            <Label HorizontalAlignment="Center"  Content="Loại Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,0,0" FontSize="24"/>
-
-                            <Label HorizontalAlignment="Right"  Content="Giá Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,10,0" FontSize="24"/>
-
-                            <TextBlock x:Name="txtbRoomIDInput" HorizontalAlignment="Left"  Text="" Style="{StaticResource TextBlockDefaultInfo}" Margin="40,140,0,0" FontWeight="Bold" FontSize="24"/>
-
-                            <TextBlock x:Name="txtbRoomTypeInput" HorizontalAlignment="Center"  Text="" Style="{StaticResource TextBlockDefaultInfo}" Margin="0,140,0,0" FontWeight="Bold" FontSize="24"/>
-
-                            <TextBlock x:Name="txtbRoomPriceInput" HorizontalAlignment="Center"  Text="" Style="{StaticResource TextBlockDefaultInfo}" FontWeight="Bold" FontSize="24" Margin="356,140,0,0"/>
-
-                            <Button x:Name="btnOrder" Content="Đặt Phòng" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" FontWeight="Bold"   IsDefault="True" FontSize="24" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,121" Click="btnOrder_Click"   />
-                        </Grid>
-                    </GroupBox>
-                </hc:TransitioningContentControl>
+                    <Grid>
+                        <hc:DatePicker x:Name="dtpStartDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Từ Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{x:Static system:DateTime.Now}" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
+                        <hc:DatePicker x:Name="dtpEndDateOrder" Width="250" hc:InfoElement.TitlePlacement="Left" hc:InfoElement.Title="Đến Ngày" hc:InfoElement.Necessary="True" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Right" Margin="0,31,0,0"/>
+                        <ComboBox x:Name="cbIdcard" Width="200" IsEditable="True" hc:InfoElement.Title="Nhập Số CMND" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,80,0,0" KeyUp="cbIdcard_KeyUp" SelectionChanged="cbIdcard_SelectionChanged"  />
+                        <TextBox x:Name="txtCusInput" Width="200"  hc:InfoElement.Title="Nhập tên khách" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True"  Margin="0,80,10,0"  HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="cbGenderInput" Width="200" IsEditable="True" hc:InfoElement.Title="Giới Tính" Style="{StaticResource ComboBoxExtend}" hc:InfoElement.Necessary="True" Margin="0,158,10,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <ComboBoxItem Content="Nam"></ComboBoxItem>
+                            <ComboBoxItem Content="Nữ"></ComboBoxItem>
+                        </ComboBox>
+                        <TextBox x:Name="txtPhoneInput" Width="200"  hc:InfoElement.Title="Nhập Số Điện Thoại" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,158,10,0"/>
+                        <TextBox x:Name="txtAddressInput" Width="500"  hc:InfoElement.Title="Nhập Địa Chỉ" Style="{StaticResource TextBoxExtend}" hc:InfoElement.Necessary="True" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,80"/>
+                        <Label HorizontalAlignment="Left"  Content="Mã Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,0,0" FontSize="24"/>
+                        <Label HorizontalAlignment="Center"  Content="Loại Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,0,0" FontSize="24"/>
+                        <Label HorizontalAlignment="Right"  Content="Giá Phòng" Style="{StaticResource LabelInfo}" Margin="0,50,10,0" FontSize="24"/>
+                        <TextBlock x:Name="txtbRoomIDInput" HorizontalAlignment="Left"  Text="" Style="{StaticResource TextBlockDefaultInfo}" Margin="40,140,0,0" FontWeight="Bold" FontSize="24"/>
+                        <TextBlock x:Name="txtbRoomTypeInput" HorizontalAlignment="Center"  Text="" Style="{StaticResource TextBlockDefaultInfo}" Margin="0,140,0,0" FontWeight="Bold" FontSize="24"/>
+                        <TextBlock x:Name="txtbRoomPriceInput" HorizontalAlignment="Center"  Text="" Style="{StaticResource TextBlockDefaultInfo}" FontWeight="Bold" FontSize="24" Margin="356,140,0,0"/>
+                        <Button x:Name="btnOrder" Content="Đặt Phòng" Style="{StaticResource ButtonSuccess}" hc:BorderElement.CornerRadius="15" FontWeight="Bold"   IsDefault="True" FontSize="24" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,121" Click="btnOrder_Click"   />
+                    </Grid>
+                </GroupBox>
+            </hc:TransitioningContentControl>
             <hc:TransitioningContentControl x:Name="grpRoomConfirm"  TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
-                    <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="NHẬN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
-                        <Grid>
-                            <Label x:Name="lbConfirmCusName" Style="{DynamicResource LabelInfo}" Content="Tên Khách Hàng: Trương Gia Huy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="16"></Label>
-                            <Label x:Name="lbConfirmCusID" Style="{DynamicResource LabelInfo}" Content="Số CMND: 273647744" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"></Label>
-                            <Label x:Name="lbConfirmCusPhone" Style="{DynamicResource LabelInfo}" Content="Số Điện Thoại: 0961364283" FontSize="16" VerticalAlignment="Top" Margin="10,70,0,0" HorizontalAlignment="Left"></Label>
-                            <Label x:Name="lbConfirmCusAdrress" Style="{DynamicResource LabelInfo}" Content="Địa Chỉ: bà rịa" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,70,10,0"></Label>
-                            <Label x:Name="lbConfirmCusRoomID" Style="{DynamicResource LabelInfo}" Content="Mã Phòng: " FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,140,0,0"></Label>
-                            <Label x:Name="lbConfirmCusStartDate" Style="{DynamicResource LabelInfo}" Content="Ngày Đặt: " FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,200,0,0"></Label>
-                            <Label x:Name="lbConfirmCusEndDate" Style="{DynamicResource LabelInfo}" Content="Ngày Kết Thúc: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,200,10,0"></Label>
-                            <Label x:Name="lbConfirmCusStaffName" Style="{DynamicResource LabelInfo}" Content="Tên Nhân Viên: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,10,0"></Label>
-                            <Button x:Name="btnConfirmRoomBook" Style="{StaticResource ButtonWarning}" Content="XÁC NHẬN"  hc:BorderElement.CornerRadius="15" FontSize="24" Height="50" Margin="133,275" Width="246" Click="btnConfirmRoomBook_Click"/>
+                <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="NHẬN PHÒNG" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="12" FontWeight="Bold">
+                    <Grid>
+                        <Label x:Name="lbConfirmCusName" Style="{DynamicResource LabelInfo}" Content="Tên Khách Hàng: Trương Gia Huy" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="16"></Label>
+                        <Label x:Name="lbConfirmCusID" Style="{DynamicResource LabelInfo}" Content="Số CMND: 273647744" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"></Label>
+                        <Label x:Name="lbConfirmCusPhone" Style="{DynamicResource LabelInfo}" Content="Số Điện Thoại: 0961364283" FontSize="16" VerticalAlignment="Top" Margin="10,70,0,0" HorizontalAlignment="Left"></Label>
+                        <Label x:Name="lbConfirmCusAdrress" Style="{DynamicResource LabelInfo}" Content="Địa Chỉ: bà rịa" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,70,10,0"></Label>
+                        <Label x:Name="lbConfirmCusRoomID" Style="{DynamicResource LabelInfo}" Content="Mã Phòng: " FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,140,0,0"></Label>
+                        <Label x:Name="lbConfirmCusStartDate" Style="{DynamicResource LabelInfo}" Content="Ngày Đặt: " FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,200,0,0"></Label>
+                        <Label x:Name="lbConfirmCusEndDate" Style="{DynamicResource LabelInfo}" Content="Ngày Kết Thúc: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,200,10,0"></Label>
+                        <Label x:Name="lbConfirmCusStaffName" Style="{DynamicResource LabelInfo}" Content="Tên Nhân Viên: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,10,0"></Label>
+                        <Button x:Name="btnConfirmRoomBook" Style="{StaticResource ButtonWarning}" Content="XÁC NHẬN"  hc:BorderElement.CornerRadius="15" FontSize="24" Height="50" Margin="133,275" Width="246" Click="btnConfirmRoomBook_Click"/>
 
-                        </Grid>
-                    </GroupBox>
-                </hc:TransitioningContentControl>
+                    </Grid>
+                </GroupBox>
+            </hc:TransitioningContentControl>
             <hc:TransitioningContentControl x:Name="grpPayCustomer" TransitionMode="Top2BottomWithFade" Visibility="Hidden">
                 <GroupBox Effect="{DynamicResource EffectShadow5}"  Style="{StaticResource GroupBoxTab}" Header="THANH TOÁN" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Width="520" Height="638" FontSize="20" FontWeight="Bold">
                     <Grid>
@@ -475,7 +460,7 @@
                 <hc:LoadingCircle Visibility="Hidden" x:Name="ListLoading" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center"></hc:LoadingCircle>
             </Grid>
             <!--Control panel-->
-                <!--Action Left-->
+            <!--Action Left-->
             <Grid Grid.Column="0">
                 <!--First Action-->
                 <hc:TransitioningContentControl x:Name="tlAddAccount" TransitionMode="Top2BottomWithFade"  Visibility="Hidden">
