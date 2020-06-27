@@ -68,37 +68,39 @@ namespace HotelManager
         #region Function
         private async void Login()
         {
-            if (!string.IsNullOrEmpty(txtUsername.Text) && !string.IsNullOrEmpty(txtPassword.Password)) // kiểm tra các ô phải được điền
+            if (!string.IsNullOrEmpty(txtUsername.Text) && !string.IsNullOrEmpty(txtPassword.Password))
             {
-                LoginLd.Visibility = Visibility.Visible;// cái này chỉ là show cái loading lúc send request đăng nhập
-                string urlGetAccountByUsername = string.Concat(baseAccountUrl, txtUsername.Text);//lấy username từ ô username trên GUI
-                HttpResponseMessage getAccountByUsername = await client.GetAsync(urlGetAccountByUsername);// tạo 1 request tới cái api của table Account trong database
-                if (getAccountByUsername.IsSuccessStatusCode)// nếu có tồn tại cái username người dùng vừa điền
+                LoginLd.Visibility = Visibility.Visible;
+                string urlGetAccountByUsername = string.Concat(baseAccountUrl, txtUsername.Text);
+                HttpResponseMessage getAccountByUsername = await client.GetAsync(urlGetAccountByUsername);
+                if (getAccountByUsername.IsSuccessStatusCode)
                 {
-                    var responseBody = getAccountByUsername.Content.ReadAsStringAsync();//tạo 1 biến chưa cái string json  vừa request về
-                    JObject rss = JObject.Parse(responseBody.Result); //ép kiểu về dạng object cho dễ truy cập các properties như [username] hay [pass]
-                    if (txtPassword.Password == rss["Pass"].ToString()) //check pass người dùng nhập vào trên GUI so sánh với cái properties [Pass]
+                    var responseBody = getAccountByUsername.Content.ReadAsStringAsync();
+                    JObject rss = JObject.Parse(responseBody.Result); 
+                    if (txtPassword.Password == rss["Pass"].ToString()) 
                     {
-                        //vào trong đây có nghĩa là thành công
-                        LoginLd.Visibility = Visibility.Hidden; //ẩn cái thanh loading đi
-                        Growl.Success("Đăng nhập Thành công!\nXin chào " + rss["Name"].ToString(), "MainWindow");// send thông báo
-                        txtbStaffName.Text = rss["Name"].ToString();// lấy tên người dùng theo user name pass vừa login
-                        //dưới đây là phân quyền hơi chuối vì không thêm cái properties isAdmin nên phần trực tiếp dựa vào username
-                        if ((rss["Username"].ToString()).Contains("admin"))// kiểm tra trong username nếu có cụm từ admin
-                        {//đúng thì hiện chữ quản lí
+                        LoginLd.Visibility = Visibility.Hidden;
+                        Growl.Success("Đăng nhập Thành công!\nXin chào " + rss["Name"].ToString(), "MainWindow");
+                        txtbStaffName.Text = rss["Name"].ToString();
+                        if ((rss["Username"].ToString()).Contains("admin"))
+                        {
                             txtbStaffRole.Text = "Quản Lý";
                             txtbStaffRole.Foreground = Brushes.Red;
                             mnuItemAccountList.Visibility = Visibility.Visible;
+                            mnuItemRoomList.Visibility = Visibility.Visible;
+                            mnuItemServicesList.Visibility = Visibility.Visible;
                         }
-                        else//sai thì hiện chữ nhân viên
+                        else
                         {
                             txtbStaffRole.Foreground = Brushes.Black;
                             txtbStaffRole.Text = "Nhân Viên";
-                            mnuItemAccountList.Visibility = Visibility.Collapsed;// ẩn các tính năng của mục quản lí
+                            mnuItemAccountList.Visibility = Visibility.Collapsed;
+                            mnuItemRoomList.Visibility = Visibility.Collapsed;
+                            mnuItemServicesList.Visibility = Visibility.Collapsed;
                         }
-                        LoginUI.Visibility = Visibility.Hidden; // ẩn giao diện đăng nhập
-                        statusbargrid.Visibility = Visibility.Visible; // hiện thanh menu
-                        tlMenu.Visibility = Visibility.Visible;// hiện thanh trạng thái
+                        LoginUI.Visibility = Visibility.Hidden;
+                        statusbargrid.Visibility = Visibility.Visible;
+                        tlMenu.Visibility = Visibility.Visible;
                     }
                     else { LoginLd.Visibility = Visibility.Hidden; Growl.Error("Sai tài khoản hoặc mật khẩu!", "MainWindow"); }
                 }
@@ -443,6 +445,23 @@ namespace HotelManager
                                 };
             dtgPayServicesList.ItemsSource = queryServices;
         }
+        private async void getAccountInfo(string userName)
+        {
+            var info = await client.GetAsync(baseAccountUrl + userName);
+            AccountInfor accountInfo = new AccountInfor();
+            if (info.IsSuccessStatusCode)
+            {
+                var responseBody = info.Content.ReadAsStringAsync();
+                JObject rss = JObject.Parse(responseBody.Result);
+                if (string.Compare(userName, rss["Username"].ToString()) == 0)
+                {
+                    accountInfo.txtbUsername.Text = "TÊN NGƯỜI DÙNG: " + rss["Username"].ToString();
+                }
+            }
+            accountInfo.txtbName.Text = "HỌ TÊN: " + txtbStaffName.Text;
+            accountInfo.txtbRole.Text = "QUYỀN HẠN: " + txtbStaffRole.Text;
+            Dialog.Show(accountInfo);
+        }
         #endregion
 
         #region MenuClick
@@ -540,29 +559,9 @@ namespace HotelManager
         }
         #endregion
 
-        private async void getAccountInfo(string userName)
-        {
-            var info = await client.GetAsync(baseAccountUrl + userName);
-            AccountInfor accountInfo = new AccountInfor();
-            if (info.IsSuccessStatusCode)
-            {
-                var responseBody = info.Content.ReadAsStringAsync();
-                JObject rss = JObject.Parse(responseBody.Result);
-                if (string.Compare(userName, rss["Username"].ToString())==0)
-                {
-                    accountInfo.txtbUsername.Text = "TÊN NGƯỜI DÙNG: "+ rss["Username"].ToString();
-                }
-            }
-           
-            accountInfo.txtbName.Text = "HỌ TÊN: "+ txtbStaffName.Text;
-            accountInfo.txtbRole.Text = "QUYỀN HẠN: "+  txtbStaffRole.Text;
-
-            Dialog.Show(accountInfo);
-        }
         #region mnuItemClick
         private void mnuAccountInfo_Click(object sender, RoutedEventArgs e)
         {
-            
             getAccountInfo(txtUsername.Text);
         }
         private void mnuItemLogout_Click(object sender, RoutedEventArgs e)
@@ -1100,22 +1099,18 @@ namespace HotelManager
             { }
             else LoadInfo(cbIdcard.SelectedItem.ToString());
         }
-
         private void dtgRoomNormal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OrderRoomSelect(dtgRoomNormal, sender, e);
         }
-
         private void dtgRoomVip_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OrderRoomSelect(dtgRoomVip, sender, e);
         }
-
         private void dtgRoomLuxury_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OrderRoomSelect(dtgRoomLuxury, sender, e);
         }
-
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
             string[] items = new string[cbIdcard.Items.Count];
