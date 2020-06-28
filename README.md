@@ -1,3 +1,4 @@
+![Verion Status](https://img.shields.io/badge/version-1.0.0-orange) ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey) ![Code type](https://img.shields.io/badge/C%23-.Net%204.8-green) ![](https://img.shields.io/badge/repo%20status-WIP-yellowgreen)
 <br />
 <p align="center">
   <a href="">
