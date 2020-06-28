@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using QuanLyThuePhong.KhachHang;
 using QuanLyThuePhong.Phong;
+=======
+﻿using QuanLyThuePhong.Phong;
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +22,7 @@ namespace QuanLyThuePhong.ThuePhong
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
 
         PhongFs _phongFs;
         ThuePhongFs _thuePhongFs;
@@ -61,6 +66,36 @@ namespace QuanLyThuePhong.ThuePhong
             dgv_Phong.DataSource = _listPhong;
         }
         #region Tìm phòng
+=======
+        PhongFs _phongFs;
+
+        DTO_Phong _dTO_Phong;
+
+        List<DTO_Phong> _listPhong;
+        private void Frm_TraPhong_Load(object sender, EventArgs e)
+        {
+            _phongFs = new PhongFs();
+
+            _dTO_Phong = new DTO_Phong();
+
+            HienThiDanhSachPhong();
+        }
+
+        private async void HienThiDanhSachPhong()
+        {
+            _listPhong = await _phongFs.GetPhong();
+            var filtered = new List<DTO_Phong>();
+
+            foreach (var item in _listPhong)
+            {
+                if (item.RStatus.Trim().Equals("Có khách"))
+                {
+                    filtered.Add(item);
+                }
+            }
+            dgv_Phong.DataSource = filtered;
+        }
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         private void HienThiPhongTheoMaPhong()
         {
             if (_phongFs.GetPhongTheoMaPhong(txt_MaPhong.Text))
@@ -81,14 +116,19 @@ namespace QuanLyThuePhong.ThuePhong
         {
             HienThiPhongTheoMaPhong();
         }
+<<<<<<< HEAD
         #endregion
         #endregion
 
         #region Làm mới dữ liệu
+=======
+
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
             HienThiDanhSachPhong();
         }
+<<<<<<< HEAD
         #endregion
 
         #region Lấy thông tin khách hàng
@@ -146,5 +186,7 @@ namespace QuanLyThuePhong.ThuePhong
             _frm_ThanhToan.tempStaffName = dgv_ThuePhong.CurrentRow.Cells["colStaffName"].Value.ToString();
             _frm_ThanhToan.ShowDialog();
         }
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
     }
 }

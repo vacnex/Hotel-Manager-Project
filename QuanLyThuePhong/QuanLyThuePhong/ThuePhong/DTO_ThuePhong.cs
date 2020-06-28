@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using QuanLyThuePhong.Phong;
 using System;
+=======
+﻿using System;
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +20,10 @@ namespace QuanLyThuePhong.ThuePhong
         private string endDate;
         private string staffName;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         public string IdRoomBook { get => idRoomBook; set => idRoomBook = value; }
         public string IdCard { get => idCard; set => idCard = value; }
         public string IdRoom { get => idRoom; set => idRoom = value; }

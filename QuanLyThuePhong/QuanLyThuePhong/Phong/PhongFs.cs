@@ -52,12 +52,5 @@ namespace QuanLyThuePhong.Phong
             }
             return rs;
         }
-        public DTO_Phong GetPhongById(string idCard)
-        {
-            _response = _client.GetAsync($"api/room/{idCard}").Result;
-            var json = _response.Content.ReadAsStringAsync().Result;
-            var listKhachHang = JsonConvert.DeserializeObject<DTO_Phong>(json);
-            return listKhachHang;
-        }
     }
 }

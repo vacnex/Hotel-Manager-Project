@@ -52,11 +52,5 @@ namespace QuanLyThuePhong
             Frm_ThuePhong _frm_ThuePhong = new Frm_ThuePhong();
             _frm_ThuePhong.ShowDialog();
         }
-
-        private void trảPhòngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_TraPhong _frm_TraPhong = new Frm_TraPhong();
-            _frm_TraPhong.ShowDialog();
-        }
     }
 }

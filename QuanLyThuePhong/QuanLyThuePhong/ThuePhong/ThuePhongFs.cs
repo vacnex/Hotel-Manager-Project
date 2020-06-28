@@ -28,6 +28,7 @@ namespace QuanLyThuePhong.ThuePhong
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             _client.PostAsync("api/roombook", byteContent);
+<<<<<<< HEAD
         }
         public DTO_ThuePhong GetThuePhongById(string idCard)
         {
@@ -36,5 +37,8 @@ namespace QuanLyThuePhong.ThuePhong
             var listKhachHang = JsonConvert.DeserializeObject<DTO_ThuePhong>(json);
             return listKhachHang;
         }
+=======
+        }       
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
     }
 }

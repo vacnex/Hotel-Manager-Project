@@ -7,7 +7,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+<<<<<<< HEAD
 using System.Globalization;
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -23,6 +26,10 @@ namespace QuanLyThuePhong.ThuePhong
             InitializeComponent();
         }
         DTO_Phong _dTO_Phong;
+<<<<<<< HEAD
+=======
+        DTO_ThuePhong _dTO_ThuePhong;
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
 
         KhachHangFs _khachHangFs;
         PhongFs _phongFs;
@@ -37,49 +44,80 @@ namespace QuanLyThuePhong.ThuePhong
             _phongFs = new PhongFs();
             _thuePhongFs = new ThuePhongFs();
 
+<<<<<<< HEAD
             _dTO_Phong = new DTO_Phong();
             
             HienThiDuLieu();
         }
         #region Hiển thị tất cả dữ liệu
+=======
+            _dTO_ThuePhong = new DTO_ThuePhong();
+            _dTO_Phong = new DTO_Phong();
+
+            HienThiDuLieu();
+            txt_NhanVien.Text = Cls_Main.tenNhanVien;
+            btn_ChonPhong.Enabled = false;
+            btn_ThuePhong.Enabled = false;
+        }
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         private void HienThiDuLieu()
         {
             HienThiDanhSachKhachHang();
             HienThiDanhSachPhong();
             HienThiDanhSachThuePhong();
+<<<<<<< HEAD
         }
         #endregion
         #region Hiển thị danh sách khách hàng
+=======
+            
+        }
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         private async void HienThiDanhSachKhachHang()
         {
             listKhachHang = await _khachHangFs.GetKhachHang();
             dgv_KhachHang.DataSource = listKhachHang;
         }
+<<<<<<< HEAD
 
         #endregion
         #region Hiển thị danh sách phòng
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         private async void HienThiDanhSachPhong()
         {
             listPhong = await _phongFs.GetPhong();
             dgv_Phong.DataSource = listPhong;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             List<string> a = new List<string>();
             for (int i = 0; i < dgv_Phong.RowCount; i++)
             {
                 a.Add("-- Chọn loại -- ");
+<<<<<<< HEAD
                 a.Add(dgv_Phong.Rows[i].Cells["colRType"].Value.ToString().ToLower());
+=======
+                a.Add(dgv_Phong.Rows[i].Cells["colRType"].Value.ToString());
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             }
             List<string> b = a.Distinct().ToList();
             var rs = new BindingSource();
             rs.DataSource = b;
             cbb_LoaiPhong.DataSource = rs.DataSource;
         }
+<<<<<<< HEAD
 
         #endregion
         #region Hiển thị thông tin thuê phòng
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
         private async void HienThiDanhSachThuePhong()
         {
             listThuePhong = await _thuePhongFs.GetThuePhong();
             dgv_ThuePhong.DataSource = listThuePhong;
+<<<<<<< HEAD
         }
 
         #endregion
@@ -160,16 +198,40 @@ namespace QuanLyThuePhong.ThuePhong
         private void cbb_LoaiPhong_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+=======
+        }                
+        private async void btn_TimKiem_Click(object sender, EventArgs e)
+        {
+            if(dgv_KhachHang.RowCount > 0)
+            {
+                var result = await _khachHangFs.GetKhachHangById(txt_CMND.Text);
+                dgv_KhachHang.DataSource = result;
+            }
+        }
+        private void btn_ChonKhachHang_Click(object sender, EventArgs e)
+        {
+            _dTO_ThuePhong.IdCard = dgv_KhachHang.CurrentRow.Cells["colidCard"].Value.ToString();
+            btn_ChonKhachHang.Enabled = false;
+            btn_ChonPhong.Enabled = true;
+        }
+        private void cbb_LoaiPhong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             var filtered = new List<DTO_Phong>();
 
             foreach (var item in listPhong)
             {
+<<<<<<< HEAD
                 if (String.Compare(item.RType.ToString(), cbb_LoaiPhong.Text, true) == 0)
+=======
+                if (item.RType.Trim().Equals(cbb_LoaiPhong.SelectedItem.ToString()) )
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
                 {
                     filtered.Add(item);
                 }
             }
             dgv_Phong.DataSource = filtered;
+<<<<<<< HEAD
         }      
         #endregion
         #region Làm mới dữ liệu
@@ -306,5 +368,56 @@ namespace QuanLyThuePhong.ThuePhong
             }
         }
         #endregion
+=======
+        }
+        private void btn_ChonPhong_Click(object sender, EventArgs e)
+        {    
+            if(dgv_Phong.CurrentRow.Cells["colRStatus"].Value.ToString().Trim().Equals("Có khách"))
+            {
+                MessageBox.Show("Phòng này đã có khách!!!");
+            }
+            else
+            {
+                _dTO_ThuePhong.IdRoom = dgv_Phong.CurrentRow.Cells["colIdRoom"].Value.ToString();
+                _dTO_ThuePhong.StartDate = DateTime.Now.Date.ToString();
+                btn_ThuePhong.Enabled = true;
+            }            
+        }
+        private void GanDuLieuVaoDTO_Phong()
+        {
+            var status = "Có khách";
+            _dTO_Phong.IdRoom = dgv_Phong.CurrentRow.Cells["colIdRoom"].Value.ToString();
+            _dTO_Phong.RType = dgv_Phong.CurrentRow.Cells["colRType"].Value.ToString();
+            _dTO_Phong.RPrice = dgv_Phong.CurrentRow.Cells["colRPrice"].Value.ToString();
+            _dTO_Phong.RStatus = status;
+        }
+        private async void btn_ThuePhong_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txt_NhanVien.Text) || string.IsNullOrEmpty(txt_IdRoomBook.Text) || string.IsNullOrEmpty(txt_NgayDi.Text))
+            {
+                MessageBox.Show("Bạn chưa nhập đủ thông tin thuê phòng!!!");
+            }
+            else
+            {
+                _dTO_ThuePhong.IdRoomBook = txt_IdRoomBook.Text;
+                _dTO_ThuePhong.StaffName = txt_NhanVien.Text;
+                _dTO_ThuePhong.EndDate = txt_NgayDi.Text;
+                _thuePhongFs.ThemThuePhong(_dTO_ThuePhong);
+                var listThuePhong = await _thuePhongFs.GetThuePhong();
+                dgv_ThuePhong.DataSource = listThuePhong;
+                GanDuLieuVaoDTO_Phong();
+                _phongFs.CapNhatPhong(_dTO_Phong, dgv_Phong.CurrentRow.Cells["colIdRoom"].Value.ToString());
+                listPhong = await _phongFs.GetPhong();
+                dgv_Phong.DataSource = listPhong;
+            }
+
+        }
+        private void btn_ThemKhachHang_Click(object sender, EventArgs e)
+        {
+            Frm_KhachHangModified _frm_KhachHangModified = new Frm_KhachHangModified();
+            _frm_KhachHangModified.ShowDialog();
+        }
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
     }
 }

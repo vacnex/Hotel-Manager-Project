@@ -20,10 +20,10 @@ namespace QuanLyThuePhong.KhachHang
             var listKhachHang = JsonConvert.DeserializeObject<List<DTO_KhachHang>>(json);
             return listKhachHang;
         }
-        public DTO_KhachHang GetKhachHangById(string idCard)
+        public async Task<DTO_KhachHang> GetKhachHangById(string idCard)
         {
-            _response =  _client.GetAsync($"api/customer/{idCard}").Result;
-            var json =  _response.Content.ReadAsStringAsync().Result;
+            _response = await _client.GetAsync($"api/customer/{idCard}");
+            var json = await _response.Content.ReadAsStringAsync();
             var listKhachHang = JsonConvert.DeserializeObject<DTO_KhachHang>(json);
             return listKhachHang;
         }

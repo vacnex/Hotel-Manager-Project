@@ -29,15 +29,23 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+<<<<<<< HEAD
             this.btn_LamMoi = new System.Windows.Forms.Button();
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.dgv_Phong = new System.Windows.Forms.DataGridView();
             this.colIdRoom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_TimKiem = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.txt_MaPhong = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+=======
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_MaPhong = new System.Windows.Forms.TextBox();
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,14 +58,23 @@
             this.txt_SDT = new System.Windows.Forms.TextBox();
             this.txt_CMND = new System.Windows.Forms.TextBox();
             this.dgv_ThuePhong = new System.Windows.Forms.DataGridView();
+<<<<<<< HEAD
+=======
+            this.btn_TraPhong = new System.Windows.Forms.Button();
+            this.btn_ThanhToan = new System.Windows.Forms.Button();
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.colIdRoomBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIdCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIdRoom1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+<<<<<<< HEAD
             this.btn_TraPhong = new System.Windows.Forms.Button();
             this.btn_ThanhToan = new System.Windows.Forms.Button();
+=======
+            this.btn_LamMoi = new System.Windows.Forms.Button();
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Phong)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -79,6 +96,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tra cứu phòng cần trả";
             // 
+<<<<<<< HEAD
             // btn_LamMoi
             // 
             this.btn_LamMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -90,6 +108,8 @@
             this.btn_LamMoi.UseVisualStyleBackColor = true;
             this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
             // 
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             // dgv_Phong
             // 
             this.dgv_Phong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -148,6 +168,7 @@
             this.btn_TimKiem.UseVisualStyleBackColor = true;
             this.btn_TimKiem.Click += new System.EventHandler(this.btn_TimKiem_Click);
             // 
+<<<<<<< HEAD
             // txt_MaPhong
             // 
             this.txt_MaPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -156,6 +177,8 @@
             this.txt_MaPhong.Size = new System.Drawing.Size(129, 26);
             this.txt_MaPhong.TabIndex = 0;
             // 
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             // label1
             // 
             this.label1.AutoSize = true;
@@ -166,6 +189,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Nhập mã phòng";
             // 
+<<<<<<< HEAD
+=======
+            // txt_MaPhong
+            // 
+            this.txt_MaPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_MaPhong.Location = new System.Drawing.Point(147, 19);
+            this.txt_MaPhong.Name = "txt_MaPhong";
+            this.txt_MaPhong.Size = new System.Drawing.Size(129, 26);
+            this.txt_MaPhong.TabIndex = 0;
+            // 
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label4);
@@ -241,7 +275,10 @@
             this.txt_DiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_DiaChi.Location = new System.Drawing.Point(119, 86);
             this.txt_DiaChi.Name = "txt_DiaChi";
+<<<<<<< HEAD
             this.txt_DiaChi.ReadOnly = true;
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.txt_DiaChi.Size = new System.Drawing.Size(246, 26);
             this.txt_DiaChi.TabIndex = 0;
             // 
@@ -250,7 +287,10 @@
             this.txt_GioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_GioiTinh.Location = new System.Drawing.Point(492, 54);
             this.txt_GioiTinh.Name = "txt_GioiTinh";
+<<<<<<< HEAD
             this.txt_GioiTinh.ReadOnly = true;
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.txt_GioiTinh.Size = new System.Drawing.Size(246, 26);
             this.txt_GioiTinh.TabIndex = 0;
             // 
@@ -259,7 +299,10 @@
             this.txt_HoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_HoTen.Location = new System.Drawing.Point(119, 54);
             this.txt_HoTen.Name = "txt_HoTen";
+<<<<<<< HEAD
             this.txt_HoTen.ReadOnly = true;
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.txt_HoTen.Size = new System.Drawing.Size(246, 26);
             this.txt_HoTen.TabIndex = 0;
             // 
@@ -268,7 +311,10 @@
             this.txt_SDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_SDT.Location = new System.Drawing.Point(492, 22);
             this.txt_SDT.Name = "txt_SDT";
+<<<<<<< HEAD
             this.txt_SDT.ReadOnly = true;
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.txt_SDT.Size = new System.Drawing.Size(246, 26);
             this.txt_SDT.TabIndex = 0;
             // 
@@ -277,7 +323,10 @@
             this.txt_CMND.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_CMND.Location = new System.Drawing.Point(119, 22);
             this.txt_CMND.Name = "txt_CMND";
+<<<<<<< HEAD
             this.txt_CMND.ReadOnly = true;
+=======
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.txt_CMND.Size = new System.Drawing.Size(246, 26);
             this.txt_CMND.TabIndex = 0;
             // 
@@ -297,7 +346,30 @@
             this.dgv_ThuePhong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_ThuePhong.Size = new System.Drawing.Size(641, 150);
             this.dgv_ThuePhong.TabIndex = 5;
+<<<<<<< HEAD
             this.dgv_ThuePhong.Click += new System.EventHandler(this.dgv_ThuePhong_Click);
+=======
+            // 
+            // btn_TraPhong
+            // 
+            this.btn_TraPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TraPhong.Location = new System.Drawing.Point(659, 339);
+            this.btn_TraPhong.Name = "btn_TraPhong";
+            this.btn_TraPhong.Size = new System.Drawing.Size(129, 31);
+            this.btn_TraPhong.TabIndex = 4;
+            this.btn_TraPhong.Text = "Trả phòng";
+            this.btn_TraPhong.UseVisualStyleBackColor = true;
+            // 
+            // btn_ThanhToan
+            // 
+            this.btn_ThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ThanhToan.Location = new System.Drawing.Point(659, 394);
+            this.btn_ThanhToan.Name = "btn_ThanhToan";
+            this.btn_ThanhToan.Size = new System.Drawing.Size(129, 31);
+            this.btn_ThanhToan.TabIndex = 5;
+            this.btn_ThanhToan.Text = "Thanh toán";
+            this.btn_ThanhToan.UseVisualStyleBackColor = true;
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             // 
             // colIdRoomBook
             // 
@@ -337,6 +409,7 @@
             this.colStaffName.HeaderText = "Tên nhân viên";
             this.colStaffName.Name = "colStaffName";
             // 
+<<<<<<< HEAD
             // btn_TraPhong
             // 
             this.btn_TraPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -358,12 +431,28 @@
             this.btn_ThanhToan.Text = "Thanh toán";
             this.btn_ThanhToan.UseVisualStyleBackColor = true;
             this.btn_ThanhToan.Click += new System.EventHandler(this.btn_ThanhToan_Click);
+=======
+            // btn_LamMoi
+            // 
+            this.btn_LamMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_LamMoi.Location = new System.Drawing.Point(147, 88);
+            this.btn_LamMoi.Name = "btn_LamMoi";
+            this.btn_LamMoi.Size = new System.Drawing.Size(129, 31);
+            this.btn_LamMoi.TabIndex = 4;
+            this.btn_LamMoi.Text = "Làm mới";
+            this.btn_LamMoi.UseVisualStyleBackColor = true;
+            this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             // 
             // Frm_TraPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(800, 474);
+=======
+            this.ClientSize = new System.Drawing.Size(800, 585);
+>>>>>>> 4d21d20113815121a1243192c32e3aeea5ea0b02
             this.Controls.Add(this.btn_TraPhong);
             this.Controls.Add(this.btn_ThanhToan);
             this.Controls.Add(this.dgv_ThuePhong);
