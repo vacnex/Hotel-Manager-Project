@@ -1252,25 +1252,17 @@ namespace HotelManager
             List<string> idRoomBook = new List<string>();
             List<string> room = new List<string>();
             List<string> idServiceUse = new List<string>();
-            for (int i = 0; i < customerinfo.TblRoombook.Count; i++)
-            {
-                roombinfo = (TblRoombook)customerinfo.TblRoombook[i];
-            }
-            foreach (var item in customerinfo.TblRoombook)
-            {
-                room.Add(item.IdRoom);
-                idRoomBook.Add(item.IdRoombook.ToString());
-            }
-
-            foreach (var item in customerinfo.TblServicesuse)
-            {
-                idServiceUse.Add(item.IdServiceuse.ToString());
-            }
-
             List<TblServices> payServices = new List<TblServices>();
-            foreach (var item in customerinfo.TblServicesuse)
+            if ((TblCustomer)dtgPayCustomer.SelectedItem != null)
             {
-                payServices.Add(item.TblServices);
+                for (int i = 0; i < customerinfo.TblRoombook.Count; i++) roombinfo = (TblRoombook)customerinfo.TblRoombook[i];
+                foreach (var item in customerinfo.TblRoombook)
+                {
+                    room.Add(item.IdRoom);
+                    idRoomBook.Add(item.IdRoombook.ToString());
+                }
+                foreach (var item in customerinfo.TblServicesuse) idServiceUse.Add(item.IdServiceuse.ToString());
+                foreach (var item in customerinfo.TblServicesuse) payServices.Add(item.TblServices);
             }
             if (dtgPayCustomer.SelectedItem != null)
             {

@@ -174,7 +174,7 @@
 
                         <hc:Divider x:Name="dvdPayTotalRoomPrice" LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="Thành Tiền: " FontSize="16" Padding="10,0"  HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,130,0,216"/>
                         <hc:Divider FontSize="16" LineStrokeThickness="2"  LineStroke="{DynamicResource DarkPrimaryBrush}"  Content="DỊCH VỤ ĐÃ DÙNG" Padding="10,0" Margin="0,269,0,0"/>
-                        <DataGrid x:Name="dtgPayServicesList"  RowHeaderWidth="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" FontSize="12" Height="170" Margin="0,156,0,0" FontWeight="Normal">
+                        <DataGrid x:Name="dtgPayServicesList" AutoGenerateColumns="False" RowHeaderWidth="60" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" FontSize="12" Height="170" Margin="0,156,0,0" FontWeight="Normal">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding SerName}" Header="Tên Dịch Vụ"/>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding SerPrice}" Header="Giá"/>
