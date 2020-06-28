@@ -461,6 +461,19 @@ namespace HotelManager
             accountInfo.txtbRole.Text = "QUYỀN HẠN: " + txtbStaffRole.Text;
             Dialog.Show(accountInfo);
         }
+        private async void LoadCustomServices(string apiURL, DataGrid datagrid)
+        {
+            var getList = await client.GetAsync(apiURL);
+            if (getList.IsSuccessStatusCode)
+            {
+                var getResponsestring = await getList.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<List<TblCustomer>>(getResponsestring);
+                List<TblCustomer> temp = new List<TblCustomer>();
+                for (int i = 0; i < result.Count; i++) if (result[i].TblRoombook.Count != 0) temp.Add(result[i]);
+                datagrid.ItemsSource = temp;
+                ListLoading.Visibility = Visibility.Hidden;
+            }
+        }
         #endregion
 
         #region MenuClick
@@ -528,7 +541,7 @@ namespace HotelManager
             grpConfirmRoomList.Visibility = Visibility.Hidden;
             grpPayCustomerList.Visibility = Visibility.Hidden;
             grpPayCustomer.Visibility = Visibility.Hidden;
-            ListLoad<TblCustomer>(baseCustomerUrl, dtgCustomer);
+            LoadCustomServices(baseCustomerUrl, dtgCustomer);
         }
         private void mnuRoomChangeRoom_Click(object sender, RoutedEventArgs e)
         {
@@ -1084,7 +1097,6 @@ namespace HotelManager
             TextBox searchCustomer = (TextBox)sender;
             string filterText = searchCustomer.Text;
             ICollectionView cv = CollectionViewSource.GetDefaultView(dtgCustomer.ItemsSource);
-
             if (!string.IsNullOrEmpty(filterText))
             {
                 cv.Filter = o =>
@@ -1094,7 +1106,7 @@ namespace HotelManager
                     else return (p.CusName.ToUpper().StartsWith(filterText.ToUpper()));
                 };
             }
-            else ListLoad<TblCustomer>(baseCustomerUrl, dtgCustomer);
+            else LoadCustomServices(baseCustomerUrl, dtgCustomer);
         }
         #endregion
 
