@@ -33,6 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -57,6 +75,21 @@
       <DependentUpon>Frm_DangNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="DangNhap\TaiKhoanFs.cs" />
+    <Compile Include="DichVu\DichVuFs.cs" />
+    <Compile Include="DichVu\DTO_DichVu.cs" />
+    <Compile Include="DichVu\Frm_DichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DichVu\Frm_DichVu.Designer.cs">
+      <DependentUpon>Frm_DichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DichVu\Frm_DichVuModified.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DichVu\Frm_DichVuModified.Designer.cs">
+      <DependentUpon>Frm_DichVuModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DungChung\Cls_Main.cs" />
     <Compile Include="DungChung\DungChung.cs" />
     <Compile Include="Frm_TrangChu.cs">
       <SubType>Form</SubType>
@@ -94,8 +127,41 @@
     <Compile Include="Phong\PhongFs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ThuePhong\DTO_ThuePhong.cs" />
+    <Compile Include="ThuePhong\Frm_ThanhToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_ThanhToan.Designer.cs">
+      <DependentUpon>Frm_ThanhToan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_ThuePhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_ThuePhong.Designer.cs">
+      <DependentUpon>Frm_ThuePhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_ThuePhongModified.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_ThuePhongModified.Designer.cs">
+      <DependentUpon>Frm_ThuePhongModified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_TraPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThuePhong\Frm_TraPhong.Designer.cs">
+      <DependentUpon>Frm_TraPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThuePhong\ThuePhongFs.cs" />
     <EmbeddedResource Include="DangNhap\Frm_DangNhap.resx">
       <DependentUpon>Frm_DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DichVu\Frm_DichVu.resx">
+      <DependentUpon>Frm_DichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DichVu\Frm_DichVuModified.resx">
+      <DependentUpon>Frm_DichVuModified.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_TrangChu.resx">
       <DependentUpon>Frm_TrangChu.cs</DependentUpon>
@@ -121,6 +187,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ThuePhong\Frm_ThanhToan.resx">
+      <DependentUpon>Frm_ThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThuePhong\Frm_ThuePhong.resx">
+      <DependentUpon>Frm_ThuePhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThuePhong\Frm_ThuePhongModified.resx">
+      <DependentUpon>Frm_ThuePhongModified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThuePhong\Frm_TraPhong.resx">
+      <DependentUpon>Frm_TraPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -135,6 +213,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

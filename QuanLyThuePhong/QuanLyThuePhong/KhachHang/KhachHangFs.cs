@@ -20,6 +20,13 @@ namespace QuanLyThuePhong.KhachHang
             var listKhachHang = JsonConvert.DeserializeObject<List<DTO_KhachHang>>(json);
             return listKhachHang;
         }
+        public DTO_KhachHang GetKhachHangById(string idCard)
+        {
+            _response =  _client.GetAsync($"api/customer/{idCard}").Result;
+            var json =  _response.Content.ReadAsStringAsync().Result;
+            var listKhachHang = JsonConvert.DeserializeObject<DTO_KhachHang>(json);
+            return listKhachHang;
+        }
         public void ThemKhachHang(DTO_KhachHang khachHang)
         {
             var tempKhachHang = JsonConvert.SerializeObject(khachHang);

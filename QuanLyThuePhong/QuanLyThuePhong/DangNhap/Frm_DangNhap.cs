@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyThuePhong.DungChung;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +30,7 @@ namespace QuanLyThuePhong.DangNhap
 
             if (txt_TenDangNhap.Text == _dTO_TaiKhoan.Username && txt_MatKhau.Text == _dTO_TaiKhoan.Pass)
             {
+                Cls_Main.tenNhanVien = _dTO_TaiKhoan.Name;
                 this.Close();
                 MessageBox.Show("Đăng nhập thành công!!!");
             }

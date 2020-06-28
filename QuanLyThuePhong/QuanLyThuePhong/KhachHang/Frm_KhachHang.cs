@@ -22,7 +22,7 @@ namespace QuanLyThuePhong.KhachHang
             _khachHangFs = new KhachHangFs();
             HienThiDuLieuLenDGV();
         }
-        private async void HienThiDuLieuLenDGV()
+        public async void HienThiDuLieuLenDGV()
         {
             var listKhachHang = await _khachHangFs.GetKhachHang();
             dgv_KhachHang.DataSource = listKhachHang;
