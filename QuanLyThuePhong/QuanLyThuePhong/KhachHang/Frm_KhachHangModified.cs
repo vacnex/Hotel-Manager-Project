@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyThuePhong.ThuePhong;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +33,9 @@ namespace QuanLyThuePhong.KhachHang
                 MessageBox.Show("Bạn chưa điền đủ thông tin khách hàng!!!");
             }
         }
+
+        
+
         private void Frm_KhachHangModified_Load(object sender, EventArgs e)
         {
             _khachHangFs = new KhachHangFs();
