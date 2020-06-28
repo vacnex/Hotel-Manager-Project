@@ -25,8 +25,8 @@
 ## Thông Tin Đề Tài
 
 
-<img src="https://i.ibb.co/fnkJcr2/web-screen.png" alt="web-screen" border="0" />
-<img src="https://i.ibb.co/xLMKYBJ/softlogin.png" alt="softlogin" border="0" />
+<img src="https://i.ibb.co/txqRdY4/web-screen.png" alt="web-screen" border="0" />
+<img src="https://i.ibb.co/F3BkXyg/softlogin.png" alt="softlogin" border="0" />
 
 Đề tài quản lý khách sạn sử dụng Web API, bao gồm Web Application và Destop Application
 
