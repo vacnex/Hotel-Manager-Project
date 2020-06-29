@@ -474,6 +474,27 @@ namespace HotelManager
                 ListLoading.Visibility = Visibility.Hidden;
             }
         }
+        private async void RoomPaid(string baseRoomBookUrl, string baseRoomUrl, string baseServicesUseUrl, List<string> idRoomBook, List<string> idRoom, List<string> idServicesUse, List<string> json)
+        {
+            var serviceDel = new HttpResponseMessage();
+            var roomBookDel = new HttpResponseMessage();
+            var putRoom = new HttpResponseMessage();
+
+            for (int i = 0; i < idRoomBook.Count; i++)
+            {
+                roomBookDel = await client.DeleteAsync(baseRoomBookUrl + idRoomBook[i]);
+                if (roomBookDel.IsSuccessStatusCode)
+                {
+                    JObject restoreRoom = JObject.Parse(json[i]);
+                    var contentRoom = new StringContent(restoreRoom.ToString(), Encoding.UTF8, "application/json");
+                    putRoom = await client.PutAsync(baseRoomUrl + idRoom[i], contentRoom);
+                    if (!putRoom.IsSuccessStatusCode) Growl.Error("Lỗi Put phòng", "MainWindow");
+                }
+                else Growl.Error("Lỗi Xoá roomBook", "MainWondow");
+            }
+            for (int i = 0; i < idServicesUse.Count; i++) serviceDel = await client.DeleteAsync(baseServicesUseUrl + idServicesUse[i]);
+            if (serviceDel.IsSuccessStatusCode) Growl.Success("Đã Thanh Toán!!", "MainWindow");
+        }
         #endregion
 
         #region MenuClick
@@ -1318,28 +1339,6 @@ namespace HotelManager
                 else Growl.Warning("Điền Số Tiền Khách Đưa", "MainWindow");
             }
             else Growl.Warning("Chọn Phòng Thanh Toán", "MainWindow");
-        }
-        private async void RoomPaid(string baseRoomBookUrl, string baseRoomUrl, string baseServicesUseUrl, List<string> idRoomBook, List<string> idRoom, List<string> idServicesUse, List<string> json)
-        {
-            var serviceDel = new HttpResponseMessage();
-            var roomBookDel = new HttpResponseMessage();
-            var putRoom = new HttpResponseMessage();
-
-            for (int i = 0; i < idRoomBook.Count; i++)
-            {
-                roomBookDel = await client.DeleteAsync(baseRoomBookUrl + idRoomBook[i]);
-                if (roomBookDel.IsSuccessStatusCode)
-                {
-                    JObject restoreRoom = JObject.Parse(json[i]);
-                    var contentRoom = new StringContent(restoreRoom.ToString(), Encoding.UTF8, "application/json");
-                    putRoom = await client.PutAsync(baseRoomUrl + idRoom[i], contentRoom);
-                    if (!putRoom.IsSuccessStatusCode) Growl.Error("Lỗi Put phòng", "MainWindow");
-                }
-                else Growl.Error("Lỗi Xoá roomBook", "MainWondow");
-            }
-            for (int i = 0; i < idServicesUse.Count; i++) serviceDel = await client.DeleteAsync(baseServicesUseUrl + idServicesUse[i]);
-            if (serviceDel.IsSuccessStatusCode) Growl.Success("Đã Thanh Toán!!", "MainWindow");
-
         }
         #endregion
 
