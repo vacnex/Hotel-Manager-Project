@@ -30,7 +30,6 @@
 
 Đề tài quản lý khách sạn sử dụng Web API, bao gồm Web Application và Destop Application
 
-
 ### Built With
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
@@ -44,9 +43,9 @@
 Để có thể cài đặt và sử dụng hãy làm theo hương dẫn bên dưới
 
 ### Chuẩn Bị
-[Visual Studio 2019]()
-[Visual Code]() (Tuỳ chọn)
-[SQL Sever Manager 2008 R2]()
+* [Visual Studio 2019]()
+* [Visual Code]() (Tuỳ chọn)
+* [SQL Sever Manager 2008 R2]()
 
 ### Cài Đặt
 
@@ -54,18 +53,49 @@
 ```sh
 git clone https://github.com/vacnex/Hotel-Manager-Project.git
 ```
-2. Cập nhật các gói Nuget đi kèm trong project
+2. Tạo Database
+```sh
+Excute DB.sql
+```
+3. Cập nhật các gói Nuget đi kèm trong project
 ```sh
 HotelManager
+HotelManagerAPI
 ```
-4. Đổi API url trong `MainWindow.xaml`
+4. Đổi chuỗi kết nối trong `web.config` và `app.config` trong `HotelManagerAPI`
+```xml
+  <connectionStrings>
+    <add name="HotelManagerDBContext" connectionString="..." />
+  </connectionStrings>
+```
+5. Đổi API url trong `MainWindow.xaml` của `HotelManager`
 ```C#
 string URL_NAME = 'Nhập API Link';
 ```
+6. Đổi API url trong `ajax.js` của `Booking`
+```Js
+$.getJSON("")
+$.post('', JSON.parse(...),"json")
+$.ajax({
+          url: ''+...,
+          ...
+      });
+```
+7. Khởi chạy `HotelManagerAPI` lên `localhost` </br>
+Mở Swagger để test api
+``
+https://localhost:xxx/swagger/
+``
+
 ## Sử Dụng
 
+1. Desktop Application
 ```
-Coming Soon
+Có thể dùng project HotelManager hoặc QuanLyThuePhong để test
+```
+2. Web Front-End
+```
+Dùng Visual Code mở live server để test
 ```
 
 ## Nguồn Hỗ Trợ
